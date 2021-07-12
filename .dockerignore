@@ -1,0 +1,4 @@
+*.log
+venv/
+up.sh
+__pycache__/

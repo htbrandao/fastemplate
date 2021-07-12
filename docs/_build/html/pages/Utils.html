@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Utils &mdash; fastemplate  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/logo.png"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Services" href="Services.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> fastemplate
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="About.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tests.html">Tests</a></li>
+</ul>
+<p><span class="caption-text">API:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Module.html">Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Module.html#module-fastemplate.module.cart">Cart</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Exceptions.html">Exceptions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Exceptions.html#module-fastemplate.exceptions.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exceptions.html#module-fastemplate.exceptions.handler">Handler</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Objects.html">Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Objects.html#module-fastemplate.objects.cart">Cart</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Services.html">Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.docs">Docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.v1">V1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.v1.shopcart">Shopcart</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.utils.decorator">Decorators</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">fastemplate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Utils</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/pages/Utils.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="utils">
+<h1>Utils<a class="headerlink" href="#utils" title="Permalink to this headline">¶</a></h1>
+<p>Here you can check the code on this submodule:</p>
+<span class="target" id="module-fastemplate.utils"></span><dl class="py function">
+<dt id="fastemplate.utils.log_request_entries">
+<code class="sig-prename descclassname">fastemplate.utils.</code><code class="sig-name descname">log_request_entries</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">log_file</span><span class="o">=</span><span class="default_value">'log.log'</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/utils.html#log_request_entries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.utils.log_request_entries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the amount of log entries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>log_file</strong> (<em>str</em>) – name of the log file</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="module-fastemplate.utils.decorator">
+<span id="decorators"></span><h2>Decorators<a class="headerlink" href="#module-fastemplate.utils.decorator" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="fastemplate.utils.decorator.timer">
+<code class="sig-prename descclassname">fastemplate.utils.decorator.</code><code class="sig-name descname">timer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/utils/decorator.html#timer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.utils.decorator.timer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Print the runtime of the decorated function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>func</strong> (<em>func</em>) – func to be decorated</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>wrapped function</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="Services.html" class="btn btn-neutral float-left" title="Services" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Henrique Brandao.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

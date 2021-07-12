@@ -1,0 +1,9 @@
+Exceptions
+==========
+
+Here you can check the code on this submodule:
+
+Basic:
+------
+.. automodule:: fastemplate.exceptions
+   :members:
