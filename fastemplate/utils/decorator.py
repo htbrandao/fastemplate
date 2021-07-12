@@ -28,5 +28,4 @@ def check_id(id: str):
     if id in _CART:
         return True
     else:
-        raise CartIdNotFoundException(status_code=404,
-            message=f'Cart #{id} does not exist.')
+        raise CartIdNotFoundException(status_code=404, message=f'Cart #{id} does not exist.')
