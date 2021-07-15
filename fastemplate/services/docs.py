@@ -3,10 +3,11 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
 from fastemplate import logger
+from fastemplate.config import config
 
 router = APIRouter()
 
-templates = Jinja2Templates(directory="docs/_build/html")
+templates = Jinja2Templates(directory='docs/_build/html')
 
 
 @router.get("/index.html", response_class=HTMLResponse, include_in_schema=False)
@@ -16,5 +17,5 @@ def index():
 
     :return: HTML
     """
-    logger.info('Request @ /index.html')
+    logger.info('Request@/index.html')
     return templates.get_template("index.html").render()
