@@ -16,7 +16,7 @@ def metrics():
 
     :return: dict
     """
-    logger.info('Request @ /metrics')
+    logger.info('Request@/metrics')
     return {
         'alive': True,
         '@timestamp': datetime.now().strftime('%d-%m-%Y %H:%M:%S'),
