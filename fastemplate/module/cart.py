@@ -1,16 +1,12 @@
 import functools
 
-from fastemplate import logger
+from fastemplate.module import BASE_CART
 from fastemplate.objects.cart import CartItem, CartItemsList
 from fastemplate.exceptions.cart import CartIdAlreadyExistsException, CartIdNotFoundException, ItemNotFoundException, \
     MismatchedLenghtException, ItemAlreadyAddedException
 
-BASE_CART = {}
-
 #FIXME: REMOVE
 BASE_CART['x'] = {"potato": 1.25, "orange": 2, "tomato": 0.8}
-
-#TODO: Logging
 
 def create_cart(id: str):
     """
@@ -20,24 +16,25 @@ def create_cart(id: str):
     :return: dict
     """
     if id in BASE_CART:
-        raise CartIdAlreadyExistsException(status_code=503,
-            message='Cart #{id} already in use. Checkout or delete it first.')
+        raise CartIdAlreadyExistsException(message=f'Cart #{id} already in use. Checkout or delete it first.')
     else:
         BASE_CART[id] = {}
         return {'message': f'created cart #{id}.'}
 
 def hasId(func):
     """
+    Wrapper to check if cart has the given id.
     """
     @functools.wraps(func)
     def wrapper_hasId(**kwargs):
         """
+        Wrapper function for `hasId`.
         """
         cart_id = {**kwargs}['id']
-        if BASE_CART.get('cart_id', False):
+        if cart_id in BASE_CART:
             return func(**kwargs)
         else:
-            raise CartIdNotFoundException(status_code=404, message=f'Cart #{cart_id} does not exist.')
+            raise CartIdNotFoundException(message=f'Cart #{cart_id} does not exist.')
     return wrapper_hasId
 
 @hasId
@@ -61,8 +58,7 @@ def add_item(id: str, item=CartItem):
     :return: dict
     """
     if item.name in BASE_CART[id]:
-        raise ItemAlreadyAddedException(status_code=422,
-            message=f'Item already added: {item.name} - {BASE_CART[id][item.name]}.')
+        raise ItemAlreadyAddedException(message=f'Item already added: {item.name} - {BASE_CART[id][item.name]}.')
     else:
         BASE_CART[id][item.name] = item.price
     return {'cart': id, 'item': item.name, 'price': item.price}
@@ -78,15 +74,14 @@ def add_list(id: str, items: CartItemsList):
     """
     repeated = []
     if len(items.names) != len(items.prices):
-        raise MismatchedLenghtException(status_code=422,
-            message=f'Found {len(items.names)} items and {len(items.prices)} prices.')
+        raise MismatchedLenghtException(message=f'Found {len(items.names)} items and {len(items.prices)} prices.')
     for i, p in dict(zip(items.names, items.prices)).items():
         if i in BASE_CART[id]:
             repeated.append(i)
         else:
             BASE_CART[id][i] = p
     if repeated != []:
-        raise ItemAlreadyAddedException(status_code=422,
+        raise ItemAlreadyAddedException(
             message=f'Repeated items: {", ".join(repeated)}.')
     else:        
         return {'cart': id, 'message': f'added {len(items.names)} items', 'cost': sum(items.prices)}
@@ -107,7 +102,7 @@ def edit_item(id: str, item: CartItem):
             del BASE_CART[id][item.name]
             return {'cart': id, 'message': f'removed {item.name}.'}
         except KeyError:
-            raise ItemNotFoundException(status_code=404, message=f'Item not found {item.name}.')
+            raise ItemNotFoundException(message=f'Item not found {item.name}.')
     else:
         BASE_CART[id][item.name] = item.price
         return {'cart': id, 'message': f'adjusted {item.name} to {item.price}.'}
@@ -115,12 +110,16 @@ def edit_item(id: str, item: CartItem):
 @hasId
 def remove_item(id: str, item_name: str):
     """
+    Removes an item from cart.
+
+    :param str id: cart id
+    :return: dict
     """
     try:
         del BASE_CART[id][item_name]
         return {'cart': id, 'message': f'removed {item_name}.'}
     except KeyError:
-        raise ItemNotFoundException(status_code=404, message=f'Item not found {item_name}.')
+        raise ItemNotFoundException(message=f'Item not found {item_name}.')
 
 @hasId
 def list_cart(id: str):
@@ -147,6 +146,10 @@ def list_some_items(id: str, start: int, stop: int):
 @hasId
 def item_price(id: str, item_name: str):
     """
+    Returns the price from an item inside a cart.
+    
+    :param str id: cart id
+    :return: dict
     """
     return {item_name: BASE_CART[id][item_name]}
 
@@ -174,3 +177,11 @@ def checkout(id: str):
     msg = {id: list_cart(id=id), 'cost': total_cost(id=id)[id]}
     erase_cart(id=id)
     return msg
+
+def show_carts():
+    """
+    Returns all carts in their current state.
+
+    :return: dict
+    """
+    return BASE_CART
