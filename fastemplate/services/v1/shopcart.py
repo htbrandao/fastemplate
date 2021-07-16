@@ -59,6 +59,7 @@ def add_list(cart_id: str, items: CartItemsList):
     logger.info(f'Request@/add_list/{cart_id}')
     return cart.add_list(id=cart_id, items=items)
 
+
 @router.post('/edit_item/{cart_id}')
 def edit_item(cart_id: str, item: CartItem):
     """
@@ -73,6 +74,7 @@ def edit_item(cart_id: str, item: CartItem):
     logger.info(f'Request@/edit_item/{cart_id}')
     return cart.edit_item(id=cart_id, item=item)
 
+
 @router.delete('/delete/{cart_id}/{item_name}')
 def remove_item(cart_id: str, item_name: str):
     """
@@ -84,6 +86,7 @@ def remove_item(cart_id: str, item_name: str):
     """
     logger.info(f'Request@/delete/{cart_id}/{item_name}')
     return cart.remove_item(id=cart_id, item_name=item_name)
+
 
 @router.get('/item/{cart_id}/price/{item_name}')
 def item_price(cart_id: str, item_name: str):
@@ -97,6 +100,7 @@ def item_price(cart_id: str, item_name: str):
     logger.info(f'Request@/item/{cart_id}/price/{item_name}')
     return cart.item_price(id=cart_id, item_name=item_name)
 
+
 @router.get('/list_items/{cart_id}')
 def list_items(cart_id: str):
     """
@@ -107,6 +111,7 @@ def list_items(cart_id: str):
     """
     logger.info(f'Request@/list_items/{cart_id}')
     return cart.list_cart(id=cart_id)
+
 
 @router.get('/list_some_items/{cart_id}')
 def list_some_items(cart_id: str, start: int, stop: Optional[int] = None):
@@ -144,6 +149,7 @@ def checkout(cart_id: str):
     """
     logger.info(f'Request@/checkout/{cart_id}')
     return cart.checkout(id=cart_id)
+
 
 @router.get('/show_carts')
 def cost():
