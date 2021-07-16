@@ -15,7 +15,7 @@ def create(cart_id: str):
     """
     Creates a cart.
 
-    :param str id: cart id
+    :param str cart_id: cart id
     :return: dict
     """
     logger.info(f'Request@/create/{cart_id}')
@@ -27,7 +27,7 @@ def erase(cart_id: str):
     """
     Erases a cart.
 
-    :param str id: cart id
+    :param str cart_id: cart id
     :return: dict
     """
     logger.info(f'Request@/erase/{cart_id}')
@@ -39,7 +39,7 @@ def add_item(cart_id: str, item: CartItem):
     """
     Endpoint. Add item to cart.
 
-    :param str id: cart id
+    :param str cart_id: cart id
     :param CartItem item: pair of name and price
     :return: dict
     """
@@ -52,7 +52,7 @@ def add_list(cart_id: str, items: CartItemsList):
     """
     Endpoint. Add items list to cart.
 
-    :param str id: cart id
+    :param str cart_id: cart id
     :param CartItemsList items: items list
     :return dict: dict
     """
@@ -66,17 +66,21 @@ def edit_item(cart_id: str, item: CartItem):
     
     If price is set to zero (`0`), item is removed from cart.
 
-    :param str id: cart id
+    :param str cart_id: cart id
     :param CartItem item: pair of name and price
     :return: dict
     """
     logger.info(f'Request@/edit_item/{cart_id}')
     return cart.edit_item(id=cart_id, item=item)
 
-
 @router.delete('/delete/{cart_id}/{item_name}')
 def remove_item(cart_id: str, item_name: str):
     """
+    Endpoint. Removens an item from a cart.
+    
+    :param str cart_id: cart id
+    :param str item_name: item name
+    :return: dict
     """
     logger.info(f'Request@/delete/{cart_id}/{item_name}')
     return cart.remove_item(id=cart_id, item_name=item_name)
@@ -84,31 +88,34 @@ def remove_item(cart_id: str, item_name: str):
 @router.get('/item/{cart_id}/price/{item_name}')
 def item_price(cart_id: str, item_name: str):
     """
+    Endpoint. Returns an item price.
+    
+    :param str cart_id: cart id
+    :param str item_name: item name
+    :return: dict
     """
     logger.info(f'Request@/item/{cart_id}/price/{item_name}')
     return cart.item_price(id=cart_id, item_name=item_name)
-
 
 @router.get('/list_items/{cart_id}')
 def list_items(cart_id: str):
     """
     Endpoint. Retrieves the cart's items and prices.
 
-    :param str id: cart id
+    :param str cart_id: cart id
     :return: dict
     """
     logger.info(f'Request@/list_items/{cart_id}')
     return cart.list_cart(id=cart_id)
-
 
 @router.get('/list_some_items/{cart_id}')
 def list_some_items(cart_id: str, start: int, stop: Optional[int] = None):
     """
     Endpoint. List a items from the cart, based on a range.
 
-    :param str id: cart id
+    :param str cart_id: cart id
     :param int start: first index to iterate
-    :param int Optional[int]: last index to iterate
+    :param Optional[int] stop: last index to iterate
     :return: dict
     """
     logger.info(f'Request@/list_some_items/{cart_id}')
@@ -120,7 +127,7 @@ def cost(cart_id: str):
     """
     Endpoint. Returns the total cost of the cart.
 
-    :param str id: cart id
+    :param str cart_id: cart id
     :return: dict
     """
     logger.info(f'Request@/cost/{cart_id}')
@@ -132,7 +139,7 @@ def checkout(cart_id: str):
     """
     Endpoint. Return a summary and erases the cart.
 
-    :param str id: cart id
+    :param str cart_id: cart id
     :return: dict
     """
     logger.info(f'Request@/checkout/{cart_id}')
@@ -141,9 +148,9 @@ def checkout(cart_id: str):
 @router.get('/show_carts')
 def cost():
     """
-    Endpoint. Returns the total cost of the cart.
+    Endpoint. Returns all carts.
 
-    :param str id: cart id
+    :param str cart_id: cart id
     :return: dict
     """
     logger.info(f'Request@/show_carts')
