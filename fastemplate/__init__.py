@@ -22,9 +22,7 @@ logger.add('fastemplate.log', rotation='5 MB')
 app = FastAPI(
     title='FasTemplate',
     description=DESCRIPTION,
-    version=__version__,
-    # docs_url=f'/{__api_version__}/docs',
-    # redoc_url=f'/{__api_version__}/redoc'
+    version=__version__
 )
 
 
