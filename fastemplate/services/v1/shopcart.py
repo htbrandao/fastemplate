@@ -10,7 +10,7 @@ from fastemplate.objects.cart import CartItem, CartItemsList
 router = APIRouter()
 
 
-@router.put('/create/{cart_id}')
+@router.put('/create/{cart_id}', status_code=201)
 def create(cart_id: str):
     """
     Creates a cart.
