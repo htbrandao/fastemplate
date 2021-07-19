@@ -9,6 +9,13 @@ class CartItem(BaseModel):
     name: str = Field(description='Item name', default='berries')
     price: float = Field(description='Item price', default=1.25)
 
+class ItemPack(CartItem):
+    """
+    Schema to represent a pack item when receiving a request.
+    Since it extends `CartItem`, it will, basically, be the same
+    as a CartItem with the added `qnt` field. 
+    """
+    qnt: int = Field(description='Quantity', default=1)
 
 class CartItemsList(BaseModel):
     """
