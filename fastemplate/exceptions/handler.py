@@ -3,7 +3,7 @@ from starlette.responses import JSONResponse
 
 from fastemplate.exceptions import FastemplateBaseException
 from fastemplate.exceptions.cart import CartIdAlreadyExistsException, MismatchedLenghtException,\
-    CartIdNotFoundException, ItemAlreadyAddedException, ItemNotFoundException
+    CartIdNotFoundException, ItemAlreadyAddedException, ItemNotFoundException, UnsupportedFileExtensionException
 
 
 def exceptions_handler(app: FastAPI):
@@ -90,6 +90,20 @@ def exceptions_handler(app: FastAPI):
     async def item_not_found_exception_handler(request: Request, exception: ItemNotFoundException):
         """
         Handler for ItemNotFoundException.
+        """
+        return JSONResponse(
+            status_code=exception.status_code,
+            content={
+                'status': exception.status_code,
+                'message': exception.message,
+                'exception': exception.name
+            }
+        )
+
+    @app.exception_handler(UnsupportedFileExtensionException)
+    async def unsupported_file_extension_exception_handler(request: Request, exception: ItemNotFoundException):
+        """
+        Handler for UnsupportedFileExtensionException.
         """
         return JSONResponse(
             status_code=exception.status_code,
