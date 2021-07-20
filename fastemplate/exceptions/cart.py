@@ -39,3 +39,11 @@ class MismatchedLenghtException(FastemplateBaseException):
     def __init__(self, message: str):
         name = 'MismatchedLenghtException'
         super().__init__(422, message, name)
+
+class UnsupportedFileExtensionException(FastemplateBaseException):
+    """
+    Thrown whenever a list has more/less items then prices, and vice versa.
+    """
+    def __init__(self, message: str):
+        name = 'UnsupportedFileExtension'
+        super().__init__(415, message, name)
