@@ -1,12 +1,13 @@
 import functools
 
+from fastapi import File
+
+from fastemplate import logger
 from fastemplate.module import BASE_CART
 from fastemplate.objects.cart import CartItem, CartItemsList
 from fastemplate.exceptions.cart import CartIdAlreadyExistsException, CartIdNotFoundException, ItemNotFoundException, \
-    MismatchedLenghtException, ItemAlreadyAddedException
+    MismatchedLenghtException, ItemAlreadyAddedException, UnsupportedFileExtensionException
 
-#FIXME: REMOVE
-BASE_CART['x'] = {"potato": 1.25, "orange": 2, "tomato": 0.8}
 
 def create_cart(id: str):
     """
@@ -20,6 +21,7 @@ def create_cart(id: str):
     else:
         BASE_CART[id] = {}
         return {'message': f'created cart #{id}.'}
+
 
 def hasId(func):
     """
@@ -36,6 +38,33 @@ def hasId(func):
         else:
             raise CartIdNotFoundException(message=f'Cart #{cart_id} does not exist.')
     return wrapper_hasId
+
+
+def upload_shoplist(id: str, file: File):
+    """
+    Uploads a `.csv` file to create a cart.
+
+    :param str id: cart id
+    :param File file: file containing item name and price
+    :return: dict
+    """
+    if '.csv' not in file.filename:
+        raise UnsupportedFileExtensionException(message=f'File {file.filename} is not supported.')
+    else:
+        create_cart(id=id)
+        content_bytes = file.file.read()
+        content_str = content_bytes.decode('utf-8').split('\n')
+        shoplist = dict([
+            [i.split(',')[0], float(i.split(',')[1])]
+            for i in content_str
+        ])
+        BASE_CART[id] = shoplist
+        return {
+            'filename': file.filename,
+            'type': file.content_type,
+            'cart': BASE_CART[id]
+        }
+
 
 @hasId
 def erase_cart(id: str):
