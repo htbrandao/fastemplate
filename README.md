@@ -74,5 +74,7 @@ Take over eveything and make it fit your needs.
 
 # # TODO & FIXME:
 
-- Improve README
-- Write test cases
+- [ ] Improve README
+- [x] ~~Upload files~~
+- [ ] update docs:make html
+- [ ] Write test cases
