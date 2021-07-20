@@ -1,6 +1,5 @@
 from fastapi import APIRouter
 
-
 from fastemplate.services.v1 import shopcart
 
 v1 = APIRouter()
