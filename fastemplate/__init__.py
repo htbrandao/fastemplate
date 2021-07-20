@@ -7,7 +7,6 @@ from datetime import datetime
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware.cors import CORSMiddleware
 
-from fastemplate.config import config
 from fastemplate.services.v1 import v1
 from fastemplate.services import docs, metrics
 from fastemplate.exceptions.handler import exceptions_handler
@@ -22,7 +21,9 @@ logger.add('fastemplate.log', rotation='5 MB')
 app = FastAPI(
     title='FasTemplate',
     description=DESCRIPTION,
-    version=__version__
+    version=__version__,
+    # docs_url=f'/{__api_version__}/docs',
+    # redoc_url=f'/{__api_version__}/redoc'
 )
 
 
@@ -33,7 +34,7 @@ def root():
 
     :return: dict: basic api info
     """
-    logger.info('Request @ /')
+    logger.info('Request@/')
     timestamp = datetime.now().strftime('%d-%m-%YT%H:%M:%S')
     return {
         'APPLICATION': NAME,
