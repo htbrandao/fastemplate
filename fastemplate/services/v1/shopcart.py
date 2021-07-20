@@ -1,16 +1,16 @@
-from fastapi import APIRouter
+from typing import Optional
+
+from fastapi import APIRouter, UploadFile, File
 
 from fastemplate import logger
 from fastemplate.module import cart
-from typing import Optional
-
 from fastemplate.objects.cart import CartItem, CartItemsList
 
 
 router = APIRouter()
 
 
-@router.put('/create/{cart_id}', status_code=201)
+@router.post('/create/{cart_id}', status_code=201)
 def create(cart_id: str):
     """
     Creates a cart.
@@ -20,6 +20,19 @@ def create(cart_id: str):
     """
     logger.info(f'Request@/create/{cart_id}')
     return cart.create_cart(id=cart_id)
+
+
+@router.post("/upload_shoplist/{cart_id}", status_code=201)
+def upload_shoplist(cart_id:str, file: UploadFile = File(...)):
+    """
+    Uploads a `.csv` file to create a cart.
+
+    :param str id: cart id
+    :param File file: file containing item name and price
+    :return: dict
+    """
+    logger.info(f'Request@/upload_shoplist/{cart_id}')
+    return cart.upload_shoplist(id=cart_id, file=file)
 
 
 @router.delete('/erase/{cart_id}')
