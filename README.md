@@ -17,33 +17,33 @@ The *main* dependencies are:
 
 # # How to Use
 
-- Clone:
+- ## Clone:
 ```bash
 git clone https://github.com/htbrandao/fastemplate.git
 cd fastemplate/
 ```
 
-- Prepare:
+- ## Prepare:
 ```
 python3 -m venv venv
 source venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
-- Run:
-    - Uvicorn:
+- ## Run:
+    - ### Uvicorn:
         ```bash
         uvicorn fastemplate:app --host 0.0.0.0 --port 8000 --reload
         ```
-    - Docker:
+    - ### Docker:
         ```
         docker build . -t fastemplate:0.0.1 # only need once
         docker run -p 8000:8000 -n fastemplate -d fastemplate:0.0.1
         ```
 
-- Use:
+- ## Use:
 
-Naviage to [`localhost:8000`](localhost:8000) and you will see some basic info:
+### Naviage to [`localhost:8000`](localhost:8000) and you will see some basic info:
 ```
 {
     "APPLICATION":"FASTEMPLATE",
@@ -54,23 +54,27 @@ Naviage to [`localhost:8000`](localhost:8000) and you will see some basic info:
 }
 ```
 
-To interact with the API, go to [localhost:8000/docs](localhost:8000), which will look like this:
+### To interact with the API, go to **[localhost:8000/docs](localhost:8000)**, which will look like this:
 
 ![swagger](docs/_static/swagger_ex.png)
 
-Check out the documentation (and source code) on [localhost:8000/index.html](localhost:8000/index.html):
+### Check out both the documentation and source code on [localhost:8000/index.html](localhost:8000/index.html):
+
+- ## Documentation
 
 ![docs](docs/_static/docs_ex.png)
+- ## Source
+
 ![source](docs/_static/source_code_ex.png)
 
 
-- Post usage:
+- ## Post usage:
 
-You can and might use this as a template (or stepping stone) for **your** future projects.
+### You can and might use this as a template (or stepping stone) for **your** future projects.
 
-Take over eveything and make it fit your needs.
+### Take over eveything and make it fit your needs.
 
-**Remember to update the `Sphinx docs` and your `test cases`!**
+### Remember to update the **`Sphinx docs`** and your **`test cases`**!
 
 # # TODO & FIXME:
 
