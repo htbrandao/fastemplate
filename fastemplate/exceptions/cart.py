@@ -47,3 +47,11 @@ class UnsupportedFileExtensionException(FastemplateBaseException):
     def __init__(self, message: str):
         name = 'UnsupportedFileExtension'
         super().__init__(415, message, name)
+
+class InvalidCredentialsException(FastemplateBaseException):
+    """
+    Thrown whenever header credentials are invalid.
+    """
+    def __init__(self, message: str):
+        name = 'InvalidCredentialsException'
+        super().__init__(400, message, name)
