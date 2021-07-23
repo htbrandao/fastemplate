@@ -14,7 +14,9 @@ def create_cart(id: str):
     Creates a cart.
 
     :param str id: cart id
-    :return: dict
+    :return: message regarding cart creation
+    :rtype: dict
+    :raises: CartIdAlreadyExistsException
     """
     if id in BASE_CART:
         raise CartIdAlreadyExistsException(message=f'Cart #{id} already in use. Checkout or delete it first.')
@@ -191,7 +193,7 @@ def total_cost(id: str):
     :return: dict
     """
     s = []
-    for k, v in BASE_CART[id].items():
+    for v in BASE_CART[id].values():
         s.append(v)
     return {id: sum(s)}
 
@@ -214,3 +216,10 @@ def show_carts():
     :return: dict
     """
     return BASE_CART
+
+def nuke():
+    """
+    # TODO: docstring
+    """
+    BASE_CART.clear()
+    return {'message': 'all carts were obliterated', 'carts': BASE_CART}
