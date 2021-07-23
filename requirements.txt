@@ -13,3 +13,5 @@ uvloop==0.14.0
 recommonmark==0.7.1
 Sphinx==3.4.3
 sphinx-rtd-theme==0.5.1
+python-multipart==0.0.5
+pylint==2.9.5
