@@ -1,5 +1,8 @@
 # FasTemplate
 
+:warning: | **WORK IN PROGRESS**
+:---: | :---
+
 REST API example built using FastAPI.
 
 I wrote this as a **follow up** after your ['Hello, wolrd'](https://fastapi.tiangolo.com/tutorial/first-steps/) app.
@@ -37,7 +40,7 @@ pip3 install -r requirements.txt
         ```
     - ### Docker:
         ```
-        docker build . -t fastemplate:0.0.1 # only need once
+        docker build . -t fastemplate:0.0.1 # only needed once
         docker run -p 8000:8000 -n fastemplate -d fastemplate:0.0.1
         ```
 
@@ -58,7 +61,7 @@ pip3 install -r requirements.txt
 
 ![swagger](docs/_static/swagger_ex.png)
 
-### Check out both the documentation and source code on [localhost:8000/index.html](localhost:8000/index.html):
+### Check out both the documentation and source code on [localhost:8000/index.html](localhost:8000/index.html) or open `docs/_build/html/index.html`:
 
 - ## Documentation
 
@@ -79,6 +82,9 @@ pip3 install -r requirements.txt
 # # TODO & FIXME:
 
 - [ ] Improve README
-- [x] ~~Upload files~~
-- [ ] update docs:make html
+- [ ] Update docstrings (`:rtype:` and `:raises:` like in `create_cart()`)
+- [ ] Update docs: make html
+- [x] ~~Handle file upload~~
 - [ ] Write test cases
+- [ ] PyLint
+- [ ] Update some endpoints to `PUT` instead of `POST`
