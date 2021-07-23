@@ -1,10 +1,11 @@
 from typing import Optional
 
-from fastapi import APIRouter, UploadFile, File
+from fastapi import APIRouter, UploadFile, File, Depends, Header
 
 from fastemplate import logger
 from fastemplate.module import cart
 from fastemplate.objects.cart import CartItem, CartItemsList
+from fastemplate.exceptions.cart import InvalidCredentialsException
 
 
 router = APIRouter()
@@ -25,7 +26,7 @@ def create(cart_id: str):
 @router.post("/upload_shoplist/{cart_id}", status_code=201)
 def upload_shoplist(cart_id:str, file: UploadFile = File(...)):
     """
-    Uploads a `.csv` file to create a cart.
+    Uploads a `.csv` file to **create** a cart.
 
     :param str id: cart id
     :param File file: file containing item name and price
@@ -47,7 +48,7 @@ def erase(cart_id: str):
     return cart.erase_cart(id=cart_id)
 
 
-@router.post('/add_item/{cart_id}')
+@router.put('/add_item/{cart_id}')
 def add_item(cart_id: str, item: CartItem):
     """
     Endpoint. Add item to cart.
@@ -60,7 +61,7 @@ def add_item(cart_id: str, item: CartItem):
     return cart.add_item(id=cart_id, item=item)
 
 
-@router.post('/add_list/{cart_id}')
+@router.put('/add_list/{cart_id}')
 def add_list(cart_id: str, items: CartItemsList):
     """
     Endpoint. Add items list to cart.
@@ -88,42 +89,42 @@ def edit_item(cart_id: str, item: CartItem):
     return cart.edit_item(id=cart_id, item=item)
 
 
-@router.delete('/delete/{cart_id}/{item_name}')
-def remove_item(cart_id: str, item_name: str):
+def common_parameters(cart_id: str, item_name: str):
     """
-    Endpoint. Removens an item from a cart.
-    
-    :param str cart_id: cart id
-    :param str item_name: item name
-    :return: dict
+    # TODO: docstring
     """
-    logger.info(f'Request@/delete/{cart_id}/{item_name}')
-    return cart.remove_item(id=cart_id, item_name=item_name)
+    return {"cart_id": cart_id, "item_name": item_name}
 
 
-@router.get('/item/{cart_id}/price/{item_name}')
-def item_price(cart_id: str, item_name: str):
+@router.delete('/remove_item')
+def remove_item(commons: dict = Depends(common_parameters)):
     """
-    Endpoint. Returns an item price.
-    
-    :param str cart_id: cart id
-    :param str item_name: item name
-    :return: dict
+    # TODO: docstring
     """
-    logger.info(f'Request@/item/{cart_id}/price/{item_name}')
-    return cart.item_price(id=cart_id, item_name=item_name)
+    logger.info(f'Request@/remove_item/{commons["cart_id"]}/{commons["item_name"]}')
+    return cart.remove_item(id=commons['cart_id'], item_name=commons['item_name'])
 
 
-@router.get('/list_items/{cart_id}')
-def list_items(cart_id: str):
+@router.get('/item_price')
+def item_price(commons=Depends(common_parameters)):
     """
-    Endpoint. Retrieves the cart's items and prices.
+    # TODO: docstring
+    """
+    logger.info(f'Request@/item_price/{commons["cart_id"]}/{commons["item_name"]}')
+    return cart.item_price(id=commons['cart_id'], item_name=commons['item_name'])
 
-    :param str cart_id: cart id
-    :return: dict
+
+@router.get('/list_items')
+def list_items(cart_id: Optional[str] = None):
     """
-    logger.info(f'Request@/list_items/{cart_id}')
-    return cart.list_cart(id=cart_id)
+    # TODO: docstring
+    """
+    if cart_id:
+        logger.info(f'Request@/list_items/{cart_id}')
+        return cart.list_cart(id=cart_id)
+    else:
+        logger.info(f'Request@/list_items')
+        return cart.show_carts()
 
 
 @router.get('/list_some_items/{cart_id}')
@@ -174,3 +175,25 @@ def cost():
     """
     logger.info(f'Request@/show_carts')
     return cart.show_carts()
+
+
+def verify_token(x_token: str = Header(...)):
+    real_token = "you-will-never-guess"
+    if x_token != real_token:
+        raise InvalidCredentialsException(message="X-Token header invalid")
+
+
+def verify_key(x_key: str = Header(...)):
+    real_key = "i-double-dare-you"
+    if x_key != real_key:
+        raise InvalidCredentialsException(message="X-Key header invalid")
+
+
+@router.delete('/nuke', dependencies=[Depends(verify_token), Depends(verify_key)])
+def nuke():
+    """
+    # TODO: docstring
+    """
+    logger.info(f'Request@/nuke')
+    return cart.nuke()
+
