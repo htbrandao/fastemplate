@@ -114,9 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Services.html">Services</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.docs">Docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.metrics">Metrics</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="Services.html#module-fastemplate.services.v1">V1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.v1">V1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.v1.shopcart">Shopcart</a></li>
 </ul>
 </li>
@@ -194,41 +192,47 @@
   <section id="exceptions">
 <h1>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h1>
 <p>Here you can check the code on this submodule:</p>
-<span class="target" id="module-fastemplate.exceptions"></span><dl class="py exception">
-<dt id="fastemplate.exceptions.FastemplateBaseException">
-<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.</code><code class="sig-name descname">FastemplateBaseException</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">status_code</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions.html#FastemplateBaseException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.FastemplateBaseException" title="Permalink to this definition">¶</a></dt>
-<dd><p>API Base exception</p>
-</dd></dl>
-
 <section id="module-fastemplate.exceptions.cart">
 <span id="cart"></span><h2>Cart<a class="headerlink" href="#module-fastemplate.exceptions.cart" title="Permalink to this headline">¶</a></h2>
 <dl class="py exception">
 <dt id="fastemplate.exceptions.cart.CartIdAlreadyExistsException">
-<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.cart.</code><code class="sig-name descname">CartIdAlreadyExistsException</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">status_code</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/cart.html#CartIdAlreadyExistsException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.cart.CartIdAlreadyExistsException" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.cart.</code><code class="sig-name descname">CartIdAlreadyExistsException</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/cart.html#CartIdAlreadyExistsException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.cart.CartIdAlreadyExistsException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Thrown whenever cart id already exists.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt id="fastemplate.exceptions.cart.CartIdNotFoundException">
-<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.cart.</code><code class="sig-name descname">CartIdNotFoundException</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">status_code</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/cart.html#CartIdNotFoundException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.cart.CartIdNotFoundException" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.cart.</code><code class="sig-name descname">CartIdNotFoundException</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/cart.html#CartIdNotFoundException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.cart.CartIdNotFoundException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Thrown whenever cart id does not exist.</p>
 </dd></dl>
 
 <dl class="py exception">
+<dt id="fastemplate.exceptions.cart.InvalidCredentialsException">
+<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.cart.</code><code class="sig-name descname">InvalidCredentialsException</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/cart.html#InvalidCredentialsException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.cart.InvalidCredentialsException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Thrown whenever header credentials are invalid.</p>
+</dd></dl>
+
+<dl class="py exception">
 <dt id="fastemplate.exceptions.cart.ItemAlreadyAddedException">
-<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.cart.</code><code class="sig-name descname">ItemAlreadyAddedException</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">status_code</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/cart.html#ItemAlreadyAddedException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.cart.ItemAlreadyAddedException" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.cart.</code><code class="sig-name descname">ItemAlreadyAddedException</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/cart.html#ItemAlreadyAddedException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.cart.ItemAlreadyAddedException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Thrown whenever a cart’s item already exists.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt id="fastemplate.exceptions.cart.ItemNotFoundException">
-<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.cart.</code><code class="sig-name descname">ItemNotFoundException</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">status_code</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/cart.html#ItemNotFoundException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.cart.ItemNotFoundException" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.cart.</code><code class="sig-name descname">ItemNotFoundException</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/cart.html#ItemNotFoundException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.cart.ItemNotFoundException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Thrown whenever a cart’s item is not found.</p>
 </dd></dl>
 
 <dl class="py exception">
 <dt id="fastemplate.exceptions.cart.MismatchedLenghtException">
-<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.cart.</code><code class="sig-name descname">MismatchedLenghtException</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">status_code</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/cart.html#MismatchedLenghtException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.cart.MismatchedLenghtException" title="Permalink to this definition">¶</a></dt>
+<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.cart.</code><code class="sig-name descname">MismatchedLenghtException</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/cart.html#MismatchedLenghtException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.cart.MismatchedLenghtException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Thrown whenever a list has more/less items then prices, and vice versa.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="fastemplate.exceptions.cart.UnsupportedFileExtensionException">
+<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.cart.</code><code class="sig-name descname">UnsupportedFileExtensionException</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/cart.html#UnsupportedFileExtensionException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.cart.UnsupportedFileExtensionException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Thrown whenever a list has more/less items then prices, and vice versa.</p>
 </dd></dl>
 

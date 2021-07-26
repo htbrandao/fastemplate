@@ -188,14 +188,14 @@
 <span></span><span class="kn">from</span> <span class="nn">fastemplate.config</span> <span class="kn">import</span> <span class="n">config</span>
 
 
-<div class="viewcode-block" id="log_request_entries"><a class="viewcode-back" href="../../pages/Utils.html#fastemplate.utils.log_request_entries">[docs]</a><span class="k">def</span> <span class="nf">log_request_entries</span><span class="p">(</span><span class="n">log_file</span><span class="o">=</span><span class="s1">&#39;log.log&#39;</span><span class="p">):</span>
+<div class="viewcode-block" id="log_request_entries"><a class="viewcode-back" href="../../pages/Utils.html#fastemplate.utils.log_request_entries">[docs]</a><span class="k">def</span> <span class="nf">log_request_entries</span><span class="p">(</span><span class="n">log_file</span><span class="o">=</span><span class="s1">&#39;fastemplate.log&#39;</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Retrieves the amount of log entries.</span>
 
 <span class="sd">    :param str log_file: name of the log file</span>
 <span class="sd">    :return: int</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">lines</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">ROOT_DIR</span><span class="si">}</span><span class="s1">/log.log&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">log_file</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span></div>
 </pre></div>
 

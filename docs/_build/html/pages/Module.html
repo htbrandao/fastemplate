@@ -251,7 +251,13 @@
 <dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – cart id</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>dict</p>
+<dd class="field-even"><p>message regarding cart creation</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>CartIdAlreadyExistsException</p>
 </dd>
 </dl>
 </dd></dl>
@@ -278,6 +284,26 @@
 <dt id="fastemplate.module.cart.erase_cart">
 <code class="sig-prename descclassname">fastemplate.module.cart.</code><code class="sig-name descname">erase_cart</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/module/cart.html#erase_cart"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.module.cart.erase_cart" title="Permalink to this definition">¶</a></dt>
 <dd><p>Erases a cart.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – cart id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fastemplate.module.cart.hasId">
+<code class="sig-prename descclassname">fastemplate.module.cart.</code><code class="sig-name descname">hasId</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">func</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/module/cart.html#hasId"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.module.cart.hasId" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper to check if cart has the given id.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fastemplate.module.cart.item_price">
+<code class="sig-prename descclassname">fastemplate.module.cart.</code><code class="sig-name descname">item_price</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">item_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/module/cart.html#item_price"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.module.cart.item_price" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the price from an item inside a cart.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – cart id</p>
@@ -321,12 +347,60 @@
 </dd></dl>
 
 <dl class="py function">
+<dt id="fastemplate.module.cart.nuke">
+<code class="sig-prename descclassname">fastemplate.module.cart.</code><code class="sig-name descname">nuke</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/module/cart.html#nuke"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.module.cart.nuke" title="Permalink to this definition">¶</a></dt>
+<dd><p># TODO: docstring</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fastemplate.module.cart.remove_item">
+<code class="sig-prename descclassname">fastemplate.module.cart.</code><code class="sig-name descname">remove_item</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">item_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/module/cart.html#remove_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.module.cart.remove_item" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes an item from cart.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – cart id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fastemplate.module.cart.show_carts">
+<code class="sig-prename descclassname">fastemplate.module.cart.</code><code class="sig-name descname">show_carts</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/module/cart.html#show_carts"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.module.cart.show_carts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns all carts in their current state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt id="fastemplate.module.cart.total_cost">
 <code class="sig-prename descclassname">fastemplate.module.cart.</code><code class="sig-name descname">total_cost</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/module/cart.html#total_cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.module.cart.total_cost" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the total cost of the cart.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>id</strong> (<em>str</em>) – cart id</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fastemplate.module.cart.upload_shoplist">
+<code class="sig-prename descclassname">fastemplate.module.cart.</code><code class="sig-name descname">upload_shoplist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">file</span><span class="p">:</span> <span class="n">fastapi.param_functions.File</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/module/cart.html#upload_shoplist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.module.cart.upload_shoplist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uploads a <cite>.csv</cite> file to create a cart.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>id</strong> (<em>str</em>) – cart id</p></li>
+<li><p><strong>file</strong> (<em>File</em>) – file containing item name and price</p></li>
+</ul>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>dict</p>

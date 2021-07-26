@@ -185,26 +185,42 @@
            <div itemprop="articleBody">
             
   <h1>Source code for fastemplate.services.v1.shopcart</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span><span class="p">,</span> <span class="n">UploadFile</span><span class="p">,</span> <span class="n">File</span><span class="p">,</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">Header</span>
 
 <span class="kn">from</span> <span class="nn">fastemplate</span> <span class="kn">import</span> <span class="n">logger</span>
 <span class="kn">from</span> <span class="nn">fastemplate.module</span> <span class="kn">import</span> <span class="n">cart</span>
 <span class="kn">from</span> <span class="nn">fastemplate.objects.cart</span> <span class="kn">import</span> <span class="n">CartItem</span><span class="p">,</span> <span class="n">CartItemsList</span>
+<span class="kn">from</span> <span class="nn">fastemplate.exceptions.cart</span> <span class="kn">import</span> <span class="n">InvalidCredentialsException</span>
 
 
 <span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
 
 
-<div class="viewcode-block" id="create"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.create">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/create/</span><span class="si">{cart_id}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="create"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.create">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/create/</span><span class="si">{cart_id}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">201</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">create</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a cart.</span>
 
-<span class="sd">    :param str id: cart id</span>
+<span class="sd">    :param str cart_id: cart id</span>
 <span class="sd">    :return: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Request @ /create/</span><span class="si">{</span><span class="n">cart_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Request@/create/</span><span class="si">{</span><span class="n">cart_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">create_cart</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">cart_id</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="upload_shoplist"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.upload_shoplist">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/upload_shoplist/</span><span class="si">{cart_id}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="mi">201</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">upload_shoplist</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">file</span><span class="p">:</span> <span class="n">UploadFile</span> <span class="o">=</span> <span class="n">File</span><span class="p">(</span><span class="o">...</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Uploads a `.csv` file to **create** a cart.</span>
+
+<span class="sd">    :param str id: cart id</span>
+<span class="sd">    :param File file: file containing item name and price</span>
+<span class="sd">    :return: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Request@/upload_shoplist/</span><span class="si">{</span><span class="n">cart_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">upload_shoplist</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">cart_id</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">file</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="erase"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.erase">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;/erase/</span><span class="si">{cart_id}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -212,83 +228,116 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Erases a cart.</span>
 
-<span class="sd">    :param str id: cart id</span>
+<span class="sd">    :param str cart_id: cart id</span>
 <span class="sd">    :return: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Request@/erase/</span><span class="si">{</span><span class="n">cart_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">erase_cart</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">cart_id</span><span class="p">)</span></div>
 
 
-<span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/add_item/</span><span class="si">{cart_id}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="add_item"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.add_item">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s1">&#39;/add_item/</span><span class="si">{cart_id}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">add_item</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">CartItem</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Endpoint. Add item to cart.</span>
 
-<span class="sd">    :param str id: cart id</span>
+<span class="sd">    :param str cart_id: cart id</span>
 <span class="sd">    :param CartItem item: pair of name and price</span>
 <span class="sd">    :return: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">cart_id</span><span class="p">,</span> <span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Request@/add_item/</span><span class="si">{</span><span class="n">cart_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">add_item</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">cart_id</span><span class="p">,</span> <span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="add_list"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.add_list">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/add_list/</span><span class="si">{cart_id}</span><span class="s1">&#39;</span><span class="p">)</span>
+<div class="viewcode-block" id="add_list"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.add_list">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="s1">&#39;/add_list/</span><span class="si">{cart_id}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">add_list</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">items</span><span class="p">:</span> <span class="n">CartItemsList</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Endpoint. Add items list to cart.</span>
 
-<span class="sd">    :param str id: cart id</span>
+<span class="sd">    :param str cart_id: cart id</span>
 <span class="sd">    :param CartItemsList items: items list</span>
 <span class="sd">    :return dict: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Request@/add_list/</span><span class="si">{</span><span class="n">cart_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">add_list</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">cart_id</span><span class="p">,</span> <span class="n">items</span><span class="o">=</span><span class="n">items</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="add_item"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.add_item">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/edit_item/</span><span class="si">{cart_id}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">add_item</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">CartItem</span><span class="p">):</span>
+<div class="viewcode-block" id="edit_item"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.edit_item">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/edit_item/</span><span class="si">{cart_id}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">edit_item</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">CartItem</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Removes an item from the cart.</span>
 <span class="sd">    </span>
-<span class="sd">    If price is set to zero (0), item is removed from cart.</span>
+<span class="sd">    If price is set to zero (`0`), item is removed from cart.</span>
 
-<span class="sd">    :param str id: cart id</span>
+<span class="sd">    :param str cart_id: cart id</span>
 <span class="sd">    :param CartItem item: pair of name and price</span>
 <span class="sd">    :return: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Request@/edit_item/</span><span class="si">{</span><span class="n">cart_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">edit_item</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">cart_id</span><span class="p">,</span> <span class="n">item</span><span class="o">=</span><span class="n">item</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="list_items"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.list_items">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/list_items/</span><span class="si">{cart_id}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">list_items</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="common_parameters"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.common_parameters">[docs]</a><span class="k">def</span> <span class="nf">common_parameters</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">item_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Endpoint. Retrieves the cart&#39;s items and prices.</span>
-
-<span class="sd">    :param str id: cart id</span>
-<span class="sd">    :return: dict</span>
+<span class="sd">    # TODO: docstring</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">list_cart</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">cart_id</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;cart_id&quot;</span><span class="p">:</span> <span class="n">cart_id</span><span class="p">,</span> <span class="s2">&quot;item_name&quot;</span><span class="p">:</span> <span class="n">item_name</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="remove_item"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.remove_item">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;/remove_item&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">remove_item</span><span class="p">(</span><span class="n">commons</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">common_parameters</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    # TODO: docstring</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Request@/remove_item/</span><span class="si">{</span><span class="n">commons</span><span class="p">[</span><span class="s2">&quot;cart_id&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">commons</span><span class="p">[</span><span class="s2">&quot;item_name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">remove_item</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">commons</span><span class="p">[</span><span class="s1">&#39;cart_id&#39;</span><span class="p">],</span> <span class="n">item_name</span><span class="o">=</span><span class="n">commons</span><span class="p">[</span><span class="s1">&#39;item_name&#39;</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="item_price"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.item_price">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/item_price&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">item_price</span><span class="p">(</span><span class="n">commons</span><span class="o">=</span><span class="n">Depends</span><span class="p">(</span><span class="n">common_parameters</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    # TODO: docstring</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Request@/item_price/</span><span class="si">{</span><span class="n">commons</span><span class="p">[</span><span class="s2">&quot;cart_id&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">/</span><span class="si">{</span><span class="n">commons</span><span class="p">[</span><span class="s2">&quot;item_name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">item_price</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">commons</span><span class="p">[</span><span class="s1">&#39;cart_id&#39;</span><span class="p">],</span> <span class="n">item_name</span><span class="o">=</span><span class="n">commons</span><span class="p">[</span><span class="s1">&#39;item_name&#39;</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="list_items"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.list_items">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/list_items&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">list_items</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    # TODO: docstring</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">cart_id</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Request@/list_items/</span><span class="si">{</span><span class="n">cart_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">list_cart</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">cart_id</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Request@/list_items&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">show_carts</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="list_some_items"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.list_some_items">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/list_some_items/</span><span class="si">{cart_id}</span><span class="s1">&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">list_some_items</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">stop</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">list_some_items</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">stop</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Endpoint. List a items from the cart, based on a range.</span>
 
-<span class="sd">    :param str id: cart id</span>
+<span class="sd">    :param str cart_id: cart id</span>
 <span class="sd">    :param int start: first index to iterate</span>
-<span class="sd">    :param int stop: last index to iterate</span>
+<span class="sd">    :param Optional[int] stop: last index to iterate</span>
 <span class="sd">    :return: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Request@/list_some_items/</span><span class="si">{</span><span class="n">cart_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">list_some_items</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">cart_id</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">)</span></div>
 
 
-<div class="viewcode-block" id="cost"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.cost">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/cost/</span><span class="si">{cart_id}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/cost/</span><span class="si">{cart_id}</span><span class="s1">&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">cost</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Endpoint. Returns the total cost of the cart.</span>
 
-<span class="sd">    :param str id: cart id</span>
+<span class="sd">    :param str cart_id: cart id</span>
 <span class="sd">    :return: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">total_cost</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">cart_id</span><span class="p">)</span></div>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Request@/cost/</span><span class="si">{</span><span class="n">cart_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">total_cost</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">cart_id</span><span class="p">)</span>
 
 
 <div class="viewcode-block" id="checkout"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.checkout">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/checkout/</span><span class="si">{cart_id}</span><span class="s1">&#39;</span><span class="p">)</span>
@@ -296,10 +345,45 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Endpoint. Return a summary and erases the cart.</span>
 
-<span class="sd">    :param str id: cart id</span>
+<span class="sd">    :param str cart_id: cart id</span>
 <span class="sd">    :return: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Request@/checkout/</span><span class="si">{</span><span class="n">cart_id</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">checkout</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="n">cart_id</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="cost"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.cost">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/show_carts&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">cost</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Endpoint. Returns all carts.</span>
+
+<span class="sd">    :param str cart_id: cart id</span>
+<span class="sd">    :return: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Request@/show_carts&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">show_carts</span><span class="p">()</span></div>
+
+
+<span class="k">def</span> <span class="nf">verify_token</span><span class="p">(</span><span class="n">x_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Header</span><span class="p">(</span><span class="o">...</span><span class="p">)):</span>
+    <span class="n">real_token</span> <span class="o">=</span> <span class="s2">&quot;you-will-never-guess&quot;</span>
+    <span class="k">if</span> <span class="n">x_token</span> <span class="o">!=</span> <span class="n">real_token</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InvalidCredentialsException</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;X-Token header invalid&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">verify_key</span><span class="p">(</span><span class="n">x_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Header</span><span class="p">(</span><span class="o">...</span><span class="p">)):</span>
+    <span class="n">real_key</span> <span class="o">=</span> <span class="s2">&quot;i-double-dare-you&quot;</span>
+    <span class="k">if</span> <span class="n">x_key</span> <span class="o">!=</span> <span class="n">real_key</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InvalidCredentialsException</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;X-Key header invalid&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="nuke"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.shopcart.nuke">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;/nuke&#39;</span><span class="p">,</span> <span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">verify_token</span><span class="p">),</span> <span class="n">Depends</span><span class="p">(</span><span class="n">verify_key</span><span class="p">)])</span>
+<span class="k">def</span> <span class="nf">nuke</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    # TODO: docstring</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Request@/nuke&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cart</span><span class="o">.</span><span class="n">nuke</span><span class="p">()</span></div>
+
 </pre></div>
 
            </div>

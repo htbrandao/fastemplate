@@ -192,10 +192,15 @@
  | <a href="#C"><strong>C</strong></a>
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
+ | <a href="#H"><strong>H</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
  
 </div>
 <h2 id="A">A</h2>
@@ -229,14 +234,16 @@
 </li>
       <li><a href="pages/Objects.html#fastemplate.objects.cart.CartItemsList">CartItemsList (class in fastemplate.objects.cart)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pages/Module.html#fastemplate.module.cart.checkout">checkout() (in module fastemplate.module.cart)</a>
 
       <ul>
         <li><a href="pages/Services.html#fastemplate.services.v1.shopcart.checkout">(in module fastemplate.services.v1.shopcart)</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pages/Services.html#fastemplate.services.v1.shopcart.common_parameters">common_parameters() (in module fastemplate.services.v1.shopcart)</a>
+</li>
       <li><a href="pages/Services.html#fastemplate.services.v1.shopcart.cost">cost() (in module fastemplate.services.v1.shopcart)</a>
 </li>
       <li><a href="pages/Services.html#fastemplate.services.v1.shopcart.create">create() (in module fastemplate.services.v1.shopcart)</a>
@@ -250,11 +257,15 @@
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pages/Module.html#fastemplate.module.cart.edit_item">edit_item() (in module fastemplate.module.cart)</a>
+
+      <ul>
+        <li><a href="pages/Services.html#fastemplate.services.v1.shopcart.edit_item">(in module fastemplate.services.v1.shopcart)</a>
 </li>
-      <li><a href="pages/Services.html#fastemplate.services.v1.shopcart.erase">erase() (in module fastemplate.services.v1.shopcart)</a>
-</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pages/Services.html#fastemplate.services.v1.shopcart.erase">erase() (in module fastemplate.services.v1.shopcart)</a>
+</li>
       <li><a href="pages/Module.html#fastemplate.module.cart.erase_cart">erase_cart() (in module fastemplate.module.cart)</a>
 </li>
       <li><a href="pages/Exceptions.html#fastemplate.exceptions.handler.exceptions_handler">exceptions_handler() (in module fastemplate.exceptions.handler)</a>
@@ -265,13 +276,6 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    fastemplate.exceptions
-
-      <ul>
-        <li><a href="pages/Exceptions.html#module-fastemplate.exceptions">module</a>
-</li>
-      </ul></li>
       <li>
     fastemplate.exceptions.cart
 
@@ -314,8 +318,6 @@
         <li><a href="pages/Objects.html#module-fastemplate.objects.cart">module</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     fastemplate.services
 
@@ -323,6 +325,8 @@
         <li><a href="pages/Services.html#module-fastemplate.services">module</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     fastemplate.services.docs
 
@@ -365,7 +369,13 @@
         <li><a href="pages/Utils.html#module-fastemplate.utils.decorator">module</a>
 </li>
       </ul></li>
-      <li><a href="pages/Exceptions.html#fastemplate.exceptions.FastemplateBaseException">FastemplateBaseException</a>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pages/Module.html#fastemplate.module.cart.hasId">hasId() (in module fastemplate.module.cart)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -375,11 +385,21 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pages/Services.html#fastemplate.services.docs.index">index() (in module fastemplate.services.docs)</a>
 </li>
+      <li><a href="pages/Exceptions.html#fastemplate.exceptions.cart.InvalidCredentialsException">InvalidCredentialsException</a>
+</li>
+      <li><a href="pages/Module.html#fastemplate.module.cart.item_price">item_price() (in module fastemplate.module.cart)</a>
+
+      <ul>
+        <li><a href="pages/Services.html#fastemplate.services.v1.shopcart.item_price">(in module fastemplate.services.v1.shopcart)</a>
+</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pages/Exceptions.html#fastemplate.exceptions.cart.ItemAlreadyAddedException">ItemAlreadyAddedException</a>
 </li>
       <li><a href="pages/Exceptions.html#fastemplate.exceptions.cart.ItemNotFoundException">ItemNotFoundException</a>
+</li>
+      <li><a href="pages/Objects.html#fastemplate.objects.cart.ItemPack">ItemPack (class in fastemplate.objects.cart)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -415,8 +435,6 @@
     module
 
       <ul>
-        <li><a href="pages/Exceptions.html#module-fastemplate.exceptions">fastemplate.exceptions</a>
-</li>
         <li><a href="pages/Exceptions.html#module-fastemplate.exceptions.cart">fastemplate.exceptions.cart</a>
 </li>
         <li><a href="pages/Exceptions.html#module-fastemplate.exceptions.handler">fastemplate.exceptions.handler</a>
@@ -447,6 +465,38 @@
   </ul></td>
 </tr></table>
 
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pages/Module.html#fastemplate.module.cart.nuke">nuke() (in module fastemplate.module.cart)</a>
+
+      <ul>
+        <li><a href="pages/Services.html#fastemplate.services.v1.shopcart.nuke">(in module fastemplate.services.v1.shopcart)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pages/Module.html#fastemplate.module.cart.remove_item">remove_item() (in module fastemplate.module.cart)</a>
+
+      <ul>
+        <li><a href="pages/Services.html#fastemplate.services.v1.shopcart.remove_item">(in module fastemplate.services.v1.shopcart)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pages/Module.html#fastemplate.module.cart.show_carts">show_carts() (in module fastemplate.module.cart)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
@@ -456,6 +506,22 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="pages/Module.html#fastemplate.module.cart.total_cost">total_cost() (in module fastemplate.module.cart)</a>
 </li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pages/Exceptions.html#fastemplate.exceptions.cart.UnsupportedFileExtensionException">UnsupportedFileExtensionException</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="pages/Module.html#fastemplate.module.cart.upload_shoplist">upload_shoplist() (in module fastemplate.module.cart)</a>
+
+      <ul>
+        <li><a href="pages/Services.html#fastemplate.services.v1.shopcart.upload_shoplist">(in module fastemplate.services.v1.shopcart)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 

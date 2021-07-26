@@ -114,9 +114,7 @@
 <li class="toctree-l1"><a class="reference internal" href="Services.html">Services</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.docs">Docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.metrics">Metrics</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="Services.html#module-fastemplate.services.v1">V1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.v1">V1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.v1.shopcart">Shopcart</a></li>
 </ul>
 </li>
@@ -204,8 +202,16 @@
 
 <dl class="py class">
 <dt id="fastemplate.objects.cart.CartItemsList">
-<em class="property">class </em><code class="sig-prename descclassname">fastemplate.objects.cart.</code><code class="sig-name descname">CartItemsList</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">names</span><span class="p">:</span> <span class="n">list</span> <span class="o">=</span> <span class="default_value">['potato', 'orange', 'tomato']</span></em>, <em class="sig-param"><span class="n">prices</span><span class="p">:</span> <span class="n">list</span> <span class="o">=</span> <span class="default_value">[1.25, 2, 0.8]</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/objects/cart.html#CartItemsList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.objects.cart.CartItemsList" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">fastemplate.objects.cart.</code><code class="sig-name descname">CartItemsList</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">names</span><span class="p">:</span> <span class="n">Set<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">['potato', 'orange', 'tomato']</span></em>, <em class="sig-param"><span class="n">prices</span><span class="p">:</span> <span class="n">List<span class="p">[</span>float<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">[1.25, 2, 0.8]</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/objects/cart.html#CartItemsList"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.objects.cart.CartItemsList" title="Permalink to this definition">¶</a></dt>
 <dd><p>Schema to represent a list of items when receiving a request.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="fastemplate.objects.cart.ItemPack">
+<em class="property">class </em><code class="sig-prename descclassname">fastemplate.objects.cart.</code><code class="sig-name descname">ItemPack</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">'berries'</span></em>, <em class="sig-param"><span class="n">price</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">1.25</span></em>, <em class="sig-param"><span class="n">qnt</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/objects/cart.html#ItemPack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.objects.cart.ItemPack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Schema to represent a pack item when receiving a request.
+Since it extends <cite>CartItem</cite>, it will, basically, be the same
+as a CartItem with the added <cite>qnt</cite> field.</p>
 </dd></dl>
 
 </section>
