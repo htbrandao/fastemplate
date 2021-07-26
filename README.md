@@ -87,4 +87,4 @@ pip3 install -r requirements.txt
 - [x] ~~Handle file upload~~
 - [ ] Write test cases
 - [ ] PyLint
-- [ ] Update some endpoints to `PUT` instead of `POST`
+- [x] Update some endpoints to `PUT` instead of `POST`
