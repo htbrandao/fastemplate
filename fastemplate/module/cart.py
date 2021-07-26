@@ -79,6 +79,7 @@ def erase_cart(id: str):
     del BASE_CART[id]
     return {'message': f'Successfully erased cart #{id}.'}
 
+
 @hasId
 def add_item(id: str, item=CartItem):
     """
@@ -93,6 +94,7 @@ def add_item(id: str, item=CartItem):
     else:
         BASE_CART[id][item.name] = item.price
     return {'cart': id, 'item': item.name, 'price': item.price}
+
 
 @hasId
 def add_list(id: str, items: CartItemsList):
@@ -117,6 +119,7 @@ def add_list(id: str, items: CartItemsList):
     else:        
         return {'cart': id, 'message': f'added {len(items.names)} items', 'cost': sum(items.prices)}
 
+
 @hasId
 def edit_item(id: str, item: CartItem):
     """
@@ -138,6 +141,7 @@ def edit_item(id: str, item: CartItem):
         BASE_CART[id][item.name] = item.price
         return {'cart': id, 'message': f'adjusted {item.name} to {item.price}.'}
 
+
 @hasId
 def remove_item(id: str, item_name: str):
     """
@@ -152,6 +156,7 @@ def remove_item(id: str, item_name: str):
     except KeyError:
         raise ItemNotFoundException(message=f'Item not found {item_name}.')
 
+
 @hasId
 def list_cart(id: str):
     """
@@ -161,6 +166,7 @@ def list_cart(id: str):
     :return: dict
     """
     return BASE_CART[id]
+
 
 @hasId
 def list_some_items(id: str, start: int, stop: int):
@@ -174,6 +180,7 @@ def list_some_items(id: str, start: int, stop: int):
     """
     return {i:BASE_CART[id][i] for i in list(BASE_CART[id].keys())[start:stop]}
 
+
 @hasId
 def item_price(id: str, item_name: str):
     """
@@ -183,6 +190,7 @@ def item_price(id: str, item_name: str):
     :return: dict
     """
     return {item_name: BASE_CART[id][item_name]}
+
 
 @hasId
 def total_cost(id: str):
@@ -197,6 +205,7 @@ def total_cost(id: str):
         s.append(v)
     return {id: sum(s)}
 
+
 @hasId
 def checkout(id: str):
     """
@@ -209,6 +218,7 @@ def checkout(id: str):
     erase_cart(id=id)
     return msg
 
+
 def show_carts():
     """
     Returns all carts in their current state.
@@ -216,6 +226,7 @@ def show_carts():
     :return: dict
     """
     return BASE_CART
+
 
 def nuke():
     """
