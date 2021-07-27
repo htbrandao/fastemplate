@@ -8,6 +8,6 @@ class Config:
     NAME = 'FASTEMPLATE'
     DESCRIPTION = 'REST API Template to ease your understanding!'
     ALLOW_CORS = True
-    SECURE_API = False
+    SECURE_SHOPCART_API = False
 
 config = Config()
