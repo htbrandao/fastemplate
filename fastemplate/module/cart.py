@@ -3,7 +3,7 @@ import functools
 from fastapi import File
 
 from fastemplate import logger
-from fastemplate.module import BASE_CART
+from fastemplate.module import MOCK_BASE_CART
 from fastemplate.objects.cart import CartItem, CartItemsList
 from fastemplate.exceptions.cart import CartIdAlreadyExistsException, CartIdNotFoundException, ItemNotFoundException, \
     MismatchedLenghtException, ItemAlreadyAddedException, UnsupportedFileExtensionException
@@ -18,10 +18,10 @@ def create_cart(id: str):
     :rtype: dict
     :raises: CartIdAlreadyExistsException
     """
-    if id in BASE_CART:
+    if id in MOCK_BASE_CART:
         raise CartIdAlreadyExistsException(message=f'Cart #{id} already in use. Checkout or delete it first.')
     else:
-        BASE_CART[id] = {}
+        MOCK_BASE_CART[id] = {}
         return {'message': f'created cart #{id}.'}
 
 
@@ -35,7 +35,7 @@ def hasId(func):
         Wrapper function for `hasId`.
         """
         cart_id = {**kwargs}['id']
-        if cart_id in BASE_CART:
+        if cart_id in MOCK_BASE_CART:
             return func(**kwargs)
         else:
             raise CartIdNotFoundException(message=f'Cart #{cart_id} does not exist.')
@@ -60,11 +60,11 @@ def upload_shoplist(id: str, file: File):
             [i.split(',')[0], float(i.split(',')[1])]
             for i in content_str
         ])
-        BASE_CART[id] = shoplist
+        MOCK_BASE_CART[id] = shoplist
         return {
             'filename': file.filename,
             'type': file.content_type,
-            'cart': BASE_CART[id]
+            'cart': MOCK_BASE_CART[id]
         }
 
 
@@ -76,7 +76,7 @@ def erase_cart(id: str):
     :param str id: cart id
     :return: dict
     """
-    del BASE_CART[id]
+    del MOCK_BASE_CART[id]
     return {'message': f'Successfully erased cart #{id}.'}
 
 
@@ -89,10 +89,10 @@ def add_item(id: str, item=CartItem):
     :param CartItem item: pair of name and price
     :return: dict
     """
-    if item.name in BASE_CART[id]:
-        raise ItemAlreadyAddedException(message=f'Item already added: {item.name} - {BASE_CART[id][item.name]}.')
+    if item.name in MOCK_BASE_CART[id]:
+        raise ItemAlreadyAddedException(message=f'Item already added: {item.name} - {MOCK_BASE_CART[id][item.name]}.')
     else:
-        BASE_CART[id][item.name] = item.price
+        MOCK_BASE_CART[id][item.name] = item.price
     return {'cart': id, 'item': item.name, 'price': item.price}
 
 
@@ -109,10 +109,10 @@ def add_list(id: str, items: CartItemsList):
     if len(items.names) != len(items.prices):
         raise MismatchedLenghtException(message=f'Found {len(items.names)} items and {len(items.prices)} prices.')
     for i, p in dict(zip(items.names, items.prices)).items():
-        if i in BASE_CART[id]:
+        if i in MOCK_BASE_CART[id]:
             repeated.append(i)
         else:
-            BASE_CART[id][i] = p
+            MOCK_BASE_CART[id][i] = p
     if repeated != []:
         raise ItemAlreadyAddedException(
             message=f'Repeated items: {", ".join(repeated)}.')
@@ -133,12 +133,12 @@ def edit_item(id: str, item: CartItem):
     """
     if item.price == 0:
         try:
-            del BASE_CART[id][item.name]
+            del MOCK_BASE_CART[id][item.name]
             return {'cart': id, 'message': f'removed {item.name}.'}
         except KeyError:
             raise ItemNotFoundException(message=f'Item not found {item.name}.')
     else:
-        BASE_CART[id][item.name] = item.price
+        MOCK_BASE_CART[id][item.name] = item.price
         return {'cart': id, 'message': f'adjusted {item.name} to {item.price}.'}
 
 
@@ -151,7 +151,7 @@ def remove_item(id: str, item_name: str):
     :return: dict
     """
     try:
-        del BASE_CART[id][item_name]
+        del MOCK_BASE_CART[id][item_name]
         return {'cart': id, 'message': f'removed {item_name}.'}
     except KeyError:
         raise ItemNotFoundException(message=f'Item not found {item_name}.')
@@ -165,7 +165,7 @@ def list_cart(id: str):
     :param str id: cart id
     :return: dict
     """
-    return BASE_CART[id]
+    return MOCK_BASE_CART[id]
 
 
 @hasId
@@ -178,7 +178,7 @@ def list_some_items(id: str, start: int, stop: int):
     :param int stop: last index to iterate
     :return: dict
     """
-    return {i:BASE_CART[id][i] for i in list(BASE_CART[id].keys())[start:stop]}
+    return {i:MOCK_BASE_CART[id][i] for i in list(MOCK_BASE_CART[id].keys())[start:stop]}
 
 
 @hasId
@@ -189,7 +189,7 @@ def item_price(id: str, item_name: str):
     :param str id: cart id
     :return: dict
     """
-    return {item_name: BASE_CART[id][item_name]}
+    return {item_name: MOCK_BASE_CART[id][item_name]}
 
 
 @hasId
@@ -201,7 +201,7 @@ def total_cost(id: str):
     :return: dict
     """
     s = []
-    for v in BASE_CART[id].values():
+    for v in MOCK_BASE_CART[id].values():
         s.append(v)
     return {id: sum(s)}
 
@@ -225,12 +225,12 @@ def show_carts():
 
     :return: dict
     """
-    return BASE_CART
+    return MOCK_BASE_CART
 
 
 def nuke():
     """
     # TODO: docstring
     """
-    BASE_CART.clear()
-    return {'message': 'all carts were obliterated', 'carts': BASE_CART}
+    MOCK_BASE_CART.clear()
+    return {'message': 'all carts were obliterated', 'carts': MOCK_BASE_CART}
