@@ -1,15 +1,18 @@
 from typing import Optional
 
-from fastapi import APIRouter, UploadFile, File, Depends, Header
+from fastapi import APIRouter, UploadFile, File, Depends
 
 from fastemplate import logger
 from fastemplate.module import cart
+from fastemplate.config import config
 from fastemplate.objects.cart import CartItem, CartItemsList
-from fastemplate.exceptions.cart import InvalidCredentialsException
+from fastemplate.exceptions.cart import InvalidTokenException
+from fastemplate.services.security import verify_key, verify_token
 
-
-router = APIRouter()
-
+if config.SECURE_SHOPCART_API:
+    router = APIRouter(dependencies=[Depends(verify_token), Depends(verify_key)])
+else:
+    router = APIRouter()
 
 @router.post('/create/{cart_id}', status_code=201)
 def create(cart_id: str):
@@ -177,23 +180,10 @@ def cost():
     return cart.show_carts()
 
 
-def verify_token(x_token: str = Header(...)):
-    real_token = "you-will-never-guess"
-    if x_token != real_token:
-        raise InvalidCredentialsException(message="X-Token header invalid")
-
-
-def verify_key(x_key: str = Header(...)):
-    real_key = "i-double-dare-you"
-    if x_key != real_key:
-        raise InvalidCredentialsException(message="X-Key header invalid")
-
-
-@router.delete('/nuke', dependencies=[Depends(verify_token), Depends(verify_key)])
+@router.delete('/nuke')
 def nuke():
     """
     # TODO: docstring
     """
     logger.info(f'Request@/nuke')
     return cart.nuke()
-
