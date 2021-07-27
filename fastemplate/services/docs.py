@@ -3,7 +3,6 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
 from fastemplate import logger
-from fastemplate.config import config
 
 router = APIRouter()
 
