@@ -82,9 +82,12 @@ pip3 install -r requirements.txt
 # # TODO & FIXME:
 
 - [ ] Improve README
+- [ ] Update README images
+- [ ] Docstrings
 - [ ] Update docstrings (`:rtype:` and `:raises:` like in `create_cart()`)
 - [ ] Update docs: make html
 - [x] ~~Handle file upload~~
 - [ ] Write test cases
 - [ ] PyLint
 - [x] Update some endpoints to `PUT` instead of `POST`
+- [ ] Storytelling
