@@ -48,7 +48,7 @@ class UnsupportedFileExtensionException(FastemplateBaseException):
         name = 'UnsupportedFileExtension'
         super().__init__(415, message, name)
 
-class InvalidCredentialsException(FastemplateBaseException):
+class InvalidTokenException(FastemplateBaseException):
     """
     Thrown whenever header credentials are invalid.
     """
