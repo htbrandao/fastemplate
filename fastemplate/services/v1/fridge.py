@@ -23,5 +23,6 @@ def list_fridge():
 # @router.post('/buy_all_tuna_there_is', dependencies=Depends(is_owner))
 @router.post('/buy_all_tuna_there_is')
 def buy_all_tuna():
+    # TODO: dep is_owner, ban kitty from using
     logger.info(f'Request@/buy_all_tuna_there_is')
     return {'message': 'You\'ve successfully bought all tuna in the world!'}
