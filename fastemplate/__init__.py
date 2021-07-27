@@ -9,24 +9,17 @@ from fastapi.staticfiles import StaticFiles
 
 from fastemplate.config import config
 from fastemplate.services.v1 import v1
-from fastemplate.services import docs, metrics
 from fastemplate.services.utils import allow_cors
+from fastemplate.services import docs, metrics, login
 from fastemplate.exceptions.handler import exceptions_handler
-from fastemplate.services.security import verify_key, verify_token
 
 logger.add('fastemplate.log', rotation='5 MB')
 
-APP_KWARGS = {
-    'title': 'FasTemplate',
-    'description': config.DESCRIPTION,
-    'version': __version__
-}
-
-if config.SECURE_API:
-    APP_KWARGS['description'] = f'**A VERY MUCH SECURE** {config.DESCRIPTION}'
-    APP_KWARGS['dependencies'] = [Depends(verify_token), Depends(verify_key)]
-
-app = FastAPI(**APP_KWARGS)
+app = FastAPI(
+    title='FasTemplate',
+    description=config.DESCRIPTION,
+    version=__version__
+)
 
 if config.ALLOW_CORS:
     allow_cors(app=app)
@@ -51,12 +44,12 @@ def root():
 
 
 app.include_router(metrics.router)
+app.include_router(login.router, prefix='/login', tags=['login'])
+app.include_router(v1, prefix=f'/{__api_version__}')
 
-app.include_router(docs.router)
+app.include_router(docs.router, tags=['docs'])
 app.mount('/pages', StaticFiles(directory='docs/_build/html/pages'), name='pages')
 app.mount('/_static', StaticFiles(directory='docs/_build/html/_static'), name='static')
 app.mount('/_modules', StaticFiles(directory='docs/_build/html/_modules'), name='modules')
-
-app.include_router(v1, prefix=f'/{__api_version__}')
 
 exceptions_handler(app=app)
