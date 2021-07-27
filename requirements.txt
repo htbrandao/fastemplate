@@ -9,7 +9,6 @@ pytest==6.2.1
 requests==2.25.1
 uvicorn==0.13.3
 uvloop==0.14.0
-# extra
 recommonmark==0.7.1
 Sphinx==3.4.3
 sphinx-rtd-theme==0.5.1
