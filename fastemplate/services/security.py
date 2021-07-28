@@ -4,7 +4,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from fastemplate import logger
 from fastemplate.objects.user import User
 from fastemplate.module import MOCK_FRIDGE_USERS
-from fastemplate.services.v1.fridge import oauth2_scheme
+from fastemplate.services import oauth2_scheme
 from fastemplate.exceptions.cart import InvalidTokenException
 from fastemplate.exceptions.user import InvalidUsernameOrPassword, NiceTryMeowNowGoBack, InvalidAuthCredentials
 
@@ -61,7 +61,7 @@ def lazy_generate_token(username: str):
     return {"access_token": '___token___' + username, "token_type": "bearer"}
 
 
-def lazy_decode_token(token:str):
+def lazy_decode_token(token: str):
     """
     Retrieves a username from a given token. This is **not** a good way to handle token validation.
 
@@ -74,7 +74,7 @@ def lazy_decode_token(token:str):
 
 def validate_user(form_data: OAuth2PasswordRequestForm):
     """
-    Validade the user's credentials to generate a token that will be used to interact with the API.
+    Validate the user's credentials to generate a token that will be used to interact with the API.
 
     :param form_data: form with username and password fields
     :return: dict with access token and token type
