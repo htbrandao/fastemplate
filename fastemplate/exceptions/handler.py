@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from starlette.responses import JSONResponse
 
 from fastemplate.exceptions import FastemplateBaseException
-from fastemplate.exceptions.user import InvalidUsernameOrPassword, NiceTryMeowNowGoBack
+from fastemplate.exceptions.user import InvalidUsernameOrPassword, NiceTryMeowNowGoBack, InvalidAuthCredentials
 from fastemplate.exceptions.cart import CartIdAlreadyExistsException, MismatchedLenghtException,\
     CartIdNotFoundException, ItemAlreadyAddedException, ItemNotFoundException, UnsupportedFileExtensionException,\
     InvalidTokenException
@@ -119,8 +119,7 @@ def exceptions_handler(app: FastAPI):
     @app.exception_handler(InvalidTokenException)
     async def invalid_token_exception_handler(request: Request, exception: InvalidTokenException):
         """
-        Handler for InvalidTokenException
-.
+        Handler for InvalidTokenException.
         """
         return JSONResponse(
             status_code=exception.status_code,
@@ -134,8 +133,7 @@ def exceptions_handler(app: FastAPI):
     @app.exception_handler(InvalidUsernameOrPassword)
     async def invalide_username_or_password_exception_handler(request: Request, exception: InvalidUsernameOrPassword):
         """
-        Handler for InvalidUsernameOrPassword
-.
+        Handler for InvalidUsernameOrPassword.
         """
         return JSONResponse(
             status_code=exception.status_code,
@@ -149,8 +147,21 @@ def exceptions_handler(app: FastAPI):
     @app.exception_handler(NiceTryMeowNowGoBack)
     async def nice_try_meow_exception_handler(request: Request, exception: NiceTryMeowNowGoBack):
         """
-        Handler for NiceTryMeowNowGoBack
-.
+        Handler for NiceTryMeowNowGoBack.
+        """
+        return JSONResponse(
+            status_code=exception.status_code,
+            content={
+                'status': exception.status_code,
+                'message': exception.message,
+                'exception': exception.name
+            }
+        )
+
+    @app.exception_handler(InvalidAuthCredentials)
+    async def nice_try_meow_exception_handler(request: Request, exception: InvalidAuthCredentials):
+        """
+        Handler for InvalidAuthCredentials.
         """
         return JSONResponse(
             status_code=exception.status_code,
