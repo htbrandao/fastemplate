@@ -3,8 +3,8 @@ from starlette.responses import JSONResponse
 
 from fastemplate.exceptions import FastemplateBaseException
 from fastemplate.exceptions.user import InvalidUsernameOrPassword, NiceTryMeowNowGoBack, InvalidAuthCredentials
-from fastemplate.exceptions.cart import CartIdAlreadyExistsException, MismatchedLenghtException,\
-    CartIdNotFoundException, ItemAlreadyAddedException, ItemNotFoundException, UnsupportedFileExtensionException,\
+from fastemplate.exceptions.cart import CartIdAlreadyExistsException, MismatchedLenghtException, \
+    CartIdNotFoundException, ItemAlreadyAddedException, ItemNotFoundException, UnsupportedFileExtensionException, \
     InvalidTokenException
 
 
@@ -12,6 +12,7 @@ def exceptions_handler(app: FastAPI):
     """
     API exceptions handler.
     """
+
     @app.exception_handler(FastemplateBaseException)
     async def base_exception_handler(request: Request, exception: FastemplateBaseException):
         """
@@ -25,7 +26,6 @@ def exceptions_handler(app: FastAPI):
                 'exception': exception.name
             }
         )
-
 
     @app.exception_handler(CartIdAlreadyExistsException)
     async def cart_id_in_use_exception_handler(request: Request, exception: CartIdAlreadyExistsException):
@@ -41,7 +41,6 @@ def exceptions_handler(app: FastAPI):
             }
         )
 
-
     @app.exception_handler(ItemAlreadyAddedException)
     async def item_already_added_exception_handler(request: Request, exception: ItemAlreadyAddedException):
         """
@@ -56,7 +55,6 @@ def exceptions_handler(app: FastAPI):
             }
         )
 
-
     @app.exception_handler(CartIdNotFoundException)
     async def cart_id_not_found_exception_handler(request: Request, exception: CartIdNotFoundException):
         """
@@ -69,9 +67,8 @@ def exceptions_handler(app: FastAPI):
                 'message': exception.message,
                 'exception': exception.name
             }
-        
-        )
 
+        )
 
     @app.exception_handler(MismatchedLenghtException)
     async def mismatched_lenght_exception_handler(request: Request, exception: MismatchedLenghtException):
@@ -86,7 +83,6 @@ def exceptions_handler(app: FastAPI):
                 'exception': exception.name
             }
         )
-
 
     @app.exception_handler(ItemNotFoundException)
     async def item_not_found_exception_handler(request: Request, exception: ItemNotFoundException):
@@ -115,7 +111,7 @@ def exceptions_handler(app: FastAPI):
                 'exception': exception.name
             }
         )
-    
+
     @app.exception_handler(InvalidTokenException)
     async def invalid_token_exception_handler(request: Request, exception: InvalidTokenException):
         """
