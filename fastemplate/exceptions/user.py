@@ -16,3 +16,12 @@ class NiceTryMeowNowGoBack(FastemplateBaseException):
     def __init__(self, message: str):
         name = 'NiceTryMeowNowGoBack'
         super().__init__(401, message, name)
+
+
+class InvalidAuthCredentials(FastemplateBaseException):
+    """
+    Thrown whenever request has the correct token but invalid username or password.
+    """
+    def __init__(self, message: str):
+        name = 'InvalidAuthCredentials'
+        super().__init__(401, message, name)
