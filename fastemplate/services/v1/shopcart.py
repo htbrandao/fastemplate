@@ -24,7 +24,7 @@ def create(cart_id: str):
     :rtype: dict
     """
     logger.info(f'Request@/create/{cart_id}')
-    return cart.create_cart(id=cart_id)
+    return cart.create_cart(cart_id=cart_id)
 
 
 @router.post("/upload_shoplist/{cart_id}", status_code=201)
@@ -32,7 +32,7 @@ def upload_shoplist(cart_id:str, file: UploadFile = File(...)):
     """
     Uploads a `.csv` file to **create** a cart.
 
-    :param str id: cart id
+    :param cart_id: cart id
     :param File file: file containing item name and price
     :return: dict with filename, type and cart
     :rtype: dict
@@ -51,7 +51,7 @@ def erase(cart_id: str):
     :rtype: dict
     """
     logger.info(f'Request@/erase/{cart_id}')
-    return cart.erase_cart(id=cart_id)
+    return cart.erase_cart(cart_id=cart_id)
 
 
 @router.put('/add_item/{cart_id}')
@@ -65,7 +65,7 @@ def add_item(cart_id: str, item: CartItem):
     :rtype: dict
     """
     logger.info(f'Request@/add_item/{cart_id}')
-    return cart.add_item(id=cart_id, item=item)
+    return cart.add_item(cart_id=cart_id, item=item)
 
 
 @router.put('/add_list/{cart_id}')
@@ -79,7 +79,7 @@ def add_list(cart_id: str, items: CartItemsList):
     :rtype: dict
     """
     logger.info(f'Request@/add_list/{cart_id}')
-    return cart.add_list(id=cart_id, items=items)
+    return cart.add_list(cart_id=cart_id, items=items)
 
 
 @router.post('/edit_item/{cart_id}')
@@ -115,12 +115,12 @@ def remove_item(commons: dict = Depends(common_parameters)):
     """
     Endpoint. Removes an item from cart.
 
-    :param str id: cart id
+    :param Depends(common_parameters) commons: args from `common_parameters` function
     :return: dict with cart and message
     :rtype: dict
     """
     logger.info(f'Request@/remove_item/{commons["cart_id"]}/{commons["item_name"]}')
-    return cart.remove_item(id=commons['cart_id'], item_name=commons['item_name'])
+    return cart.remove_item(cart_id=commons['cart_id'], item_name=commons['item_name'])
 
 
 @router.get('/item_price')
@@ -128,7 +128,7 @@ def item_price(commons=Depends(common_parameters)):
     """
     Endpoint. Returns an item price.
 
-    :param Depends commons: args from `common_parameters` function
+    :param Depends(common_parameters) commons: args from `common_parameters` function
     :returns: dict with item name and price
     :rtype: dict
     """
@@ -147,7 +147,7 @@ def list_items(cart_id: Optional[str] = None):
     """
     if cart_id:
         logger.info(f'Request@/list_items/{cart_id}')
-        return cart.list_cart(id=cart_id)
+        return cart.list_cart(cart_id=cart_id)
     else:
         logger.info('Request@/list_items')
         return cart.show_carts()
@@ -165,7 +165,7 @@ def list_some_items(cart_id: str, start: int, stop: Optional[int] = None):
     :rtype: dict
     """
     logger.info(f'Request@/list_some_items/{cart_id}')
-    return cart.list_some_items(id=cart_id, start=start, stop=stop)
+    return cart.list_some_items(cart_id=cart_id, start=start, stop=stop)
 
 
 @router.get('/cost/{cart_id}')
@@ -178,7 +178,7 @@ def cost(cart_id: str):
     :rtype: dict
     """
     logger.info(f'Request@/cost/{cart_id}')
-    return cart.total_cost(id=cart_id)
+    return cart.total_cost(cart_id=cart_id)
 
 
 @router.post('/checkout/{cart_id}')
@@ -191,7 +191,7 @@ def checkout(cart_id: str):
     :rtype: dict
     """
     logger.info(f'Request@/checkout/{cart_id}')
-    return cart.checkout(id=cart_id)
+    return cart.checkout(cart_id=cart_id)
 
 
 @router.get('/show_carts')
@@ -199,7 +199,6 @@ def cost():
     """
     Endpoint. Returns all carts in their current state.
 
-    :param str cart_id: cart id
     :return: dict with all carts
     :rtype: dict
     """
