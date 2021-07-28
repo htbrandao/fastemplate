@@ -7,6 +7,10 @@ REST API example built using FastAPI.
 
 # # Why?
 
+I have reasons to believe that my cat is always adding more and more tuna to my groceries cart.
+
+So I created this API to edit my shopcart and keep him on the outside. I also laid a special endpoint to catch him on the act!
+
 # # What?
 
 I wrote this as a **follow up** after your ['Hello, wolrd'](https://fastapi.tiangolo.com/tutorial/first-steps/) app.
@@ -95,4 +99,5 @@ Remember to update the **`Sphinx docs`** and your **`test cases`**!
 - [ ] Write test cases
 - [x] ~~PyLint~~
 - [x] ~~Update some endpoints to `PUT` instead of `POST`~~
+- [ ] buy_all_tuna not working
 
