@@ -1,8 +1,8 @@
-# ============================================================== #
-# Mock examples to interact the api without sending new data     #
-# ============================================================== #
+# ========================================================== #
+# Mock examples to interact the api without sending new data #
+# ========================================================== #
 
-# Base cart ---------------------------------------------------- #
+# Base cart ------------------------------------------------ #
 MOCK_BASE_CART = {}
 MOCK_BASE_CART['breakfast'] = {
     'milk': 5.0,
@@ -16,7 +16,7 @@ MOCK_BASE_CART['dinner'] = {
     'ice cream': 8.30
 }
 
-# Fridge ------------------------------------------------------- #
+# Fridge --------------------------------------------------- #
 MOCK_FRIDGE = {}
 MOCK_FRIDGE = {
     'rice': {'amount': 2, 'unit': 'kg'},
@@ -26,7 +26,7 @@ MOCK_FRIDGE = {
     'candy': {'amount': 2, 'unit': 'units'}
 }
 
-# Owner/Admin -------------------------------------------------- #
+# Owner/Admin ---------------------------------------------- #
 MOCK_FRIDGE_USERS = {
     'iPayMyBills': {
         'username': 'iPayMyBills',
