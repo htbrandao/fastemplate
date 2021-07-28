@@ -85,10 +85,10 @@ def validate_user(form_data: OAuth2PasswordRequestForm):
     u_pass = form_data.password
     if u_name not in MOCK_FRIDGE_USERS:
         logger.info(f'Invalid login attempt: {u_name}')
-        raise InvalidUsernameOrPassword(message='Invalid username or passowrd.')
+        raise InvalidUsernameOrPassword(message='Invalid username or password.')
     if not lazy_password_hash(u_pass) == MOCK_FRIDGE_USERS[u_name]['hashed_password']:
         logger.info(f'Invalid login attempt: {u_name}')
-        raise InvalidUsernameOrPassword(message='Invalid username or passowrd.')
+        raise InvalidUsernameOrPassword(message='Invalid username or password.')
     logger.info(f'Generating token to user: {MOCK_FRIDGE_USERS[u_name]["full_name"]}')
     return lazy_generate_token(username=u_name)
 
@@ -109,7 +109,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
 
 def is_owner(user: User = Depends(get_current_user)):
     """
-    Checks `ower` attribute from a given user or if my cat is trying to user auth protected endpoints.
+    Checks `owner` attribute from a given user or if my cat is trying to user auth protected endpoints.
 
     :param User user: user object
     :return: user object
