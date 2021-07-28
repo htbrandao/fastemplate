@@ -1,5 +1,6 @@
 import os
 
+
 class Config:
     """
     Class to include variables related to the application.
@@ -9,5 +10,6 @@ class Config:
     DESCRIPTION = 'REST API Template to ease your understanding!'
     ALLOW_CORS = True
     SECURE_SHOPCART_API = False
+
 
 config = Config()
