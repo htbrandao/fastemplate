@@ -99,5 +99,5 @@ Remember to update the **`Sphinx docs`** and your **`test cases`**!
 - [ ] Write test cases
 - [x] ~~PyLint~~
 - [x] ~~Update some endpoints to `PUT` instead of `POST`~~
-- [ ] buy_all_tuna not working
+- [x] ~~buy_all_tuna not working~~
 
