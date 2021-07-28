@@ -1,6 +1,3 @@
-from fastemplate.config import config
-
-
 def log_request_entries(log_file='fastemplate.log'):
     """
     Retrieves the amount of log entries.
