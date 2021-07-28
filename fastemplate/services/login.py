@@ -13,7 +13,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
     """
     Endpoint. Performs login to acquire the bearer token.
 
-    :param OAuth2PasswordRequestForm form_data: form with username and passowrd
+    :param OAuth2PasswordRequestForm form_data: form with username and password
     :return: dict with access token and token type
     :rtype: dict
     """
