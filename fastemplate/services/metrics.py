@@ -14,7 +14,8 @@ def metrics():
     """
     Basic metrics endpoint.
 
-    :return: dict
+    :return: dict with alive, @timestamp and no. of requests
+    :rtype: dict
     """
     logger.info('Request@/metrics')
     return {
