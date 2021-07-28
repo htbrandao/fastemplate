@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import Request
 from starlette.responses import JSONResponse
 
 from fastemplate.exceptions import FastemplateBaseException
@@ -8,9 +8,11 @@ from fastemplate.exceptions.cart import CartIdAlreadyExistsException, Mismatched
     InvalidTokenException
 
 
-def exceptions_handler(app: FastAPI):
+def exceptions_handler(app):
     """
     API exceptions handler.
+
+    :param FastAPI app: the main app
     """
 
     @app.exception_handler(FastemplateBaseException)
