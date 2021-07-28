@@ -1,12 +1,14 @@
 from typing import List, Set
 from pydantic import BaseModel, Field
 
+
 class CartItem(BaseModel):
     """
     Schema to represent an item when receiving a request.
     """
     name: str = Field(description='Item name', default='berries')
     price: float = Field(description='Item price', default=1.25)
+
 
 class ItemPack(CartItem):
     """
@@ -15,6 +17,7 @@ class ItemPack(CartItem):
     as a CartItem with the added `qnt` field. 
     """
     qnt: int = Field(description='Quantity', default=1)
+
 
 class CartItemsList(BaseModel):
     """
