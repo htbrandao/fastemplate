@@ -3,21 +3,21 @@
 # ========================================================== #
 
 # Base cart ------------------------------------------------ #
-MOCK_BASE_CART = {}
-MOCK_BASE_CART['breakfast'] = {
-    'milk': 5.0,
-    'capuccino': 3.0,
-    'banana': 2.5,
-}
-MOCK_BASE_CART['dinner'] = {
-    'wine': 3.0,
-    'potato': 2.45,
-    'fish': 20.75,
-    'ice cream': 8.30
+MOCK_BASE_CART = {
+    'breakfast': {
+        'milk': 5.0,
+        'capuccino': 3.0,
+        'banana': 2.5,
+    },
+    'dinner': {
+        'wine': 3.0,
+        'potato': 2.45,
+        'fish': 20.75,
+        'ice cream': 8.30
+    }
 }
 
 # Fridge --------------------------------------------------- #
-MOCK_FRIDGE = {}
 MOCK_FRIDGE = {
     'rice': {'amount': 2, 'unit': 'kg'},
     'beans': {'amount': 1, 'unit': 'kg'},
