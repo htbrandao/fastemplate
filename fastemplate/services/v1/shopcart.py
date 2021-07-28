@@ -6,7 +6,6 @@ from fastemplate import logger
 from fastemplate.module import cart
 from fastemplate.config import config
 from fastemplate.objects.cart import CartItem, CartItemsList
-from fastemplate.exceptions.cart import InvalidTokenException
 from fastemplate.services.security import verify_key, verify_token
 
 if config.SECURE_SHOPCART_API:
@@ -14,13 +13,15 @@ if config.SECURE_SHOPCART_API:
 else:
     router = APIRouter()
 
+
 @router.post('/create/{cart_id}', status_code=201)
 def create(cart_id: str):
     """
-    Creates a cart.
+    Endpoint. Creates a cart.
 
     :param str cart_id: cart id
-    :return: dict
+    :return: dict with message
+    :rtype: dict
     """
     logger.info(f'Request@/create/{cart_id}')
     return cart.create_cart(id=cart_id)
@@ -33,7 +34,8 @@ def upload_shoplist(cart_id:str, file: UploadFile = File(...)):
 
     :param str id: cart id
     :param File file: file containing item name and price
-    :return: dict
+    :return: dict with filename, type and cart
+    :rtype: dict
     """
     logger.info(f'Request@/upload_shoplist/{cart_id}')
     return cart.upload_shoplist(id=cart_id, file=file)
@@ -42,10 +44,11 @@ def upload_shoplist(cart_id:str, file: UploadFile = File(...)):
 @router.delete('/erase/{cart_id}')
 def erase(cart_id: str):
     """
-    Erases a cart.
+    Endpoint. Erases a cart.
 
     :param str cart_id: cart id
-    :return: dict
+    :return: dict with message
+    :rtype: dict
     """
     logger.info(f'Request@/erase/{cart_id}')
     return cart.erase_cart(id=cart_id)
@@ -58,7 +61,8 @@ def add_item(cart_id: str, item: CartItem):
 
     :param str cart_id: cart id
     :param CartItem item: pair of name and price
-    :return: dict
+    :return: dict with cart, item and price
+    :rtype: dict
     """
     logger.info(f'Request@/add_item/{cart_id}')
     return cart.add_item(id=cart_id, item=item)
@@ -71,7 +75,8 @@ def add_list(cart_id: str, items: CartItemsList):
 
     :param str cart_id: cart id
     :param CartItemsList items: items list
-    :return dict: dict
+    :return: dict with cart, message and cost
+    :rtype: dict
     """
     logger.info(f'Request@/add_list/{cart_id}')
     return cart.add_list(id=cart_id, items=items)
@@ -80,13 +85,14 @@ def add_list(cart_id: str, items: CartItemsList):
 @router.post('/edit_item/{cart_id}')
 def edit_item(cart_id: str, item: CartItem):
     """
-    Removes an item from the cart.
-    
+    Endpoint. Removes an item from the cart.
+
     If price is set to zero (`0`), item is removed from cart.
 
     :param str cart_id: cart id
     :param CartItem item: pair of name and price
-    :return: dict
+    :return: dict with cart and message
+    :rtype: dict
     """
     logger.info(f'Request@/edit_item/{cart_id}')
     return cart.edit_item(id=cart_id, item=item)
@@ -94,7 +100,12 @@ def edit_item(cart_id: str, item: CartItem):
 
 def common_parameters(cart_id: str, item_name: str):
     """
-    # TODO: docstring
+    Function to deal with common parameters for endpoints.
+
+    :param str cart_id: cart id
+    :param str item_name: item name
+    :return: dict with cart id and item name
+    :rtype: dict
     """
     return {"cart_id": cart_id, "item_name": item_name}
 
@@ -102,7 +113,11 @@ def common_parameters(cart_id: str, item_name: str):
 @router.delete('/remove_item')
 def remove_item(commons: dict = Depends(common_parameters)):
     """
-    # TODO: docstring
+    Endpoint. Removes an item from cart.
+
+    :param str id: cart id
+    :return: dict with cart and message
+    :rtype: dict
     """
     logger.info(f'Request@/remove_item/{commons["cart_id"]}/{commons["item_name"]}')
     return cart.remove_item(id=commons['cart_id'], item_name=commons['item_name'])
@@ -111,7 +126,11 @@ def remove_item(commons: dict = Depends(common_parameters)):
 @router.get('/item_price')
 def item_price(commons=Depends(common_parameters)):
     """
-    # TODO: docstring
+    Endpoint. Returns an item price.
+
+    :param Depends commons: args from `common_parameters` function
+    :returns: dict with item name and price
+    :rtype: dict
     """
     logger.info(f'Request@/item_price/{commons["cart_id"]}/{commons["item_name"]}')
     return cart.item_price(id=commons['cart_id'], item_name=commons['item_name'])
@@ -120,13 +139,17 @@ def item_price(commons=Depends(common_parameters)):
 @router.get('/list_items')
 def list_items(cart_id: Optional[str] = None):
     """
-    # TODO: docstring
+    Endpoint. List any or all carts.
+
+    :param Optional cart_id: desired cart or all carts if default None
+    :return: dict with all carts or desired cart
+    :rtype: dict
     """
     if cart_id:
         logger.info(f'Request@/list_items/{cart_id}')
         return cart.list_cart(id=cart_id)
     else:
-        logger.info(f'Request@/list_items')
+        logger.info('Request@/list_items')
         return cart.show_carts()
 
 
@@ -138,7 +161,8 @@ def list_some_items(cart_id: str, start: int, stop: Optional[int] = None):
     :param str cart_id: cart id
     :param int start: first index to iterate
     :param Optional[int] stop: last index to iterate
-    :return: dict
+    :return: dict with items
+    :rtype: dict
     """
     logger.info(f'Request@/list_some_items/{cart_id}')
     return cart.list_some_items(id=cart_id, start=start, stop=stop)
@@ -150,7 +174,8 @@ def cost(cart_id: str):
     Endpoint. Returns the total cost of the cart.
 
     :param str cart_id: cart id
-    :return: dict
+    :return: dict with cart id and total cost
+    :rtype: dict
     """
     logger.info(f'Request@/cost/{cart_id}')
     return cart.total_cost(id=cart_id)
@@ -162,7 +187,8 @@ def checkout(cart_id: str):
     Endpoint. Return a summary and erases the cart.
 
     :param str cart_id: cart id
-    :return: dict
+    :return: dict with id and cost
+    :rtype: dict
     """
     logger.info(f'Request@/checkout/{cart_id}')
     return cart.checkout(id=cart_id)
@@ -171,19 +197,23 @@ def checkout(cart_id: str):
 @router.get('/show_carts')
 def cost():
     """
-    Endpoint. Returns all carts.
+    Endpoint. Returns all carts in their current state.
 
     :param str cart_id: cart id
-    :return: dict
+    :return: dict with all carts
+    :rtype: dict
     """
-    logger.info(f'Request@/show_carts')
+    logger.info('Request@/show_carts')
     return cart.show_carts()
 
 
 @router.delete('/nuke')
 def nuke():
     """
-    # TODO: docstring
+    Endpoint. Erases all carts.
+
+    :return: dict with message and carts
+    :rtype: dict
     """
-    logger.info(f'Request@/nuke')
+    logger.info('Request@/nuke')
     return cart.nuke()
