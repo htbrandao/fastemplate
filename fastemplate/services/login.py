@@ -3,7 +3,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 
 from fastemplate import logger
 from fastemplate.objects.user import User
-from fastemplate.services.security import validate_user, is_owner
+from fastemplate.services.security import validate_user, get_current_user
 
 router = APIRouter()
 
@@ -22,7 +22,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
 
 
 @router.get('/whois')
-def whois(user: User = Depends(is_owner)):
+def whois(user: User = Depends(get_current_user)):
     """
     Endpoint. Checks if user has certain attributes (`enabled`).
 
