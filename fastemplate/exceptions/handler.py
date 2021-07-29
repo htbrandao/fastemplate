@@ -148,6 +148,7 @@ def exceptions_handler(app):
         Handler for NiceTryMeowNowGoBack.
         """
         return JSONResponse(
+            headers={'WWW-Authenticate': 'Bearer'},
             status_code=exception.status_code,
             content={
                 'status': exception.status_code,
@@ -157,7 +158,7 @@ def exceptions_handler(app):
         )
 
     @app.exception_handler(InvalidAuthCredentials)
-    async def nice_try_meow_exception_handler(request: Request, exception: InvalidAuthCredentials):
+    async def invalid_auth_credentials_exception_handler(request: Request, exception: InvalidAuthCredentials):
         """
         Handler for InvalidAuthCredentials.
         """
