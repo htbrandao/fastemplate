@@ -4,7 +4,7 @@ __api_version__ = 'v1'
 from datetime import datetime
 
 from loguru import logger
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 
 from fastemplate.config import config
