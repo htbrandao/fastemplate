@@ -6,6 +6,7 @@ from datetime import datetime
 from loguru import logger
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
+from fastapi.responses import RedirectResponse
 
 from fastemplate.config import config
 from fastemplate.services.v1 import v1
@@ -41,6 +42,15 @@ def root():
         'DOCUMENTATION': '/index.html',
         '@TIMESTAMP': timestamp,
     }
+
+
+@app.get('/source')
+def source():
+    """
+    Source endpoint. Redirects to git.
+    """
+    logger.info('Request@/source')
+    return RedirectResponse("https://github.com/htbrandao/fastemplate")
 
 
 app.include_router(metrics.router)
