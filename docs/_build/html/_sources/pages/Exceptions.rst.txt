@@ -11,6 +11,11 @@ Cart
 .. automodule:: fastemplate.exceptions.cart
    :members:
 
+User
+----
+.. automodule:: fastemplate.exceptions.user
+   :members:
+
 Handler
 -------
 .. automodule:: fastemplate.exceptions.handler

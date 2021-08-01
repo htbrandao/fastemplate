@@ -5,8 +5,9 @@ from fastapi import File
 from fastemplate import logger
 from fastemplate.module import MOCK_BASE_CART
 from fastemplate.objects.cart import CartItem, CartItemsList
-from fastemplate.exceptions.cart import CartIdAlreadyExistsException, CartIdNotFoundException, ItemNotFoundException, \
-    MismatchedLenghtException, ItemAlreadyAddedException, UnsupportedFileExtensionException
+from fastemplate.exceptions.cart import CartIdAlreadyExistsException, CartIdNotFoundException,\
+    ItemNotFoundException, MismatchedLenghtException, ItemAlreadyAddedException,\
+    UnsupportedFileExtensionException
 
 
 def create_cart(cart_id: str):
@@ -27,7 +28,12 @@ def create_cart(cart_id: str):
 
 def hasId(func):
     """
-    Wrapper to check if cart has the given id.
+    Wrapper to check if cart has a given id.
+
+    :param func func: funct to be decorated
+    :return: wrapper_hasId
+    :rtype: func
+    :raises: CartIdNotFoundException
     """
     @functools.wraps(func)
     def wrapper_hasId(**kwargs):

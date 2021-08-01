@@ -95,24 +95,34 @@
 </ul>
 <p><span class="caption-text">API:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Config.html">Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Objects.html">Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Objects.html#module-fastemplate.objects.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Objects.html#module-fastemplate.objects.user">User</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pages/Module.html">Module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Module.html#module-fastemplate.module.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Module.html#module-fastemplate.module.fridge">Fridge</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pages/Exceptions.html">Exceptions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Exceptions.html#module-fastemplate.exceptions.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Exceptions.html#module-fastemplate.exceptions.user">User</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Exceptions.html#module-fastemplate.exceptions.handler">Handler</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../pages/Objects.html">Objects</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../pages/Objects.html#module-fastemplate.objects.cart">Cart</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pages/Services.html">Services</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.docs">Docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.metrics">Metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1">V1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.login">Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.utils">Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1">V1</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1.shopcart">Shopcart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1.fridge">Fridge</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pages/Utils.html">Utils</a><ul>
@@ -169,6 +179,8 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
+          <li><a href="../exceptions.html">fastemplate.exceptions</a> &raquo;</li>
+        
       <li>fastemplate.exceptions.cart</li>
     
     
@@ -187,58 +199,72 @@
   <h1>Source code for fastemplate.exceptions.cart</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">fastemplate.exceptions</span> <span class="kn">import</span> <span class="n">FastemplateBaseException</span>
 
+
 <div class="viewcode-block" id="CartIdAlreadyExistsException"><a class="viewcode-back" href="../../../pages/Exceptions.html#fastemplate.exceptions.cart.CartIdAlreadyExistsException">[docs]</a><span class="k">class</span> <span class="nc">CartIdAlreadyExistsException</span><span class="p">(</span><span class="n">FastemplateBaseException</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Thrown whenever cart id already exists.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;CartIdAlreadyExistsException&#39;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="mi">503</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="CartIdNotFoundException"><a class="viewcode-back" href="../../../pages/Exceptions.html#fastemplate.exceptions.cart.CartIdNotFoundException">[docs]</a><span class="k">class</span> <span class="nc">CartIdNotFoundException</span><span class="p">(</span><span class="n">FastemplateBaseException</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Thrown whenever cart id does not exist.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;CartIdNotFoundException&#39;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="ItemAlreadyAddedException"><a class="viewcode-back" href="../../../pages/Exceptions.html#fastemplate.exceptions.cart.ItemAlreadyAddedException">[docs]</a><span class="k">class</span> <span class="nc">ItemAlreadyAddedException</span><span class="p">(</span><span class="n">FastemplateBaseException</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Thrown whenever a cart&#39;s item already exists.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ItemAlreadyAddedException&#39;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="mi">422</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="ItemNotFoundException"><a class="viewcode-back" href="../../../pages/Exceptions.html#fastemplate.exceptions.cart.ItemNotFoundException">[docs]</a><span class="k">class</span> <span class="nc">ItemNotFoundException</span><span class="p">(</span><span class="n">FastemplateBaseException</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Thrown whenever a cart&#39;s item is not found.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;ItemNotFoundException&#39;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="mi">404</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="MismatchedLenghtException"><a class="viewcode-back" href="../../../pages/Exceptions.html#fastemplate.exceptions.cart.MismatchedLenghtException">[docs]</a><span class="k">class</span> <span class="nc">MismatchedLenghtException</span><span class="p">(</span><span class="n">FastemplateBaseException</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Thrown whenever a list has more/less items then prices, and vice versa.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;MismatchedLenghtException&#39;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="mi">422</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
+
 
 <div class="viewcode-block" id="UnsupportedFileExtensionException"><a class="viewcode-back" href="../../../pages/Exceptions.html#fastemplate.exceptions.cart.UnsupportedFileExtensionException">[docs]</a><span class="k">class</span> <span class="nc">UnsupportedFileExtensionException</span><span class="p">(</span><span class="n">FastemplateBaseException</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Thrown whenever a list has more/less items then prices, and vice versa.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;UnsupportedFileExtension&#39;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="mi">415</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="InvalidCredentialsException"><a class="viewcode-back" href="../../../pages/Exceptions.html#fastemplate.exceptions.cart.InvalidCredentialsException">[docs]</a><span class="k">class</span> <span class="nc">InvalidCredentialsException</span><span class="p">(</span><span class="n">FastemplateBaseException</span><span class="p">):</span>
+
+<div class="viewcode-block" id="InvalidTokenException"><a class="viewcode-back" href="../../../pages/Exceptions.html#fastemplate.exceptions.cart.InvalidTokenException">[docs]</a><span class="k">class</span> <span class="nc">InvalidTokenException</span><span class="p">(</span><span class="n">FastemplateBaseException</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Thrown whenever header credentials are invalid.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
         <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;InvalidCredentialsException&#39;</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span></div>

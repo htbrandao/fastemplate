@@ -1,7 +1,7 @@
-# FasTemplate
+:warning: | **WORK IN PROGRESS** | :warning:
+:---: | :---: | :---:
 
-:warning: | **WORK IN PROGRESS**
-:---: | :---
+# FasTemplate
 
 REST API example built using FastAPI.
 
@@ -9,7 +9,7 @@ REST API example built using FastAPI.
 
 I have reasons to believe that my cat is always adding more and more tuna to my groceries cart.
 
-So I created this API to edit my shopcart and keep him on the outside. I also laid a special endpoint to catch him on the act!
+So I created this API to edit my shopcart and keep him on the outside. I also made a special endpoint to catch him!
 
 # # What?
 
@@ -25,6 +25,99 @@ The *main* dependencies are:
 - `Sphinx`: Create our poject documentation
 - `Uvicorn` or `GUnicorn`: Launches our API
 - `Pytest`: Run our tests
+
+# # Content
+
+This template covers the following features from the [main docs](https://fastapi.tiangolo.com/):
+
+- Tutorial - User Guide
+
+Template | Topic
+:---: | :---
+|:heavy_check_mark:| Tutorial - User Guide - Intro |
+|:heavy_check_mark:| First Steps |
+|:heavy_check_mark:| Path Parameters |
+|:heavy_check_mark:| Query Parameters |
+|:heavy_check_mark:| Request Body |
+|:heavy_check_mark:| Query Parameters and String Validations |
+|:heavy_check_mark:| Path Parameters and Numeric Validations |
+|:heavy_check_mark:| Body - Multiple Parameters |
+|:heavy_check_mark:| Body - Fields |
+|:heavy_check_mark:| Body - Nested Models |
+|:heavy_check_mark:| Declare Request Example Data |
+|:heavy_check_mark:| Extra Data Types |
+|:heavy_check_mark:| Cookie Parameters |
+|:heavy_check_mark:| Header Parameters |
+|:heavy_check_mark:| Response Model |
+|:heavy_check_mark:| Extra Models |
+|:heavy_check_mark:| Response Status Code |
+|:heavy_check_mark:| Form Data |
+|:heavy_check_mark:| Request Files |
+|:heavy_check_mark:| Request Forms and Files |
+|:heavy_check_mark:| Handling Errors |
+|:heavy_check_mark:| Path Operation Configuration |
+|:heavy_check_mark:| JSON Compatible Encoder |
+|:heavy_check_mark:| Body - Updates |
+|:heavy_check_mark:| Dependencies |
+|:heavy_check_mark:| Security |
+|:heavy_check_mark:| Middleware |
+|:heavy_check_mark:| CORS (Cross-Origin Resource Sharing) |
+|:x:| SQL (Relational) Databases |
+|:heavy_check_mark:| Bigger Applications - Multiple Files |
+|:x:| Background Tasks |
+|:heavy_check_mark:| Metadata and Docs URLs |
+|:heavy_check_mark:| Static Files |
+|:heavy_check_mark:| Testing |
+|:heavy_check_mark:| Debugging |
+
+- Advanced User Guide
+
+Template | Topic
+:---: | :---
+|:heavy_check_mark:| Advanced User Guide - Intro |
+|:heavy_check_mark:| Path Operation Advanced Configuration |
+|:heavy_check_mark:| Additional Status Codes |
+|:heavy_check_mark:| Return a Response Directly |
+|:arrow_right:| Custom Response - HTML, Stream, File, others |
+|| Additional Responses in OpenAPI |
+|| Response Cookies |
+|| Response Headers |
+|| Response - Change Status Code |
+|| Advanced Dependencies |
+|| Advanced Security |
+|| Using the Request Directly |
+|| Using Dataclasses |
+|| Advanced Middleware |
+|| SQL (Relational) Databases with Peewee |
+|| Async SQL (Relational) Databases |
+|| NoSQL (Distributed / Big Data) Databases |
+|| Sub Applications - Mounts |
+|| Behind a Proxy |
+|| Templates |
+|| GraphQL |
+|| WebSockets |
+|| Events: startup - shutdown |
+|| Custom Request and APIRoute class |
+|| Testing WebSockets |
+|| Testing Events: startup - shutdown |
+|| Testing Dependencies with Overrides |
+|| Testing a Database |
+|| Async Tests |
+|| Settings and Environment Variables |
+|| Conditional OpenAPI |
+|| Extending OpenAPI |
+|| OpenAPI Callbacks |
+|| Including WSGI - Flask, Django, others |
+
+Description:
+
+Symbol | Meaning
+:--: | :--
+:arrow_right: | Last checkpoint
+:x: | Not covered
+:heavy_check_mark: | Covered 
+
+
 
 # # How?
 
@@ -94,7 +187,7 @@ Remember to update the **`Sphinx docs`** and your **`test cases`**!
 - [ ] Update README images
 - [x] ~~Write missing docstrings~~
 - [x] ~~Update docstrings (`:rtype:` and `:raises:` like in `create_cart()`)~~
-- [ ] ~~Update docs: make html~~
+- [x] ~~Update docs: make html~~
 - [x] ~~Handle file upload~~
 - [ ] Write test cases
 - [x] ~~PyLint~~

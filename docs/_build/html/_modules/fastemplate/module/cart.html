@@ -95,24 +95,34 @@
 </ul>
 <p><span class="caption-text">API:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Config.html">Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Objects.html">Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Objects.html#module-fastemplate.objects.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Objects.html#module-fastemplate.objects.user">User</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pages/Module.html">Module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Module.html#module-fastemplate.module.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Module.html#module-fastemplate.module.fridge">Fridge</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pages/Exceptions.html">Exceptions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Exceptions.html#module-fastemplate.exceptions.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Exceptions.html#module-fastemplate.exceptions.user">User</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Exceptions.html#module-fastemplate.exceptions.handler">Handler</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../pages/Objects.html">Objects</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../pages/Objects.html#module-fastemplate.objects.cart">Cart</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pages/Services.html">Services</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.docs">Docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.metrics">Metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1">V1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.login">Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.utils">Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1">V1</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1.shopcart">Shopcart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1.fridge">Fridge</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pages/Utils.html">Utils</a><ul>
@@ -190,39 +200,50 @@
 <span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">File</span>
 
 <span class="kn">from</span> <span class="nn">fastemplate</span> <span class="kn">import</span> <span class="n">logger</span>
-<span class="kn">from</span> <span class="nn">fastemplate.module</span> <span class="kn">import</span> <span class="n">BASE_CART</span>
+<span class="kn">from</span> <span class="nn">fastemplate.module</span> <span class="kn">import</span> <span class="n">MOCK_BASE_CART</span>
 <span class="kn">from</span> <span class="nn">fastemplate.objects.cart</span> <span class="kn">import</span> <span class="n">CartItem</span><span class="p">,</span> <span class="n">CartItemsList</span>
-<span class="kn">from</span> <span class="nn">fastemplate.exceptions.cart</span> <span class="kn">import</span> <span class="n">CartIdAlreadyExistsException</span><span class="p">,</span> <span class="n">CartIdNotFoundException</span><span class="p">,</span> <span class="n">ItemNotFoundException</span><span class="p">,</span> \
-    <span class="n">MismatchedLenghtException</span><span class="p">,</span> <span class="n">ItemAlreadyAddedException</span><span class="p">,</span> <span class="n">UnsupportedFileExtensionException</span>
+<span class="kn">from</span> <span class="nn">fastemplate.exceptions.cart</span> <span class="kn">import</span> <span class="n">CartIdAlreadyExistsException</span><span class="p">,</span> <span class="n">CartIdNotFoundException</span><span class="p">,</span>\
+    <span class="n">ItemNotFoundException</span><span class="p">,</span> <span class="n">MismatchedLenghtException</span><span class="p">,</span> <span class="n">ItemAlreadyAddedException</span><span class="p">,</span>\
+    <span class="n">UnsupportedFileExtensionException</span>
 
 
-<div class="viewcode-block" id="create_cart"><a class="viewcode-back" href="../../../pages/Module.html#fastemplate.module.cart.create_cart">[docs]</a><span class="k">def</span> <span class="nf">create_cart</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<div class="viewcode-block" id="create_cart"><a class="viewcode-back" href="../../../pages/Module.html#fastemplate.module.cart.create_cart">[docs]</a><span class="k">def</span> <span class="nf">create_cart</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a cart.</span>
 
-<span class="sd">    :param str id: cart id</span>
-<span class="sd">    :return: message regarding cart creation</span>
+<span class="sd">    :param str cart_id: cart id</span>
+<span class="sd">    :return: dict with message</span>
 <span class="sd">    :rtype: dict</span>
 <span class="sd">    :raises: CartIdAlreadyExistsException</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="nb">id</span> <span class="ow">in</span> <span class="n">BASE_CART</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="n">CartIdAlreadyExistsException</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Cart #</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s1"> already in use. Checkout or delete it first.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cart_id</span> <span class="ow">in</span> <span class="n">MOCK_BASE_CART</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CartIdAlreadyExistsException</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Cart #</span><span class="si">{</span><span class="n">cart_id</span><span class="si">}</span><span class="s1"> already in use. Checkout or delete it first.&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;created cart #</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">}</span></div>
+        <span class="n">MOCK_BASE_CART</span><span class="p">[</span><span class="n">cart_id</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;created cart #</span><span class="si">{</span><span class="n">cart_id</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">}</span></div>
 
 
 <div class="viewcode-block" id="hasId"><a class="viewcode-back" href="../../../pages/Module.html#fastemplate.module.cart.hasId">[docs]</a><span class="k">def</span> <span class="nf">hasId</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Wrapper to check if cart has the given id.</span>
+<span class="sd">    Wrapper to check if cart has a given id.</span>
+
+<span class="sd">    :param func func: funct to be decorated</span>
+<span class="sd">    :return: wrapper_hasId</span>
+<span class="sd">    :rtype: func</span>
+<span class="sd">    :raises: CartIdNotFoundException</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="nd">@functools</span><span class="o">.</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">wrapper_hasId</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Wrapper function for `hasId`.</span>
+
+<span class="sd">        :params dict kwargs: decorated function kwargs</span>
+<span class="sd">        :return: func(**kwargs)</span>
+<span class="sd">        :rtype: func</span>
+<span class="sd">        :raises: CartIdNotFoundException</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">cart_id</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">kwargs</span><span class="p">}[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">cart_id</span> <span class="ow">in</span> <span class="n">BASE_CART</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cart_id</span> <span class="ow">in</span> <span class="n">MOCK_BASE_CART</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">CartIdNotFoundException</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Cart #</span><span class="si">{</span><span class="n">cart_id</span><span class="si">}</span><span class="s1"> does not exist.&#39;</span><span class="p">)</span>
@@ -235,174 +256,192 @@
 
 <span class="sd">    :param str id: cart id</span>
 <span class="sd">    :param File file: file containing item name and price</span>
-<span class="sd">    :return: dict</span>
+<span class="sd">    :return: dict with filename, type and cart</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    :raises: UnsupportedFileExtensionException</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="s1">&#39;.csv&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">UnsupportedFileExtensionException</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;File </span><span class="si">{</span><span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="si">}</span><span class="s1"> is not supported.&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">create_cart</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+        <span class="n">create_cart</span><span class="p">(</span><span class="n">cart_id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
         <span class="n">content_bytes</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
         <span class="n">content_str</span> <span class="o">=</span> <span class="n">content_bytes</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">shoplist</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([</span>
             <span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])]</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">content_str</span>
         <span class="p">])</span>
-        <span class="n">BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">shoplist</span>
+        <span class="n">MOCK_BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">shoplist</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s1">&#39;filename&#39;</span><span class="p">:</span> <span class="n">file</span><span class="o">.</span><span class="n">filename</span><span class="p">,</span>
             <span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="n">file</span><span class="o">.</span><span class="n">content_type</span><span class="p">,</span>
-            <span class="s1">&#39;cart&#39;</span><span class="p">:</span> <span class="n">BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span>
+            <span class="s1">&#39;cart&#39;</span><span class="p">:</span> <span class="n">MOCK_BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span>
         <span class="p">}</span></div>
 
 
 <div class="viewcode-block" id="erase_cart"><a class="viewcode-back" href="../../../pages/Module.html#fastemplate.module.cart.erase_cart">[docs]</a><span class="nd">@hasId</span>
-<span class="k">def</span> <span class="nf">erase_cart</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">erase_cart</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Erases a cart.</span>
 
-<span class="sd">    :param str id: cart id</span>
-<span class="sd">    :return: dict</span>
+<span class="sd">    :param str cart_id: cart id</span>
+<span class="sd">    :return: dict with message</span>
+<span class="sd">    :rtype: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">del</span> <span class="n">BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Successfully erased cart #</span><span class="si">{</span><span class="nb">id</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">}</span></div>
+    <span class="k">del</span> <span class="n">MOCK_BASE_CART</span><span class="p">[</span><span class="n">cart_id</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;Successfully erased cart #</span><span class="si">{</span><span class="n">cart_id</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">}</span></div>
 
 
 <div class="viewcode-block" id="add_item"><a class="viewcode-back" href="../../../pages/Module.html#fastemplate.module.cart.add_item">[docs]</a><span class="nd">@hasId</span>
-<span class="k">def</span> <span class="nf">add_item</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">item</span><span class="o">=</span><span class="n">CartItem</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">add_item</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">item</span><span class="o">=</span><span class="n">CartItem</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Add item to cart.</span>
 
-<span class="sd">    :param str id: cart id</span>
+<span class="sd">    :param str cart_id: cart id</span>
 <span class="sd">    :param CartItem item: pair of name and price</span>
-<span class="sd">    :return: dict</span>
+<span class="sd">    :return: dict with cart, item and price</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    :raises: ItemAlreadyAddedException</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">]:</span>
-        <span class="k">raise</span> <span class="n">ItemAlreadyAddedException</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Item already added: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">MOCK_BASE_CART</span><span class="p">[</span><span class="n">cart_id</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="n">ItemAlreadyAddedException</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Item already added: </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> - </span><span class="si">{</span><span class="n">MOCK_BASE_CART</span><span class="p">[</span><span class="n">cart_id</span><span class="p">][</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">]</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">price</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;cart&#39;</span><span class="p">:</span> <span class="nb">id</span><span class="p">,</span> <span class="s1">&#39;item&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">price</span><span class="p">}</span></div>
+        <span class="n">MOCK_BASE_CART</span><span class="p">[</span><span class="n">cart_id</span><span class="p">][</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">price</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;cart&#39;</span><span class="p">:</span> <span class="n">cart_id</span><span class="p">,</span> <span class="s1">&#39;item&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="s1">&#39;price&#39;</span><span class="p">:</span> <span class="n">item</span><span class="o">.</span><span class="n">price</span><span class="p">}</span></div>
 
 
 <div class="viewcode-block" id="add_list"><a class="viewcode-back" href="../../../pages/Module.html#fastemplate.module.cart.add_list">[docs]</a><span class="nd">@hasId</span>
-<span class="k">def</span> <span class="nf">add_list</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">items</span><span class="p">:</span> <span class="n">CartItemsList</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">add_list</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">items</span><span class="p">:</span> <span class="n">CartItemsList</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Add items list to cart.</span>
 
-<span class="sd">    :param str id: cart id</span>
+<span class="sd">    :param str cart_id: cart id</span>
 <span class="sd">    :param CartItemsList items: items list</span>
-<span class="sd">    :return dict: dict</span>
+<span class="sd">    :return: dict with cart, message and cost</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    :raises: MismatchedLenghtException, ItemAlreadyAddedException</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">repeated</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">names</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">prices</span><span class="p">):</span>
         <span class="k">raise</span> <span class="n">MismatchedLenghtException</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">names</span><span class="p">)</span><span class="si">}</span><span class="s1"> items and </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">prices</span><span class="p">)</span><span class="si">}</span><span class="s1"> prices.&#39;</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">names</span><span class="p">,</span> <span class="n">items</span><span class="o">.</span><span class="n">prices</span><span class="p">))</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">]:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">MOCK_BASE_CART</span><span class="p">[</span><span class="n">cart_id</span><span class="p">]:</span>
             <span class="n">repeated</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span>
+            <span class="n">MOCK_BASE_CART</span><span class="p">[</span><span class="n">cart_id</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">p</span>
     <span class="k">if</span> <span class="n">repeated</span> <span class="o">!=</span> <span class="p">[]:</span>
         <span class="k">raise</span> <span class="n">ItemAlreadyAddedException</span><span class="p">(</span>
             <span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Repeated items: </span><span class="si">{</span><span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">repeated</span><span class="p">)</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span>        
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;cart&#39;</span><span class="p">:</span> <span class="nb">id</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;added </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">names</span><span class="p">)</span><span class="si">}</span><span class="s1"> items&#39;</span><span class="p">,</span> <span class="s1">&#39;cost&#39;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">prices</span><span class="p">)}</span></div>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;cart&#39;</span><span class="p">:</span> <span class="n">cart_id</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;added </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">names</span><span class="p">)</span><span class="si">}</span><span class="s1"> items&#39;</span><span class="p">,</span> <span class="s1">&#39;cost&#39;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">items</span><span class="o">.</span><span class="n">prices</span><span class="p">)}</span></div>
 
 
 <div class="viewcode-block" id="edit_item"><a class="viewcode-back" href="../../../pages/Module.html#fastemplate.module.cart.edit_item">[docs]</a><span class="nd">@hasId</span>
 <span class="k">def</span> <span class="nf">edit_item</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">CartItem</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Removes an item from the cart.</span>
-<span class="sd">    </span>
+
 <span class="sd">    If price is set to zero (0), item is removed from cart.</span>
 
 <span class="sd">    :param str id: cart id</span>
 <span class="sd">    :param CartItem item: pair of name and price</span>
-<span class="sd">    :return: dict</span>
+<span class="sd">    :return: dict with cart and message</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    :raises: ItemNotFoundException</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">item</span><span class="o">.</span><span class="n">price</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">del</span> <span class="n">BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
+            <span class="k">del</span> <span class="n">MOCK_BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">]</span>
             <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;cart&#39;</span><span class="p">:</span> <span class="nb">id</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;removed </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">}</span>
         <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">ItemNotFoundException</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Item not found </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">price</span>
+        <span class="n">MOCK_BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span><span class="o">.</span><span class="n">price</span>
         <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;cart&#39;</span><span class="p">:</span> <span class="nb">id</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;adjusted </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="n">item</span><span class="o">.</span><span class="n">price</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">}</span></div>
 
 
 <div class="viewcode-block" id="remove_item"><a class="viewcode-back" href="../../../pages/Module.html#fastemplate.module.cart.remove_item">[docs]</a><span class="nd">@hasId</span>
-<span class="k">def</span> <span class="nf">remove_item</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">item_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">remove_item</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">item_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Removes an item from cart.</span>
 
-<span class="sd">    :param str id: cart id</span>
-<span class="sd">    :return: dict</span>
+<span class="sd">    :param str cart_id: cart id</span>
+<span class="sd">    :param str item_name: item name</span>
+<span class="sd">    :return: dict with cart and message</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    :raises: ItemNotFoundException</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="k">del</span> <span class="n">BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">item_name</span><span class="p">]</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;cart&#39;</span><span class="p">:</span> <span class="nb">id</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;removed </span><span class="si">{</span><span class="n">item_name</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">}</span>
+        <span class="k">del</span> <span class="n">MOCK_BASE_CART</span><span class="p">[</span><span class="n">cart_id</span><span class="p">][</span><span class="n">item_name</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;cart&#39;</span><span class="p">:</span> <span class="n">cart_id</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;removed </span><span class="si">{</span><span class="n">item_name</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">}</span>
     <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
         <span class="k">raise</span> <span class="n">ItemNotFoundException</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Item not found </span><span class="si">{</span><span class="n">item_name</span><span class="si">}</span><span class="s1">.&#39;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="list_cart"><a class="viewcode-back" href="../../../pages/Module.html#fastemplate.module.cart.list_cart">[docs]</a><span class="nd">@hasId</span>
-<span class="k">def</span> <span class="nf">list_cart</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">list_cart</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Retrieves the cart&#39;s items and prices.</span>
 
-<span class="sd">    :param str id: cart id</span>
-<span class="sd">    :return: dict</span>
+<span class="sd">    :param str cart_id: cart id</span>
+<span class="sd">    :return: dict with the cart items</span>
+<span class="sd">    :rtype: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span></div>
+    <span class="k">return</span> <span class="n">MOCK_BASE_CART</span><span class="p">[</span><span class="n">cart_id</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="list_some_items"><a class="viewcode-back" href="../../../pages/Module.html#fastemplate.module.cart.list_some_items">[docs]</a><span class="nd">@hasId</span>
-<span class="k">def</span> <span class="nf">list_some_items</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">stop</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">list_some_items</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">stop</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    List a items from the cart, based on a range.</span>
 
-<span class="sd">    :param str id: cart id</span>
+<span class="sd">    :param str cart_id: cart id</span>
 <span class="sd">    :param int start: first index to iterate</span>
 <span class="sd">    :param int stop: last index to iterate</span>
-<span class="sd">    :return: dict</span>
+<span class="sd">    :return: dict with items</span>
+<span class="sd">    :rtype: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="n">BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">]}</span></div>
+    <span class="k">return</span> <span class="p">{</span><span class="n">i</span><span class="p">:</span><span class="n">MOCK_BASE_CART</span><span class="p">[</span><span class="n">cart_id</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">MOCK_BASE_CART</span><span class="p">[</span><span class="n">cart_id</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">]}</span></div>
 
 
 <div class="viewcode-block" id="item_price"><a class="viewcode-back" href="../../../pages/Module.html#fastemplate.module.cart.item_price">[docs]</a><span class="nd">@hasId</span>
 <span class="k">def</span> <span class="nf">item_price</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">item_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the price from an item inside a cart.</span>
-<span class="sd">    </span>
+
 <span class="sd">    :param str id: cart id</span>
-<span class="sd">    :return: dict</span>
+<span class="sd">    :param str item_name: item name</span>
+<span class="sd">    :return: dict with item name and price</span>
+<span class="sd">    :rtype: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="p">{</span><span class="n">item_name</span><span class="p">:</span> <span class="n">BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">item_name</span><span class="p">]}</span></div>
+    <span class="k">return</span> <span class="p">{</span><span class="n">item_name</span><span class="p">:</span> <span class="n">MOCK_BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="n">item_name</span><span class="p">]}</span></div>
 
 
 <div class="viewcode-block" id="total_cost"><a class="viewcode-back" href="../../../pages/Module.html#fastemplate.module.cart.total_cost">[docs]</a><span class="nd">@hasId</span>
-<span class="k">def</span> <span class="nf">total_cost</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">total_cost</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns the total cost of the cart.</span>
 
-<span class="sd">    :param str id: cart id</span>
-<span class="sd">    :return: dict</span>
+<span class="sd">    :param str cart_id: cart id</span>
+<span class="sd">    :return: dict with cart id and total cost</span>
+<span class="sd">    :rtype: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">s</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">BASE_CART</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">MOCK_BASE_CART</span><span class="p">[</span><span class="n">cart_id</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
         <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-    <span class="k">return</span> <span class="p">{</span><span class="nb">id</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">s</span><span class="p">)}</span></div>
+    <span class="k">return</span> <span class="p">{</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">s</span><span class="p">)}</span></div>
 
 
 <div class="viewcode-block" id="checkout"><a class="viewcode-back" href="../../../pages/Module.html#fastemplate.module.cart.checkout">[docs]</a><span class="nd">@hasId</span>
-<span class="k">def</span> <span class="nf">checkout</span><span class="p">(</span><span class="nb">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">checkout</span><span class="p">(</span><span class="n">cart_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return a summary and erases the cart.</span>
 
-<span class="sd">    :param str id: cart id</span>
-<span class="sd">    :return: dict</span>
+<span class="sd">    :param str cart_id: cart id</span>
+<span class="sd">    :return: dict with id and cost</span>
+<span class="sd">    :rtype: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">msg</span> <span class="o">=</span> <span class="p">{</span><span class="nb">id</span><span class="p">:</span> <span class="n">list_cart</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">),</span> <span class="s1">&#39;cost&#39;</span><span class="p">:</span> <span class="n">total_cost</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)[</span><span class="nb">id</span><span class="p">]}</span>
-    <span class="n">erase_cart</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="p">{</span><span class="n">cart_id</span><span class="p">:</span> <span class="n">list_cart</span><span class="p">(</span><span class="n">cart_id</span><span class="o">=</span><span class="n">cart_id</span><span class="p">),</span> <span class="s1">&#39;cost&#39;</span><span class="p">:</span> <span class="n">total_cost</span><span class="p">(</span><span class="n">cart_id</span><span class="o">=</span><span class="n">cart_id</span><span class="p">)[</span><span class="n">cart_id</span><span class="p">]}</span>
+    <span class="n">erase_cart</span><span class="p">(</span><span class="n">cart_id</span><span class="o">=</span><span class="n">cart_id</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">msg</span></div>
 
 
@@ -410,17 +449,21 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Returns all carts in their current state.</span>
 
-<span class="sd">    :return: dict</span>
+<span class="sd">    :return: dict with all carts</span>
+<span class="sd">    :rtype: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="n">BASE_CART</span></div>
+    <span class="k">return</span> <span class="n">MOCK_BASE_CART</span></div>
 
 
 <div class="viewcode-block" id="nuke"><a class="viewcode-back" href="../../../pages/Module.html#fastemplate.module.cart.nuke">[docs]</a><span class="k">def</span> <span class="nf">nuke</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    # TODO: docstring</span>
+<span class="sd">    Erases all carts.</span>
+
+<span class="sd">    :return: dict with message and carts</span>
+<span class="sd">    :rtype: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">BASE_CART</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;all carts were obliterated&#39;</span><span class="p">,</span> <span class="s1">&#39;carts&#39;</span><span class="p">:</span> <span class="n">BASE_CART</span><span class="p">}</span></div>
+    <span class="n">MOCK_BASE_CART</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;all carts were obliterated&#39;</span><span class="p">,</span> <span class="s1">&#39;carts&#39;</span><span class="p">:</span> <span class="n">MOCK_BASE_CART</span><span class="p">}</span></div>
 </pre></div>
 
            </div>

@@ -10,3 +10,8 @@ Cart
 ----
 .. automodule:: fastemplate.objects.cart
    :members:
+
+User
+----
+.. automodule:: fastemplate.objects.user
+   :members:

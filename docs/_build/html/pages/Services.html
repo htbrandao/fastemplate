@@ -42,7 +42,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Utils" href="Utils.html" />
-    <link rel="prev" title="Objects" href="Objects.html" /> 
+    <link rel="prev" title="Exceptions" href="Exceptions.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -98,24 +98,34 @@
 </ul>
 <p><span class="caption-text">API:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Config.html">Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Objects.html">Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Objects.html#module-fastemplate.objects.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Objects.html#module-fastemplate.objects.user">User</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Module.html">Module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Module.html#module-fastemplate.module.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Module.html#module-fastemplate.module.fridge">Fridge</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Exceptions.html">Exceptions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Exceptions.html#module-fastemplate.exceptions.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Exceptions.html#module-fastemplate.exceptions.user">User</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Exceptions.html#module-fastemplate.exceptions.handler">Handler</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="Objects.html">Objects</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Objects.html#module-fastemplate.objects.cart">Cart</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Services</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.services.docs">Docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.services.metrics">Metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.services.v1">V1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.services.login">Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.services.security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.services.utils">Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#module-fastemplate.services.v1">V1</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.services.v1.shopcart">Shopcart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.services.v1.fridge">Fridge</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Utils.html">Utils</a><ul>
@@ -192,7 +202,7 @@
   <section id="services">
 <h1>Services<a class="headerlink" href="#services" title="Permalink to this headline">¶</a></h1>
 <p>Here you can check the code on this submodule:</p>
-<span class="target" id="module-fastemplate.services"></span><section id="module-fastemplate.services.docs">
+<section id="module-fastemplate.services.docs">
 <span id="docs"></span><h2>Docs<a class="headerlink" href="#module-fastemplate.services.docs" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="fastemplate.services.docs.index">
@@ -214,15 +224,214 @@
 <dd><p>Basic metrics endpoint.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict with alive, &#64;timestamp and no. of requests</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-fastemplate.services.login">
+<span id="login"></span><h2>Login<a class="headerlink" href="#module-fastemplate.services.login" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="fastemplate.services.login.login">
+<code class="sig-prename descclassname">fastemplate.services.login.</code><code class="sig-name descname">login</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">form_data</span><span class="p">:</span> <span class="n">fastapi.security.oauth2.OAuth2PasswordRequestForm</span> <span class="o">=</span> <span class="default_value">Depends(NoneType)</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/login.html#login"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.login.login" title="Permalink to this definition">¶</a></dt>
+<dd><p>Endpoint. Performs login to acquire the bearer token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>form_data</strong> (<em>OAuth2PasswordRequestForm</em>) – form with username and password</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict with access token and token type</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fastemplate.services.login.whois">
+<code class="sig-prename descclassname">fastemplate.services.login.</code><code class="sig-name descname">whois</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Objects.html#fastemplate.objects.user.User" title="fastemplate.objects.user.User">fastemplate.objects.user.User</a></span> <span class="o">=</span> <span class="default_value">Depends(get_current_user)</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/login.html#whois"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.login.whois" title="Permalink to this definition">¶</a></dt>
+<dd><p>Endpoint. Checks if user has certain attributes (<cite>enabled</cite>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Params User user</dt>
+<dd class="field-odd"><p>form with user name and password</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict with user info</p>
+</dd>
+<dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
 
 </section>
-<section id="module-fastemplate.services.v1">
-<span id="v1"></span><h2>V1<a class="headerlink" href="#module-fastemplate.services.v1" title="Permalink to this headline">¶</a></h2>
+<section id="module-fastemplate.services.security">
+<span id="security"></span><h2>Security<a class="headerlink" href="#module-fastemplate.services.security" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="fastemplate.services.security.get_current_user">
+<code class="sig-prename descclassname">fastemplate.services.security.</code><code class="sig-name descname">get_current_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">token</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">Depends(OAuth2PasswordBearer)</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/security.html#get_current_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.security.get_current_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract the user from a token request.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>token</strong> (<em>str</em>) – token str</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict with user information</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fastemplate.services.security.is_owner">
+<code class="sig-prename descclassname">fastemplate.services.security.</code><code class="sig-name descname">is_owner</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Objects.html#fastemplate.objects.user.User" title="fastemplate.objects.user.User">fastemplate.objects.user.User</a></span> <span class="o">=</span> <span class="default_value">Depends(get_current_user)</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/security.html#is_owner"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.security.is_owner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks <cite>owner</cite> attribute from a given user or if my cat is trying to user auth protected endpoints.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>user</strong> (<a class="reference internal" href="Objects.html#fastemplate.objects.user.User" title="fastemplate.objects.user.User"><em>User</em></a>) – user object</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>user object</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="Objects.html#fastemplate.objects.user.User" title="fastemplate.objects.user.User">User</a></p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>NiceTryMeowNowGoBack</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fastemplate.services.security.lazy_decode_token">
+<code class="sig-prename descclassname">fastemplate.services.security.</code><code class="sig-name descname">lazy_decode_token</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">token</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/security.html#lazy_decode_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.security.lazy_decode_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves a username from a given token. This is <strong>not</strong> a good way to handle token validation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>token</strong> (<em>str</em>) – token string</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>username</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fastemplate.services.security.lazy_generate_token">
+<code class="sig-prename descclassname">fastemplate.services.security.</code><code class="sig-name descname">lazy_generate_token</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">username</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/security.html#lazy_generate_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.security.lazy_generate_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a token given a username. This is <strong>not</strong> a good way to handle token creation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>username</strong> (<em>str</em>) – string to hash</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict with access token and token type</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fastemplate.services.security.lazy_password_hash">
+<code class="sig-prename descclassname">fastemplate.services.security.</code><code class="sig-name descname">lazy_password_hash</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">password</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/security.html#lazy_password_hash"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.security.lazy_password_hash" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs a string hashing. This is <strong>not</strong> a good way to handle hashing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>password</strong> (<em>str</em>) – string to hash</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>hashed str</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fastemplate.services.security.validate_user">
+<code class="sig-prename descclassname">fastemplate.services.security.</code><code class="sig-name descname">validate_user</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">form_data</span><span class="p">:</span> <span class="n">fastapi.security.oauth2.OAuth2PasswordRequestForm</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/security.html#validate_user"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.security.validate_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validate the user’s credentials to generate a token that will be used to interact with the API.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>form_data</strong> – form with username and password fields</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict with access token and token type</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>InvalidUsernameOrPassword</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fastemplate.services.security.verify_key">
+<code class="sig-prename descclassname">fastemplate.services.security.</code><code class="sig-name descname">verify_key</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x_key</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">Header(Ellipsis)</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/security.html#verify_key"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.security.verify_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validades <cite>x_key</cite> token from request header.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x_key</strong> (<em>str</em>) – x_key</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>InvalidTokenException</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fastemplate.services.security.verify_token">
+<code class="sig-prename descclassname">fastemplate.services.security.</code><code class="sig-name descname">verify_token</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x_token</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">Header(Ellipsis)</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/security.html#verify_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.security.verify_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Validades <cite>x_token</cite> token from request header.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>x_token</strong> (<em>str</em>) – x_token</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>InvalidTokenException</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
+<section id="module-fastemplate.services.utils">
+<span id="utils"></span><h2>Utils<a class="headerlink" href="#module-fastemplate.services.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="fastemplate.services.utils.allow_cors">
+<code class="sig-prename descclassname">fastemplate.services.utils.</code><code class="sig-name descname">allow_cors</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/utils.html#allow_cors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.utils.allow_cors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enable CORS in app.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>app</strong> (<em>FastAPI</em>) – the main app</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>app with CORS enabled</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>FastAPI</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+<section id="module-fastemplate.services.v1">
+<span id="v1"></span><h1>V1<a class="headerlink" href="#module-fastemplate.services.v1" title="Permalink to this headline">¶</a></h1>
 <section id="module-fastemplate.services.v1.shopcart">
 <span id="shopcart"></span><h2>Shopcart<a class="headerlink" href="#module-fastemplate.services.v1.shopcart" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
@@ -237,7 +446,10 @@
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>dict</p>
+<dd class="field-even"><p>dict with cart, item and price</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -253,8 +465,11 @@
 <li><p><strong>items</strong> (<a class="reference internal" href="Objects.html#fastemplate.objects.cart.CartItemsList" title="fastemplate.objects.cart.CartItemsList"><em>CartItemsList</em></a>) – items list</p></li>
 </ul>
 </dd>
-<dt class="field-even">Return dict</dt>
-<dd class="field-even"><p>dict</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict with cart, message and cost</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -268,7 +483,10 @@
 <dd class="field-odd"><p><strong>cart_id</strong> (<em>str</em>) – cart id</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>dict</p>
+<dd class="field-even"><p>dict with id and cost</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -276,18 +494,32 @@
 <dl class="py function">
 <dt id="fastemplate.services.v1.shopcart.common_parameters">
 <code class="sig-prename descclassname">fastemplate.services.v1.shopcart.</code><code class="sig-name descname">common_parameters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cart_id</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">item_name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/v1/shopcart.html#common_parameters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.v1.shopcart.common_parameters" title="Permalink to this definition">¶</a></dt>
-<dd><p># TODO: docstring</p>
+<dd><p>Function to deal with common parameters for endpoints.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cart_id</strong> (<em>str</em>) – cart id</p></li>
+<li><p><strong>item_name</strong> (<em>str</em>) – item name</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict with cart id and item name</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="fastemplate.services.v1.shopcart.cost">
 <code class="sig-prename descclassname">fastemplate.services.v1.shopcart.</code><code class="sig-name descname">cost</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/v1/shopcart.html#cost"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.v1.shopcart.cost" title="Permalink to this definition">¶</a></dt>
-<dd><p>Endpoint. Returns all carts.</p>
+<dd><p>Endpoint. Returns all carts in their current state.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>cart_id</strong> (<em>str</em>) – cart id</p>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict with all carts</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>dict</p>
 </dd>
 </dl>
@@ -296,13 +528,16 @@
 <dl class="py function">
 <dt id="fastemplate.services.v1.shopcart.create">
 <code class="sig-prename descclassname">fastemplate.services.v1.shopcart.</code><code class="sig-name descname">create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cart_id</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/v1/shopcart.html#create"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.v1.shopcart.create" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a cart.</p>
+<dd><p>Endpoint. Creates a cart.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>cart_id</strong> (<em>str</em>) – cart id</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>dict</p>
+<dd class="field-even"><p>dict with message</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -310,7 +545,7 @@
 <dl class="py function">
 <dt id="fastemplate.services.v1.shopcart.edit_item">
 <code class="sig-prename descclassname">fastemplate.services.v1.shopcart.</code><code class="sig-name descname">edit_item</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cart_id</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">item</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Objects.html#fastemplate.objects.cart.CartItem" title="fastemplate.objects.cart.CartItem">fastemplate.objects.cart.CartItem</a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/v1/shopcart.html#edit_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.v1.shopcart.edit_item" title="Permalink to this definition">¶</a></dt>
-<dd><p>Removes an item from the cart.</p>
+<dd><p>Endpoint. Removes an item from the cart.</p>
 <p>If price is set to zero (<cite>0</cite>), item is removed from cart.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -320,7 +555,10 @@
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>dict</p>
+<dd class="field-even"><p>dict with cart and message</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -328,13 +566,16 @@
 <dl class="py function">
 <dt id="fastemplate.services.v1.shopcart.erase">
 <code class="sig-prename descclassname">fastemplate.services.v1.shopcart.</code><code class="sig-name descname">erase</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cart_id</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/v1/shopcart.html#erase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.v1.shopcart.erase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Erases a cart.</p>
+<dd><p>Endpoint. Erases a cart.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>cart_id</strong> (<em>str</em>) – cart id</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>dict</p>
+<dd class="field-even"><p>dict with message</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -342,13 +583,35 @@
 <dl class="py function">
 <dt id="fastemplate.services.v1.shopcart.item_price">
 <code class="sig-prename descclassname">fastemplate.services.v1.shopcart.</code><code class="sig-name descname">item_price</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">commons</span><span class="o">=</span><span class="default_value">Depends(common_parameters)</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/v1/shopcart.html#item_price"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.v1.shopcart.item_price" title="Permalink to this definition">¶</a></dt>
-<dd><p># TODO: docstring</p>
+<dd><p>Endpoint. Returns an item price.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>commons</strong> (<em>Depends</em><em>(</em><em>common_parameters</em><em>)</em>) – args from <cite>common_parameters</cite> function</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict with item name and price</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="fastemplate.services.v1.shopcart.list_items">
 <code class="sig-prename descclassname">fastemplate.services.v1.shopcart.</code><code class="sig-name descname">list_items</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cart_id</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>str<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/v1/shopcart.html#list_items"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.v1.shopcart.list_items" title="Permalink to this definition">¶</a></dt>
-<dd><p># TODO: docstring</p>
+<dd><p>Endpoint. List any or all carts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cart_id</strong> (<em>Optional</em>) – desired cart or all carts if default None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict with all carts or desired cart</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -364,7 +627,10 @@
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>dict</p>
+<dd class="field-even"><p>dict with items</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
 </dd>
 </dl>
 </dd></dl>
@@ -372,13 +638,32 @@
 <dl class="py function">
 <dt id="fastemplate.services.v1.shopcart.nuke">
 <code class="sig-prename descclassname">fastemplate.services.v1.shopcart.</code><code class="sig-name descname">nuke</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/v1/shopcart.html#nuke"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.v1.shopcart.nuke" title="Permalink to this definition">¶</a></dt>
-<dd><p># TODO: docstring</p>
+<dd><p>Endpoint. Erases all carts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict with message and carts</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
 <dt id="fastemplate.services.v1.shopcart.remove_item">
 <code class="sig-prename descclassname">fastemplate.services.v1.shopcart.</code><code class="sig-name descname">remove_item</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">commons</span><span class="p">:</span> <span class="n">dict</span> <span class="o">=</span> <span class="default_value">Depends(common_parameters)</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/v1/shopcart.html#remove_item"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.v1.shopcart.remove_item" title="Permalink to this definition">¶</a></dt>
-<dd><p># TODO: docstring</p>
+<dd><p>Endpoint. Removes an item from cart.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>commons</strong> (<em>Depends</em><em>(</em><em>common_parameters</em><em>)</em>) – args from <cite>common_parameters</cite> function</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict with cart and message</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py function">
@@ -388,11 +673,45 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>id</strong> (<em>str</em>) – cart id</p></li>
+<li><p><strong>cart_id</strong> – cart id</p></li>
 <li><p><strong>file</strong> (<em>File</em>) – file containing item name and price</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict with filename, type and cart</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-fastemplate.services.v1.fridge">
+<span id="fridge"></span><h2>Fridge<a class="headerlink" href="#module-fastemplate.services.v1.fridge" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="fastemplate.services.v1.fridge.buy_all_tuna">
+<code class="sig-prename descclassname">fastemplate.services.v1.fridge.</code><code class="sig-name descname">buy_all_tuna</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">user</span><span class="p">:</span> <span class="n"><a class="reference internal" href="Objects.html#fastemplate.objects.user.User" title="fastemplate.objects.user.User">fastemplate.objects.user.User</a></span> <span class="o">=</span> <span class="default_value">Depends(is_owner)</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/v1/fridge.html#buy_all_tuna"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.v1.fridge.buy_all_tuna" title="Permalink to this definition">¶</a></dt>
+<dd><p>Endpoint. Buys all wolrd’s tuna!!!</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict with message</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fastemplate.services.v1.fridge.list_fridge">
+<code class="sig-prename descclassname">fastemplate.services.v1.fridge.</code><code class="sig-name descname">list_fridge</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/v1/fridge.html#list_fridge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.v1.fridge.list_fridge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Endpoint. List fridge items.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict with all frigde’s items</p>
+</dd>
+<dt class="field-even">Return type</dt>
 <dd class="field-even"><p>dict</p>
 </dd>
 </dl>
@@ -408,7 +727,7 @@
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="Utils.html" class="btn btn-neutral float-right" title="Utils" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="Objects.html" class="btn btn-neutral float-left" title="Objects" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="Exceptions.html" class="btn btn-neutral float-left" title="Exceptions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

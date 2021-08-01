@@ -41,7 +41,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Objects" href="Objects.html" />
+    <link rel="next" title="Services" href="Services.html" />
     <link rel="prev" title="Module" href="Module.html" /> 
 </head>
 
@@ -98,24 +98,34 @@
 </ul>
 <p><span class="caption-text">API:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="Config.html">Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Objects.html">Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Objects.html#module-fastemplate.objects.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Objects.html#module-fastemplate.objects.user">User</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="Module.html">Module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="Module.html#module-fastemplate.module.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Module.html#module-fastemplate.module.fridge">Fridge</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Exceptions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.exceptions.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.exceptions.user">User</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.exceptions.handler">Handler</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="Objects.html">Objects</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Objects.html#module-fastemplate.objects.cart">Cart</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="Services.html">Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Services.html#app">App</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Services.html#id1">Services</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.docs">Docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.login">Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.utils">Utils</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.v1">V1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.v1.shopcart">Shopcart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Services.html#module-fastemplate.services.v1.fridge">Fridge</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="Utils.html">Utils</a><ul>
@@ -192,6 +202,12 @@
   <section id="exceptions">
 <h1>Exceptions<a class="headerlink" href="#exceptions" title="Permalink to this headline">¶</a></h1>
 <p>Here you can check the code on this submodule:</p>
+<span class="target" id="module-fastemplate.exceptions"></span><dl class="py exception">
+<dt id="fastemplate.exceptions.FastemplateBaseException">
+<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.</code><code class="sig-name descname">FastemplateBaseException</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">status_code</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">name</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions.html#FastemplateBaseException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.FastemplateBaseException" title="Permalink to this definition">¶</a></dt>
+<dd><p>API Base exception</p>
+</dd></dl>
+
 <section id="module-fastemplate.exceptions.cart">
 <span id="cart"></span><h2>Cart<a class="headerlink" href="#module-fastemplate.exceptions.cart" title="Permalink to this headline">¶</a></h2>
 <dl class="py exception">
@@ -207,8 +223,8 @@
 </dd></dl>
 
 <dl class="py exception">
-<dt id="fastemplate.exceptions.cart.InvalidCredentialsException">
-<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.cart.</code><code class="sig-name descname">InvalidCredentialsException</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/cart.html#InvalidCredentialsException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.cart.InvalidCredentialsException" title="Permalink to this definition">¶</a></dt>
+<dt id="fastemplate.exceptions.cart.InvalidTokenException">
+<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.cart.</code><code class="sig-name descname">InvalidTokenException</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/cart.html#InvalidTokenException"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.cart.InvalidTokenException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Thrown whenever header credentials are invalid.</p>
 </dd></dl>
 
@@ -237,12 +253,38 @@
 </dd></dl>
 
 </section>
+<section id="module-fastemplate.exceptions.user">
+<span id="user"></span><h2>User<a class="headerlink" href="#module-fastemplate.exceptions.user" title="Permalink to this headline">¶</a></h2>
+<dl class="py exception">
+<dt id="fastemplate.exceptions.user.InvalidAuthCredentials">
+<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.user.</code><code class="sig-name descname">InvalidAuthCredentials</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/user.html#InvalidAuthCredentials"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.user.InvalidAuthCredentials" title="Permalink to this definition">¶</a></dt>
+<dd><p>Thrown whenever request has the correct token but invalid username or password.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="fastemplate.exceptions.user.InvalidUsernameOrPassword">
+<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.user.</code><code class="sig-name descname">InvalidUsernameOrPassword</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/user.html#InvalidUsernameOrPassword"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.user.InvalidUsernameOrPassword" title="Permalink to this definition">¶</a></dt>
+<dd><p>Thrown whenever user credentials are wrong.</p>
+</dd></dl>
+
+<dl class="py exception">
+<dt id="fastemplate.exceptions.user.NiceTryMeowNowGoBack">
+<em class="property">exception </em><code class="sig-prename descclassname">fastemplate.exceptions.user.</code><code class="sig-name descname">NiceTryMeowNowGoBack</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">message</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/user.html#NiceTryMeowNowGoBack"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.user.NiceTryMeowNowGoBack" title="Permalink to this definition">¶</a></dt>
+<dd><p>Thrown whenever my cat tries to login as owner.</p>
+</dd></dl>
+
+</section>
 <section id="module-fastemplate.exceptions.handler">
 <span id="handler"></span><h2>Handler<a class="headerlink" href="#module-fastemplate.exceptions.handler" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
 <dt id="fastemplate.exceptions.handler.exceptions_handler">
-<code class="sig-prename descclassname">fastemplate.exceptions.handler.</code><code class="sig-name descname">exceptions_handler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app</span><span class="p">:</span> <span class="n">fastapi.applications.FastAPI</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/handler.html#exceptions_handler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.handler.exceptions_handler" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">fastemplate.exceptions.handler.</code><code class="sig-name descname">exceptions_handler</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">app</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/exceptions/handler.html#exceptions_handler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.exceptions.handler.exceptions_handler" title="Permalink to this definition">¶</a></dt>
 <dd><p>API exceptions handler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>app</strong> (<em>FastAPI</em>) – the main app</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>
@@ -254,7 +296,7 @@
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="Objects.html" class="btn btn-neutral float-right" title="Objects" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Services.html" class="btn btn-neutral float-right" title="Services" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="Module.html" class="btn btn-neutral float-left" title="Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

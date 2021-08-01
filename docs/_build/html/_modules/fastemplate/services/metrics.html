@@ -95,24 +95,34 @@
 </ul>
 <p><span class="caption-text">API:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Config.html">Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Objects.html">Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Objects.html#module-fastemplate.objects.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Objects.html#module-fastemplate.objects.user">User</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pages/Module.html">Module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Module.html#module-fastemplate.module.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Module.html#module-fastemplate.module.fridge">Fridge</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pages/Exceptions.html">Exceptions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Exceptions.html#module-fastemplate.exceptions.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Exceptions.html#module-fastemplate.exceptions.user">User</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Exceptions.html#module-fastemplate.exceptions.handler">Handler</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../pages/Objects.html">Objects</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../pages/Objects.html#module-fastemplate.objects.cart">Cart</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pages/Services.html">Services</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.docs">Docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.metrics">Metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1">V1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.login">Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.utils">Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1">V1</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1.shopcart">Shopcart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1.fridge">Fridge</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pages/Utils.html">Utils</a><ul>
@@ -201,7 +211,8 @@
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Basic metrics endpoint.</span>
 
-<span class="sd">    :return: dict</span>
+<span class="sd">    :return: dict with alive, @timestamp and no. of requests</span>
+<span class="sd">    :rtype: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Request@/metrics&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">{</span>

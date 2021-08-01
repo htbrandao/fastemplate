@@ -14,7 +14,7 @@ class ItemPack(CartItem):
     """
     Schema to represent a pack item when receiving a request.
     Since it extends `CartItem`, it will, basically, be the same
-    as a CartItem with the added `qnt` field. 
+    as a CartItem with the added `qnt` field.
     """
     qnt: int = Field(description='Quantity', default=1)
 

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>fastemplate.services.docs &mdash; fastemplate  documentation</title>
+  <title>fastemplate.services.login &mdash; fastemplate  documentation</title>
   
 
   
@@ -179,7 +179,7 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
-      <li>fastemplate.services.docs</li>
+      <li>fastemplate.services.login</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -194,27 +194,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <h1>Source code for fastemplate.services.docs</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">APIRouter</span>
-<span class="kn">from</span> <span class="nn">fastapi.responses</span> <span class="kn">import</span> <span class="n">HTMLResponse</span>
-<span class="kn">from</span> <span class="nn">fastapi.templating</span> <span class="kn">import</span> <span class="n">Jinja2Templates</span>
+  <h1>Source code for fastemplate.services.login</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Depends</span><span class="p">,</span> <span class="n">APIRouter</span>
+<span class="kn">from</span> <span class="nn">fastapi.security</span> <span class="kn">import</span> <span class="n">OAuth2PasswordRequestForm</span>
 
 <span class="kn">from</span> <span class="nn">fastemplate</span> <span class="kn">import</span> <span class="n">logger</span>
+<span class="kn">from</span> <span class="nn">fastemplate.objects.user</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">fastemplate.services.security</span> <span class="kn">import</span> <span class="n">validate_user</span><span class="p">,</span> <span class="n">get_current_user</span>
 
 <span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
 
-<span class="n">templates</span> <span class="o">=</span> <span class="n">Jinja2Templates</span><span class="p">(</span><span class="n">directory</span><span class="o">=</span><span class="s1">&#39;docs/_build/html&#39;</span><span class="p">)</span>
 
-
-<div class="viewcode-block" id="index"><a class="viewcode-back" href="../../../pages/Services.html#fastemplate.services.docs.index">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/index.html&quot;</span><span class="p">,</span> <span class="n">response_class</span><span class="o">=</span><span class="n">HTMLResponse</span><span class="p">,</span> <span class="n">include_in_schema</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+<div class="viewcode-block" id="login"><a class="viewcode-back" href="../../../pages/Services.html#fastemplate.services.login.login">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">login</span><span class="p">(</span><span class="n">form_data</span><span class="p">:</span> <span class="n">OAuth2PasswordRequestForm</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">()):</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Returns api&#39;s documentation HTML files.</span>
+<span class="sd">    Endpoint. Performs login to acquire the bearer token.</span>
 
-<span class="sd">    :return: HTML</span>
+<span class="sd">    :param OAuth2PasswordRequestForm form_data: form with username and password</span>
+<span class="sd">    :return: dict with access token and token type</span>
+<span class="sd">    :rtype: dict</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Request@/index.html&#39;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">templates</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;index.html&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">render</span><span class="p">()</span></div>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Request@/login&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">validate_user</span><span class="p">(</span><span class="n">form_data</span><span class="o">=</span><span class="n">form_data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="whois"><a class="viewcode-back" href="../../../pages/Services.html#fastemplate.services.login.whois">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/whois&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">whois</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_current_user</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Endpoint. Checks if user has certain attributes (`enabled`).</span>
+
+<span class="sd">    :params User user: form with user name and password</span>
+<span class="sd">    :return: dict with user info</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Request@/whois&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">user</span></div>
 </pre></div>
 
            </div>

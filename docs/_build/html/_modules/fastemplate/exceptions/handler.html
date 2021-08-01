@@ -95,24 +95,34 @@
 </ul>
 <p><span class="caption-text">API:</span></p>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Config.html">Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Objects.html">Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Objects.html#module-fastemplate.objects.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Objects.html#module-fastemplate.objects.user">User</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pages/Module.html">Module</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Module.html#module-fastemplate.module.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Module.html#module-fastemplate.module.fridge">Fridge</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pages/Exceptions.html">Exceptions</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Exceptions.html#module-fastemplate.exceptions.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Exceptions.html#module-fastemplate.exceptions.user">User</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Exceptions.html#module-fastemplate.exceptions.handler">Handler</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="../../../pages/Objects.html">Objects</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../pages/Objects.html#module-fastemplate.objects.cart">Cart</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pages/Services.html">Services</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.docs">Docs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.metrics">Metrics</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1">V1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.login">Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.utils">Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1">V1</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1.shopcart">Shopcart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1.fridge">Fridge</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../pages/Utils.html">Utils</a><ul>
@@ -169,6 +179,8 @@
         
           <li><a href="../../index.html">Module code</a> &raquo;</li>
         
+          <li><a href="../exceptions.html">fastemplate.exceptions</a> &raquo;</li>
+        
       <li>fastemplate.exceptions.handler</li>
     
     
@@ -185,19 +197,23 @@
            <div itemprop="articleBody">
             
   <h1>Source code for fastemplate.exceptions.handler</h1><div class="highlight"><pre>
-<span></span><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">FastAPI</span><span class="p">,</span> <span class="n">Request</span>
+<span></span><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Request</span>
 <span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">JSONResponse</span>
 
 <span class="kn">from</span> <span class="nn">fastemplate.exceptions</span> <span class="kn">import</span> <span class="n">FastemplateBaseException</span>
-<span class="kn">from</span> <span class="nn">fastemplate.exceptions.cart</span> <span class="kn">import</span> <span class="n">CartIdAlreadyExistsException</span><span class="p">,</span> <span class="n">MismatchedLenghtException</span><span class="p">,</span>\
-    <span class="n">CartIdNotFoundException</span><span class="p">,</span> <span class="n">ItemAlreadyAddedException</span><span class="p">,</span> <span class="n">ItemNotFoundException</span><span class="p">,</span> <span class="n">UnsupportedFileExtensionException</span><span class="p">,</span>\
-    <span class="n">InvalidCredentialsException</span>
+<span class="kn">from</span> <span class="nn">fastemplate.exceptions.user</span> <span class="kn">import</span> <span class="n">InvalidUsernameOrPassword</span><span class="p">,</span> <span class="n">NiceTryMeowNowGoBack</span><span class="p">,</span> <span class="n">InvalidAuthCredentials</span>
+<span class="kn">from</span> <span class="nn">fastemplate.exceptions.cart</span> <span class="kn">import</span> <span class="n">CartIdAlreadyExistsException</span><span class="p">,</span> <span class="n">MismatchedLenghtException</span><span class="p">,</span> \
+    <span class="n">CartIdNotFoundException</span><span class="p">,</span> <span class="n">ItemAlreadyAddedException</span><span class="p">,</span> <span class="n">ItemNotFoundException</span><span class="p">,</span> <span class="n">UnsupportedFileExtensionException</span><span class="p">,</span> \
+    <span class="n">InvalidTokenException</span>
 
 
-<div class="viewcode-block" id="exceptions_handler"><a class="viewcode-back" href="../../../pages/Exceptions.html#fastemplate.exceptions.handler.exceptions_handler">[docs]</a><span class="k">def</span> <span class="nf">exceptions_handler</span><span class="p">(</span><span class="n">app</span><span class="p">:</span> <span class="n">FastAPI</span><span class="p">):</span>
+<div class="viewcode-block" id="exceptions_handler"><a class="viewcode-back" href="../../../pages/Exceptions.html#fastemplate.exceptions.handler.exceptions_handler">[docs]</a><span class="k">def</span> <span class="nf">exceptions_handler</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    API exceptions handler.</span>
+
+<span class="sd">    :param FastAPI app: the main app</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+
     <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">FastemplateBaseException</span><span class="p">)</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">base_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">FastemplateBaseException</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -211,7 +227,6 @@
                 <span class="s1">&#39;exception&#39;</span><span class="p">:</span> <span class="n">exception</span><span class="o">.</span><span class="n">name</span>
             <span class="p">}</span>
         <span class="p">)</span>
-
 
     <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">CartIdAlreadyExistsException</span><span class="p">)</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">cart_id_in_use_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">CartIdAlreadyExistsException</span><span class="p">):</span>
@@ -227,7 +242,6 @@
             <span class="p">}</span>
         <span class="p">)</span>
 
-
     <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">ItemAlreadyAddedException</span><span class="p">)</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">item_already_added_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">ItemAlreadyAddedException</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -242,7 +256,6 @@
             <span class="p">}</span>
         <span class="p">)</span>
 
-
     <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">CartIdNotFoundException</span><span class="p">)</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">cart_id_not_found_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">CartIdNotFoundException</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -255,9 +268,8 @@
                 <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">exception</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
                 <span class="s1">&#39;exception&#39;</span><span class="p">:</span> <span class="n">exception</span><span class="o">.</span><span class="n">name</span>
             <span class="p">}</span>
-        
-        <span class="p">)</span>
 
+        <span class="p">)</span>
 
     <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">MismatchedLenghtException</span><span class="p">)</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">mismatched_lenght_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">MismatchedLenghtException</span><span class="p">):</span>
@@ -272,7 +284,6 @@
                 <span class="s1">&#39;exception&#39;</span><span class="p">:</span> <span class="n">exception</span><span class="o">.</span><span class="n">name</span>
             <span class="p">}</span>
         <span class="p">)</span>
-
 
     <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">ItemNotFoundException</span><span class="p">)</span>
     <span class="k">async</span> <span class="k">def</span> <span class="nf">item_not_found_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">ItemNotFoundException</span><span class="p">):</span>
@@ -301,12 +312,54 @@
                 <span class="s1">&#39;exception&#39;</span><span class="p">:</span> <span class="n">exception</span><span class="o">.</span><span class="n">name</span>
             <span class="p">}</span>
         <span class="p">)</span>
-    
-    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">InvalidCredentialsException</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">invalid_credentials_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">InvalidCredentialsException</span><span class="p">):</span>
+
+    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">InvalidTokenException</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">invalid_token_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">InvalidTokenException</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Handler for InvalidCredentialsException</span>
-<span class="sd">.</span>
+<span class="sd">        Handler for InvalidTokenException.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span>
+            <span class="n">status_code</span><span class="o">=</span><span class="n">exception</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
+            <span class="n">content</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="n">exception</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
+                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">exception</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
+                <span class="s1">&#39;exception&#39;</span><span class="p">:</span> <span class="n">exception</span><span class="o">.</span><span class="n">name</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">InvalidUsernameOrPassword</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">invalide_username_or_password_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">InvalidUsernameOrPassword</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handler for InvalidUsernameOrPassword.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span>
+            <span class="n">status_code</span><span class="o">=</span><span class="n">exception</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
+            <span class="n">content</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="n">exception</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
+                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">exception</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
+                <span class="s1">&#39;exception&#39;</span><span class="p">:</span> <span class="n">exception</span><span class="o">.</span><span class="n">name</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">NiceTryMeowNowGoBack</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">nice_try_meow_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">NiceTryMeowNowGoBack</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handler for NiceTryMeowNowGoBack.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span>
+            <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;WWW-Authenticate&#39;</span><span class="p">:</span> <span class="s1">&#39;Bearer&#39;</span><span class="p">},</span>
+            <span class="n">status_code</span><span class="o">=</span><span class="n">exception</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
+            <span class="n">content</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;status&#39;</span><span class="p">:</span> <span class="n">exception</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>
+                <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="n">exception</span><span class="o">.</span><span class="n">message</span><span class="p">,</span>
+                <span class="s1">&#39;exception&#39;</span><span class="p">:</span> <span class="n">exception</span><span class="o">.</span><span class="n">name</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+
+    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">InvalidAuthCredentials</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">invalid_auth_credentials_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">InvalidAuthCredentials</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handler for InvalidAuthCredentials.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="n">JSONResponse</span><span class="p">(</span>
             <span class="n">status_code</span><span class="o">=</span><span class="n">exception</span><span class="o">.</span><span class="n">status_code</span><span class="p">,</span>

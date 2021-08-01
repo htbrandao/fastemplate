@@ -20,8 +20,9 @@ REST API example built using FastAPI.
    :maxdepth: 5
    :caption: API:
 
+   Config <pages/Config.rst>
+   Objects <pages/Objects.rst>
    Module <pages/Module.rst>
    Exceptions <pages/Exceptions.rst>
-   Objects <pages/Objects.rst>
    Services <pages/Services.rst>
    Utils <pages/Utils.rst>

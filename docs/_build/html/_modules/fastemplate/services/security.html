@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>fastemplate.services.security &mdash; fastemplate  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../../../_static/logo.png"/>
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> fastemplate
+          
+
+          
+            
+            <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/About.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Dependencies.html">Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Tests.html">Tests</a></li>
+</ul>
+<p><span class="caption-text">API:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Config.html">Config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Objects.html">Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Objects.html#module-fastemplate.objects.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Objects.html#module-fastemplate.objects.user">User</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Module.html">Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Module.html#module-fastemplate.module.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Module.html#module-fastemplate.module.fridge">Fridge</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Exceptions.html">Exceptions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Exceptions.html#module-fastemplate.exceptions.cart">Cart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Exceptions.html#module-fastemplate.exceptions.user">User</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Exceptions.html#module-fastemplate.exceptions.handler">Handler</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Services.html">Services</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.docs">Docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.login">Login</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.security">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.utils">Utils</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1">V1</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1.shopcart">Shopcart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Services.html#module-fastemplate.services.v1.fridge">Fridge</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../pages/Utils.html">Utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../pages/Utils.html#module-fastemplate.utils.decorator">Decorators</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">fastemplate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>fastemplate.services.security</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for fastemplate.services.security</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">Header</span><span class="p">,</span> <span class="n">Depends</span>
+<span class="kn">from</span> <span class="nn">fastapi.security</span> <span class="kn">import</span> <span class="n">OAuth2PasswordRequestForm</span>
+
+<span class="kn">from</span> <span class="nn">fastemplate</span> <span class="kn">import</span> <span class="n">logger</span>
+<span class="kn">from</span> <span class="nn">fastemplate.objects.user</span> <span class="kn">import</span> <span class="n">User</span>
+<span class="kn">from</span> <span class="nn">fastemplate.module</span> <span class="kn">import</span> <span class="n">MOCK_FRIDGE_USERS</span>
+<span class="kn">from</span> <span class="nn">fastemplate.services</span> <span class="kn">import</span> <span class="n">oauth2_scheme</span>
+<span class="kn">from</span> <span class="nn">fastemplate.exceptions.cart</span> <span class="kn">import</span> <span class="n">InvalidTokenException</span>
+<span class="kn">from</span> <span class="nn">fastemplate.exceptions.user</span> <span class="kn">import</span> <span class="n">InvalidUsernameOrPassword</span><span class="p">,</span> <span class="n">NiceTryMeowNowGoBack</span><span class="p">,</span> <span class="n">InvalidAuthCredentials</span>
+
+
+<div class="viewcode-block" id="verify_token"><a class="viewcode-back" href="../../../pages/Services.html#fastemplate.services.security.verify_token">[docs]</a><span class="k">def</span> <span class="nf">verify_token</span><span class="p">(</span><span class="n">x_token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Header</span><span class="p">(</span><span class="o">...</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validades `x_token` token from request header.</span>
+
+<span class="sd">    :param str x_token: x_token</span>
+<span class="sd">    :raises: InvalidTokenException</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">real_token</span> <span class="o">=</span> <span class="s2">&quot;you-will-never-guess&quot;</span>
+    <span class="k">if</span> <span class="n">x_token</span> <span class="o">!=</span> <span class="n">real_token</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InvalidTokenException</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;X-Token header invalid&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="verify_key"><a class="viewcode-back" href="../../../pages/Services.html#fastemplate.services.security.verify_key">[docs]</a><span class="k">def</span> <span class="nf">verify_key</span><span class="p">(</span><span class="n">x_key</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Header</span><span class="p">(</span><span class="o">...</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validades `x_key` token from request header.</span>
+
+<span class="sd">    :param str x_key: x_key</span>
+<span class="sd">    :raises: InvalidTokenException</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">real_key</span> <span class="o">=</span> <span class="s2">&quot;i-double-dare-you&quot;</span>
+    <span class="k">if</span> <span class="n">x_key</span> <span class="o">!=</span> <span class="n">real_key</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InvalidTokenException</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;X-Key header invalid&quot;</span><span class="p">)</span></div>
+
+
+<span class="n">LAZY_HASH_DICT</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;i&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;o&#39;</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">:</span> <span class="s1">&#39;7&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">:</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">:</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="s1">&#39;7&#39;</span>
+<span class="p">}</span>
+
+
+<div class="viewcode-block" id="lazy_password_hash"><a class="viewcode-back" href="../../../pages/Services.html#fastemplate.services.security.lazy_password_hash">[docs]</a><span class="k">def</span> <span class="nf">lazy_password_hash</span><span class="p">(</span><span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Performs a string hashing. This is **not** a good way to handle hashing.</span>
+
+<span class="sd">    :param str password: string to hash</span>
+<span class="sd">    :return: hashed str</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">LAZY_HASH_DICT</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">LAZY_HASH_DICT</span> <span class="k">else</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">password</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="lazy_generate_token"><a class="viewcode-back" href="../../../pages/Services.html#fastemplate.services.security.lazy_generate_token">[docs]</a><span class="k">def</span> <span class="nf">lazy_generate_token</span><span class="p">(</span><span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generates a token given a username. This is **not** a good way to handle token creation.</span>
+
+<span class="sd">    :param str username: string to hash</span>
+<span class="sd">    :return: dict with access token and token type</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;access_token&quot;</span><span class="p">:</span> <span class="s1">&#39;___token___&#39;</span> <span class="o">+</span> <span class="n">username</span><span class="p">,</span> <span class="s2">&quot;token_type&quot;</span><span class="p">:</span> <span class="s2">&quot;bearer&quot;</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="lazy_decode_token"><a class="viewcode-back" href="../../../pages/Services.html#fastemplate.services.security.lazy_decode_token">[docs]</a><span class="k">def</span> <span class="nf">lazy_decode_token</span><span class="p">(</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Retrieves a username from a given token. This is **not** a good way to handle token validation.</span>
+
+<span class="sd">    :param str token: token string</span>
+<span class="sd">    :return: username</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">token</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;___token___&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="validate_user"><a class="viewcode-back" href="../../../pages/Services.html#fastemplate.services.security.validate_user">[docs]</a><span class="k">def</span> <span class="nf">validate_user</span><span class="p">(</span><span class="n">form_data</span><span class="p">:</span> <span class="n">OAuth2PasswordRequestForm</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validate the user&#39;s credentials to generate a token that will be used to interact with the API.</span>
+
+<span class="sd">    :param form_data: form with username and password fields</span>
+<span class="sd">    :return: dict with access token and token type</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    :raises: InvalidUsernameOrPassword</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">u_name</span> <span class="o">=</span> <span class="n">form_data</span><span class="o">.</span><span class="n">username</span>
+    <span class="n">u_pass</span> <span class="o">=</span> <span class="n">form_data</span><span class="o">.</span><span class="n">password</span>
+    <span class="k">if</span> <span class="n">u_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">MOCK_FRIDGE_USERS</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Invalid login attempt: </span><span class="si">{</span><span class="n">u_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">InvalidUsernameOrPassword</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s1">&#39;Invalid username or password.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">lazy_password_hash</span><span class="p">(</span><span class="n">u_pass</span><span class="p">)</span> <span class="o">==</span> <span class="n">MOCK_FRIDGE_USERS</span><span class="p">[</span><span class="n">u_name</span><span class="p">][</span><span class="s1">&#39;hashed_password&#39;</span><span class="p">]:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Invalid login attempt: </span><span class="si">{</span><span class="n">u_name</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">InvalidUsernameOrPassword</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s1">&#39;Invalid username or password.&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Generating token to user: </span><span class="si">{</span><span class="n">MOCK_FRIDGE_USERS</span><span class="p">[</span><span class="n">u_name</span><span class="p">][</span><span class="s2">&quot;full_name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lazy_generate_token</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">u_name</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_current_user"><a class="viewcode-back" href="../../../pages/Services.html#fastemplate.services.security.get_current_user">[docs]</a><span class="k">def</span> <span class="nf">get_current_user</span><span class="p">(</span><span class="n">token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">oauth2_scheme</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract the user from a token request.</span>
+
+<span class="sd">    :param str token: token str</span>
+<span class="sd">    :return: dict with user information</span>
+<span class="sd">    :rtype: dict</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">lazy_decode_token</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">user</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">MOCK_FRIDGE_USERS</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">InvalidAuthCredentials</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s1">&#39;Invalid authentication credentials: {&quot;WWW-Authenticate&quot;: &quot;Bearer&quot;}&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">MOCK_FRIDGE_USERS</span><span class="p">[</span><span class="n">user</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="is_owner"><a class="viewcode-back" href="../../../pages/Services.html#fastemplate.services.security.is_owner">[docs]</a><span class="k">def</span> <span class="nf">is_owner</span><span class="p">(</span><span class="n">user</span><span class="p">:</span> <span class="n">User</span> <span class="o">=</span> <span class="n">Depends</span><span class="p">(</span><span class="n">get_current_user</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Checks `owner` attribute from a given user or if my cat is trying to user auth protected endpoints.</span>
+
+<span class="sd">    :param User user: user object</span>
+<span class="sd">    :return: user object</span>
+<span class="sd">    :rtype: User</span>
+<span class="sd">    :raises: NiceTryMeowNowGoBack</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">[</span><span class="s1">&#39;owner&#39;</span><span class="p">]:</span>
+        <span class="k">raise</span> <span class="n">NiceTryMeowNowGoBack</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s1">&#39;You will not get any tuna today!&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">user</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Henrique Brandao.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

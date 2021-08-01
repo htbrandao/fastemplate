@@ -10,3 +10,8 @@ Cart
 ----
 .. automodule:: fastemplate.module.cart
    :members:
+
+Fridge
+------
+.. automodule:: fastemplate.module.fridge
+   :members:
