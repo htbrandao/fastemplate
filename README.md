@@ -22,7 +22,7 @@ The code here already uses a lot of tools and functionalities provided by the fr
 The *main* dependencies are:
 
 - `FastAPI`: Build the actual API endpoints
-- `Sphinx`: Create our poject documentation
+- `Sphinx`: Create our project documentation
 - `Uvicorn` or `GUnicorn`: Launches our API
 - `Pytest`: Run our tests
 
@@ -34,89 +34,89 @@ This template covers the following features from the [main docs](https://fastapi
 
 Template | Topic
 :---: | :---
-|:heavy_check_mark:| Tutorial - User Guide - Intro |
-|:heavy_check_mark:| First Steps |
-|:heavy_check_mark:| Path Parameters |
-|:heavy_check_mark:| Query Parameters |
-|:heavy_check_mark:| Request Body |
-|:heavy_check_mark:| Query Parameters and String Validations |
-|:heavy_check_mark:| Path Parameters and Numeric Validations |
-|:heavy_check_mark:| Body - Multiple Parameters |
-|:heavy_check_mark:| Body - Fields |
-|:heavy_check_mark:| Body - Nested Models |
-|:heavy_check_mark:| Declare Request Example Data |
-|:heavy_check_mark:| Extra Data Types |
-|:heavy_check_mark:| Cookie Parameters |
-|:heavy_check_mark:| Header Parameters |
-|:heavy_check_mark:| Response Model |
-|:heavy_check_mark:| Extra Models |
-|:heavy_check_mark:| Response Status Code |
-|:heavy_check_mark:| Form Data |
-|:heavy_check_mark:| Request Files |
-|:heavy_check_mark:| Request Forms and Files |
-|:heavy_check_mark:| Handling Errors |
-|:heavy_check_mark:| Path Operation Configuration |
-|:heavy_check_mark:| JSON Compatible Encoder |
-|:heavy_check_mark:| Body - Updates |
-|:heavy_check_mark:| Dependencies |
-|:heavy_check_mark:| Security |
-|:heavy_check_mark:| Middleware |
-|:heavy_check_mark:| CORS (Cross-Origin Resource Sharing) |
-|:x:| SQL (Relational) Databases |
-|:heavy_check_mark:| Bigger Applications - Multiple Files |
-|:x:| Background Tasks |
-|:heavy_check_mark:| Metadata and Docs URLs |
-|:heavy_check_mark:| Static Files |
-|:heavy_check_mark:| Testing |
-|:heavy_check_mark:| Debugging |
+|✅| Tutorial - User Guide - Intro |
+|✅| First Steps |
+|✅| Path Parameters |
+|✅| Query Parameters |
+|✅| Request Body |
+|✅| Query Parameters and String Validations |
+|✅| Path Parameters and Numeric Validations |
+|✅| Body - Multiple Parameters |
+|✅| Body - Fields |
+|✅| Body - Nested Models |
+|✅| Declare Request Example Data |
+|✅| Extra Data Types |
+|✅| Cookie Parameters |
+|✅| Header Parameters |
+|✅| Response Model |
+|✅| Extra Models |
+|✅| Response Status Code |
+|✅| Form Data |
+|✅| Request Files |
+|✅| Request Forms and Files |
+|✅| Handling Errors |
+|✅| Path Operation Configuration |
+|✅| JSON Compatible Encoder |
+|✅| Body - Updates |
+|✅| Dependencies |
+|✅| Security |
+|✅| Middleware |
+|✅| CORS (Cross-Origin Resource Sharing) |
+|❌| SQL (Relational) Databases |
+|✅| Bigger Applications - Multiple Files |
+|❌| Background Tasks |
+|✅| Metadata and Docs URLs |
+|✅| Static Files |
+|✅| Testing |
+|✅| Debugging |
 
 - Advanced User Guide
 
 Template | Topic
 :---: | :---
-|:heavy_check_mark:| Advanced User Guide - Intro |
-|:heavy_check_mark:| Path Operation Advanced Configuration |
-|:heavy_check_mark:| Additional Status Codes |
-|:heavy_check_mark:| Return a Response Directly |
-|:arrow_right:| Custom Response - HTML, Stream, File, others |
-|| Additional Responses in OpenAPI |
-|| Response Cookies |
-|| Response Headers |
-|| Response - Change Status Code |
-|| Advanced Dependencies |
-|| Advanced Security |
-|| Using the Request Directly |
-|| Using Dataclasses |
-|| Advanced Middleware |
-|| SQL (Relational) Databases with Peewee |
-|| Async SQL (Relational) Databases |
-|| NoSQL (Distributed / Big Data) Databases |
-|| Sub Applications - Mounts |
-|| Behind a Proxy |
-|| Templates |
-|| GraphQL |
-|| WebSockets |
-|| Events: startup - shutdown |
-|| Custom Request and APIRoute class |
-|| Testing WebSockets |
-|| Testing Events: startup - shutdown |
-|| Testing Dependencies with Overrides |
-|| Testing a Database |
-|| Async Tests |
-|| Settings and Environment Variables |
-|| Conditional OpenAPI |
-|| Extending OpenAPI |
-|| OpenAPI Callbacks |
-|| Including WSGI - Flask, Django, others |
+|✅| Advanced User Guide - Intro |
+|✅| Path Operation Advanced Configuration |
+|✅| Additional Status Codes |
+|✅| Return a Response Directly |
+|➡️| Custom Response - HTML, Stream, File, others |
+|❔| Additional Responses in OpenAPI |
+|❔| Response Cookies |
+|❔| Response Headers |
+|❔| Response - Change Status Code |
+|❔| Advanced Dependencies |
+|❔| Advanced Security |
+|❔| Using the Request Directly |
+|❔| Using Dataclasses |
+|❔| Advanced Middleware |
+|❔| SQL (Relational) Databases with Peewee |
+|❔| Async SQL (Relational) Databases |
+|❔| NoSQL (Distributed / Big Data) Databases |
+|❔| Sub Applications - Mounts |
+|❔| Behind a Proxy |
+|❔| Templates |
+|❔| GraphQL |
+|❔| WebSockets |
+|❔| Events: startup - shutdown |
+|❔| Custom Request and APIRoute class |
+|❔| Testing WebSockets |
+|❔| Testing Events: startup - shutdown |
+|❔| Testing Dependencies with Overrides |
+|❔| Testing a Database |
+|❔| Async Tests |
+|❔| Settings and Environment Variables |
+|❔| Conditional OpenAPI |
+|❔| Extending OpenAPI |
+|❔| OpenAPI Callbacks |
+|❔| Including WSGI - Flask, Django, others |
 
 Description:
 
 Symbol | Meaning
 :--: | :--
-:arrow_right: | Last checkpoint
-:x: | Not covered
-:heavy_check_mark: | Covered 
-
+➡️ | Last checkpoint
+❌| Not covered
+✅ | Covered 
+❔| Not yet
 
 
 # # How?
