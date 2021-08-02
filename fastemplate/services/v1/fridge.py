@@ -31,3 +31,16 @@ def buy_all_tuna(user: User = Depends(is_owner)):
     """
     logger.info('Request@/buy_all_tuna_there_is')
     return {'user': f'{user["username"]}', 'message': 'You\'ve successfully bought all tuna in the world!'}
+
+
+@router.get('/stream_temperature')
+def stream_temperature():
+    """
+    Endpoint. Streams the fridge temperature.
+
+    Encoded in `UTF-8`.
+
+    :returns: fridge's temperature
+    :rtype: bytes
+    """
+    return fridge.stream_temperature()
