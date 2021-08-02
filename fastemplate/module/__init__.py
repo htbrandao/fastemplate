@@ -26,6 +26,8 @@ MOCK_FRIDGE = {
     'candy': {'amount': 2, 'unit': 'units'}
 }
 
+MOCK_CELSIUS_TEMPERATURES = '-18.0 -18.5 -19.0 -19.5 -20.0'.split()
+
 # Owner/Admin ---------------------------------------------- #
 MOCK_FRIDGE_USERS = {
     'iPayMyBills': {
