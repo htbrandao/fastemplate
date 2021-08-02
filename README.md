@@ -78,12 +78,12 @@ Template | Topic
 |✅| Path Operation Advanced Configuration |
 |✅| Additional Status Codes |
 |✅| Return a Response Directly |
-|➡️| Custom Response - HTML, Stream, File, others |
-|❔| Additional Responses in OpenAPI |
-|❔| Response Cookies |
-|❔| Response Headers |
-|❔| Response - Change Status Code |
-|❔| Advanced Dependencies |
+|✅| Custom Response - HTML, Stream, File, others |
+|❌| Additional Responses in OpenAPI |
+|❌| Response Cookies |
+|✅| Response Headers |
+|❌| Response - Change Status Code |
+|❌| Advanced Dependencies |
 |❔| Advanced Security |
 |❔| Using the Request Directly |
 |❔| Using Dataclasses |
@@ -117,7 +117,6 @@ Symbol | Meaning
 ❌| Not covered
 ✅ | Covered 
 ❔| Not yet
-
 
 # # How?
 
@@ -182,9 +181,9 @@ Remember to update the **`Sphinx docs`** and your **`test cases`**!
 
 # # TODO & FIXME:
 
-- [ ] Improve README
-- [ ] Storytelling
-- [ ] Update README images
+- [x] Improve README
+- [x] Storytelling
+- [x] Update README images
 - [x] ~~Write missing docstrings~~
 - [x] ~~Update docstrings (`:rtype:` and `:raises:` like in `create_cart()`)~~
 - [x] ~~Update docs: make html~~
@@ -193,4 +192,3 @@ Remember to update the **`Sphinx docs`** and your **`test cases`**!
 - [x] ~~PyLint~~
 - [x] ~~Update some endpoints to `PUT` instead of `POST`~~
 - [x] ~~buy_all_tuna not working~~
-
