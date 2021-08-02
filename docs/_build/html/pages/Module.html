@@ -501,6 +501,14 @@
 <section id="module-fastemplate.module.fridge">
 <span id="fridge"></span><h2>Fridge<a class="headerlink" href="#module-fastemplate.module.fridge" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
+<dt id="fastemplate.module.fridge.get_temperature">
+<code class="sig-prename descclassname">fastemplate.module.fridge.</code><code class="sig-name descname">get_temperature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/module/fridge.html#get_temperature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.module.fridge.get_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Yields a mock fridge temperature.</p>
+<p>return: fridge temperature encoded in utf-8
+:rtype: bytes</p>
+</dd></dl>
+
+<dl class="py function">
 <dt id="fastemplate.module.fridge.list_fridge">
 <code class="sig-prename descclassname">fastemplate.module.fridge.</code><code class="sig-name descname">list_fridge</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/module/fridge.html#list_fridge"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.module.fridge.list_fridge" title="Permalink to this definition">¶</a></dt>
 <dd><p>List all items in the frigde.</p>
@@ -510,6 +518,21 @@
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fastemplate.module.fridge.stream_temperature">
+<code class="sig-prename descclassname">fastemplate.module.fridge.</code><code class="sig-name descname">stream_temperature</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/module/fridge.html#stream_temperature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.module.fridge.stream_temperature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Streams the fridge temperature.</p>
+<p>Encoded in <cite>UTF-8</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>fridge’s temperature.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>StreamingResponse</p>
 </dd>
 </dl>
 </dd></dl>

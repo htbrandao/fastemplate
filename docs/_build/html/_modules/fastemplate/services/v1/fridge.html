@@ -228,6 +228,19 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Request@/buy_all_tuna_there_is&#39;</span><span class="p">)</span>
     <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">user</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="s1">&#39;You</span><span class="se">\&#39;</span><span class="s1">ve successfully bought all tuna in the world!&#39;</span><span class="p">}</span></div>
+
+
+<div class="viewcode-block" id="stream_temperature"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.fridge.stream_temperature">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/stream_temperature&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">stream_temperature</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Endpoint. Streams the fridge temperature.</span>
+
+<span class="sd">    Encoded in `UTF-8`.</span>
+
+<span class="sd">    :returns: fridge&#39;s temperature</span>
+<span class="sd">    :rtype: bytes</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">fridge</span><span class="o">.</span><span class="n">stream_temperature</span><span class="p">()</span></div>
 </pre></div>
 
            </div>
