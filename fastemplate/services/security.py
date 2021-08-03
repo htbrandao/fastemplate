@@ -1,3 +1,5 @@
+from secrets import compare_digest
+
 from fastapi import Header, Depends
 from fastapi.security import OAuth2PasswordRequestForm
 
@@ -86,7 +88,7 @@ def validate_user(form_data: OAuth2PasswordRequestForm):
     if u_name not in MOCK_FRIDGE_USERS:
         logger.info(f'Invalid login attempt: {u_name}')
         raise InvalidUsernameOrPassword(message='Invalid username or password.')
-    if not lazy_password_hash(u_pass) == MOCK_FRIDGE_USERS[u_name]['hashed_password']:
+    if not compare_digest(lazy_password_hash(u_pass), MOCK_FRIDGE_USERS[u_name]['hashed_password']):
         logger.info(f'Invalid login attempt: {u_name}')
         raise InvalidUsernameOrPassword(message='Invalid username or password.')
     logger.info(f'Generating token to user: {MOCK_FRIDGE_USERS[u_name]["full_name"]}')
