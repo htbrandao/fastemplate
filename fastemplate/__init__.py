@@ -11,7 +11,7 @@ from fastapi.responses import RedirectResponse
 from fastemplate.config import config
 from fastemplate.services.v1 import v1
 from fastemplate.services.utils import allow_cors
-from fastemplate.services import docs, metrics, login
+from fastemplate.services import docs, misc, login
 from fastemplate.exceptions.handler import exceptions_handler
 
 logger.add('fastemplate.log', rotation='5 MB')
@@ -44,16 +44,16 @@ def root():
     }
 
 
-@app.get('/source')
-def source():
+@app.get('/redirect_source')
+def redirect_source():
     """
-    Source endpoint. Redirects to git.
+    Endpoint. Redirects to git.
     """
-    logger.info('Request@/source')
+    logger.info('Request@/redirect_source')
     return RedirectResponse("https://github.com/htbrandao/fastemplate")
 
 
-app.include_router(metrics.router)
+app.include_router(misc.router)
 app.include_router(login.router, prefix='/login', tags=['login'])
 app.include_router(v1, prefix=f'/{__api_version__}')
 
