@@ -84,8 +84,8 @@ Template | Topic
 |✅| Response Headers |
 |❌| Response - Change Status Code |
 |❌| Advanced Dependencies |
-|❔| Advanced Security |
-|❔| Using the Request Directly |
+|❌| Advanced Security |
+|✅| Using the Request Directly |
 |❔| Using Dataclasses |
 |❔| Advanced Middleware |
 |❔| SQL (Relational) Databases with Peewee |
