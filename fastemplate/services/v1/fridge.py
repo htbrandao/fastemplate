@@ -3,10 +3,9 @@ from fastapi import Depends, APIRouter
 from fastemplate import logger
 from fastemplate.module import fridge
 from fastemplate.objects.user import User
-from fastemplate.services import oauth2_scheme
 from fastemplate.services.security import is_owner
 
-router = APIRouter(dependencies=[Depends(oauth2_scheme)])
+router = APIRouter()
 
 
 @router.get('/list_fridge')
