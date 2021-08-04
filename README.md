@@ -183,12 +183,4 @@ Remember to update the **`Sphinx docs`** and your **`test cases`**!
 - [ ] Create something using websocket
 - [ ] Write test cases
 - [ ] Update README images
-- [x] ~~Improve README~~
-- [x] ~~Storytelling~~
-- [x] ~~Write missing docstrings~~
-- [x] ~~Update docstrings (`:rtype:` and `:raises:` like in `create_cart()`)~~
-- [x] ~~Update docs: make html~~
-- [x] ~~Handle file upload~~
-- [x] ~~PyLint~~
-- [x] ~~Update some endpoints to `PUT` instead of `POST`~~
-- [x] ~~buy_all_tuna not working~~
+- [ ] Update docs
