@@ -1,7 +1,7 @@
-from pydantic import BaseModel
+from dataclasses import dataclass
 
-
-class User(BaseModel):
+@dataclass
+class User:
     """
     Schema to represent a user when dealing with authentication.
     """
