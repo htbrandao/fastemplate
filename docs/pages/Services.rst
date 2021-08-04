@@ -18,9 +18,9 @@ Docs
 .. automodule:: fastemplate.services.docs
    :members:
    
-Metrics
--------
-.. automodule:: fastemplate.services.metrics
+Misc
+----
+.. automodule:: fastemplate.services.misc
    :members:
 
 Login
