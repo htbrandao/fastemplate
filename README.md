@@ -86,34 +86,33 @@ Template | Topic
 |❌| Advanced Dependencies |
 |❌| Advanced Security |
 |✅| Using the Request Directly |
-|❔| Using Dataclasses |
-|❔| Advanced Middleware |
-|❔| SQL (Relational) Databases with Peewee |
-|❔| Async SQL (Relational) Databases |
-|❔| NoSQL (Distributed / Big Data) Databases |
-|❔| Sub Applications - Mounts |
-|❔| Behind a Proxy |
-|❔| Templates |
-|❔| GraphQL |
+|✅| Using Dataclasses |
+|✅| Advanced Middleware |
+|❌| SQL (Relational) Databases with Peewee |
+|❌| Async SQL (Relational) Databases |
+|❌| NoSQL (Distributed / Big Data) Databases |
+|❌| Sub Applications - Mounts |
+|❌| Behind a Proxy |
+|✅| Templates |
+|❌| GraphQL |
 |❔| WebSockets |
-|❔| Events: startup - shutdown |
-|❔| Custom Request and APIRoute class |
+|❌| Events: startup - shutdown |
+|❌| Custom Request and APIRoute class |
 |❔| Testing WebSockets |
 |❔| Testing Events: startup - shutdown |
 |❔| Testing Dependencies with Overrides |
 |❔| Testing a Database |
 |❔| Async Tests |
-|❔| Settings and Environment Variables |
-|❔| Conditional OpenAPI |
+|✅| Settings and Environment Variables |
+|❌| Conditional OpenAPI |
 |❔| Extending OpenAPI |
 |❔| OpenAPI Callbacks |
-|❔| Including WSGI - Flask, Django, others |
+|❌| Including WSGI - Flask, Django, others |
 
 Description:
 
 Symbol | Meaning
 :--: | :--
-➡️ | Last checkpoint
 ❌| Not covered
 ✅ | Covered 
 ❔| Not yet
@@ -181,6 +180,8 @@ Remember to update the **`Sphinx docs`** and your **`test cases`**!
 
 # # TODO & FIXME:
 
+- [ ] Create something using websocket
+- [ ] Write test cases
 - [x] Improve README
 - [x] Storytelling
 - [x] Update README images
@@ -188,7 +189,6 @@ Remember to update the **`Sphinx docs`** and your **`test cases`**!
 - [x] ~~Update docstrings (`:rtype:` and `:raises:` like in `create_cart()`)~~
 - [x] ~~Update docs: make html~~
 - [x] ~~Handle file upload~~
-- [ ] Write test cases
 - [x] ~~PyLint~~
 - [x] ~~Update some endpoints to `PUT` instead of `POST`~~
 - [x] ~~buy_all_tuna not working~~
