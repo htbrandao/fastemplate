@@ -114,7 +114,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../pages/Services.html">Services</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../../pages/Services.html#module-fastemplate.services.docs">Docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../pages/Services.html#module-fastemplate.services.metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../pages/Services.html#module-fastemplate.services.misc">Misc</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../pages/Services.html#module-fastemplate.services.login">Login</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../pages/Services.html#module-fastemplate.services.security">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../pages/Services.html#module-fastemplate.services.utils">Utils</a></li>
@@ -200,10 +200,9 @@
 <span class="kn">from</span> <span class="nn">fastemplate</span> <span class="kn">import</span> <span class="n">logger</span>
 <span class="kn">from</span> <span class="nn">fastemplate.module</span> <span class="kn">import</span> <span class="n">fridge</span>
 <span class="kn">from</span> <span class="nn">fastemplate.objects.user</span> <span class="kn">import</span> <span class="n">User</span>
-<span class="kn">from</span> <span class="nn">fastemplate.services</span> <span class="kn">import</span> <span class="n">oauth2_scheme</span>
 <span class="kn">from</span> <span class="nn">fastemplate.services.security</span> <span class="kn">import</span> <span class="n">is_owner</span>
 
-<span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">(</span><span class="n">dependencies</span><span class="o">=</span><span class="p">[</span><span class="n">Depends</span><span class="p">(</span><span class="n">oauth2_scheme</span><span class="p">)])</span>
+<span class="n">router</span> <span class="o">=</span> <span class="n">APIRouter</span><span class="p">()</span>
 
 
 <div class="viewcode-block" id="list_fridge"><a class="viewcode-back" href="../../../../pages/Services.html#fastemplate.services.v1.fridge.list_fridge">[docs]</a><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/list_fridge&#39;</span><span class="p">)</span>

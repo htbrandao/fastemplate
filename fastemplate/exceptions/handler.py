@@ -2,10 +2,8 @@ from fastapi import Request
 from starlette.responses import JSONResponse
 
 from fastemplate.exceptions import FastemplateBaseException
-from fastemplate.exceptions.user import InvalidUsernameOrPassword, NiceTryMeowNowGoBack, InvalidAuthCredentials
-from fastemplate.exceptions.cart import CartIdAlreadyExistsException, MismatchedLenghtException, \
-    CartIdNotFoundException, ItemAlreadyAddedException, ItemNotFoundException, UnsupportedFileExtensionException, \
-    InvalidTokenException
+from fastemplate.exceptions import user
+from fastemplate.exceptions import cart
 
 
 def exceptions_handler(app):
@@ -29,8 +27,8 @@ def exceptions_handler(app):
             }
         )
 
-    @app.exception_handler(CartIdAlreadyExistsException)
-    async def cart_id_in_use_exception_handler(request: Request, exception: CartIdAlreadyExistsException):
+    @app.exception_handler(cart.CartIdAlreadyExistsException)
+    async def cart_id_in_use_exception_handler(request: Request, exception: cart.CartIdAlreadyExistsException):
         """
         Handler for CartIdAlreadyExistsException.
         """
@@ -43,8 +41,8 @@ def exceptions_handler(app):
             }
         )
 
-    @app.exception_handler(ItemAlreadyAddedException)
-    async def item_already_added_exception_handler(request: Request, exception: ItemAlreadyAddedException):
+    @app.exception_handler(cart.ItemAlreadyAddedException)
+    async def item_already_added_exception_handler(request: Request, exception: cart.ItemAlreadyAddedException):
         """
         Handler for CartIdNotFoundException.
         """
@@ -57,8 +55,8 @@ def exceptions_handler(app):
             }
         )
 
-    @app.exception_handler(CartIdNotFoundException)
-    async def cart_id_not_found_exception_handler(request: Request, exception: CartIdNotFoundException):
+    @app.exception_handler(cart.CartIdNotFoundException)
+    async def cart_id_not_found_exception_handler(request: Request, exception: cart.CartIdNotFoundException):
         """
         Handler for CartIdNotFoundException.
         """
@@ -72,8 +70,8 @@ def exceptions_handler(app):
 
         )
 
-    @app.exception_handler(MismatchedLenghtException)
-    async def mismatched_lenght_exception_handler(request: Request, exception: MismatchedLenghtException):
+    @app.exception_handler(cart.MismatchedLenghtException)
+    async def mismatched_lenght_exception_handler(request: Request, exception: cart.MismatchedLenghtException):
         """
         Handler for MismatchedLenghtException.
         """
@@ -86,8 +84,8 @@ def exceptions_handler(app):
             }
         )
 
-    @app.exception_handler(ItemNotFoundException)
-    async def item_not_found_exception_handler(request: Request, exception: ItemNotFoundException):
+    @app.exception_handler(cart.ItemNotFoundException)
+    async def item_not_found_exception_handler(request: Request, exception: cart.ItemNotFoundException):
         """
         Handler for ItemNotFoundException.
         """
@@ -100,8 +98,8 @@ def exceptions_handler(app):
             }
         )
 
-    @app.exception_handler(UnsupportedFileExtensionException)
-    async def unsupported_file_extension_exception_handler(request: Request, exception: ItemNotFoundException):
+    @app.exception_handler(cart.UnsupportedFileExtensionException)
+    async def unsupported_file_extension_exception_handler(request: Request, exception: cart.ItemNotFoundException):
         """
         Handler for UnsupportedFileExtensionException.
         """
@@ -114,8 +112,8 @@ def exceptions_handler(app):
             }
         )
 
-    @app.exception_handler(InvalidTokenException)
-    async def invalid_token_exception_handler(request: Request, exception: InvalidTokenException):
+    @app.exception_handler(cart.InvalidTokenException)
+    async def invalid_token_exception_handler(request: Request, exception: cart.InvalidTokenException):
         """
         Handler for InvalidTokenException.
         """
@@ -128,8 +126,8 @@ def exceptions_handler(app):
             }
         )
 
-    @app.exception_handler(InvalidUsernameOrPassword)
-    async def invalide_username_or_password_exception_handler(request: Request, exception: InvalidUsernameOrPassword):
+    @app.exception_handler(user.InvalidUsernameOrPassword)
+    async def invalide_username_or_password_exception_handler(request: Request, exception: user.InvalidUsernameOrPassword):
         """
         Handler for InvalidUsernameOrPassword.
         """
@@ -142,8 +140,8 @@ def exceptions_handler(app):
             }
         )
 
-    @app.exception_handler(NiceTryMeowNowGoBack)
-    async def nice_try_meow_exception_handler(request: Request, exception: NiceTryMeowNowGoBack):
+    @app.exception_handler(user.NiceTryMeowNowGoBack)
+    async def nice_try_meow_exception_handler(request: Request, exception: user.NiceTryMeowNowGoBack):
         """
         Handler for NiceTryMeowNowGoBack.
         """
@@ -157,8 +155,8 @@ def exceptions_handler(app):
             }
         )
 
-    @app.exception_handler(InvalidAuthCredentials)
-    async def invalid_auth_credentials_exception_handler(request: Request, exception: InvalidAuthCredentials):
+    @app.exception_handler(user.InvalidAuthCredentials)
+    async def invalid_auth_credentials_exception_handler(request: Request, exception: user.InvalidAuthCredentials):
         """
         Handler for InvalidAuthCredentials.
         """

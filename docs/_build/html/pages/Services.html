@@ -117,7 +117,7 @@
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Services</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.services.docs">Docs</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.services.metrics">Metrics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.services.misc">Misc</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.services.login">Login</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.services.security">Security</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#module-fastemplate.services.utils">Utils</a></li>
@@ -216,12 +216,26 @@
 </dd></dl>
 
 </section>
-<section id="module-fastemplate.services.metrics">
-<span id="metrics"></span><h2>Metrics<a class="headerlink" href="#module-fastemplate.services.metrics" title="Permalink to this headline">¶</a></h2>
+<section id="module-fastemplate.services.misc">
+<span id="misc"></span><h2>Misc<a class="headerlink" href="#module-fastemplate.services.misc" title="Permalink to this headline">¶</a></h2>
 <dl class="py function">
-<dt id="fastemplate.services.metrics.metrics">
-<code class="sig-prename descclassname">fastemplate.services.metrics.</code><code class="sig-name descname">metrics</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/metrics.html#metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.metrics.metrics" title="Permalink to this definition">¶</a></dt>
-<dd><p>Basic metrics endpoint.</p>
+<dt id="fastemplate.services.misc.explore_request">
+<code class="sig-prename descclassname">fastemplate.services.misc.</code><code class="sig-name descname">explore_request</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span><span class="p">:</span> <span class="n">starlette.requests.Request</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/misc.html#explore_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.misc.explore_request" title="Permalink to this definition">¶</a></dt>
+<dd><p>Endpoint. Explore the request.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>dict with alive, &#64;timestamp and no. of requests</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="fastemplate.services.misc.metrics">
+<code class="sig-prename descclassname">fastemplate.services.misc.</code><code class="sig-name descname">metrics</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/fastemplate/services/misc.html#metrics"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#fastemplate.services.misc.metrics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Endpoint. Basic metrics endpoint.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><p>dict with alive, &#64;timestamp and no. of requests</p>
