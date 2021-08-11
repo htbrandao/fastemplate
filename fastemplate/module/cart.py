@@ -2,7 +2,6 @@ import functools
 
 from fastapi import File
 
-from fastemplate import logger
 from fastemplate.module import MOCK_BASE_CART
 from fastemplate.objects.cart import CartItem, CartItemsList
 from fastemplate.exceptions.cart import CartIdAlreadyExistsException, CartIdNotFoundException,\
@@ -45,7 +44,7 @@ def hasId(func):
         :rtype: func
         :raises: CartIdNotFoundException
         """
-        cart_id = {**kwargs}['id']
+        cart_id = {**kwargs}['cart_id']
         if cart_id in MOCK_BASE_CART:
             return func(**kwargs)
         else:
