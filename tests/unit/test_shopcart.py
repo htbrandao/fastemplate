@@ -204,12 +204,140 @@ class TestShopCartAddItemAgain(unittest.TestCase):
         self.assertEqual(sorted(response_fruits), sorted(expected_fruits))
 
 
-# TODO: edit_item
+class TestShopEditItem(unittest.TestCase):
+    data = {'name': 'milk', 'price': 1.25}
+    response = client_app.post(url=f'/{__api_version__}/shopcart/edit_item/{TEST_CART_ID}', json=data)
+
+    def test_return_200(self):
+        self.assertEqual(self.response.status_code, 200)
+
+    def test_response_type(self):
+        self.assertIsInstance(self.response.json(), dict)
+
+    def test_response_content(self):
+        expected_keys = {'cart', 'message'}
+        self.assertEqual(self.response.json().keys(), expected_keys)
+        self.assertEqual(self.response.json().get('cart'), TEST_CART_ID)
+        self.assertEqual(self.response.json().get('message'), f'adjusted {self.data["name"]} to {self.data["price"]}.')
+
+
+class TestShopEditRemoveItem(unittest.TestCase):
+    data = {'name': 'milk', 'price': 0}
+    response = client_app.post(url=f'/{__api_version__}/shopcart/edit_item/{TEST_CART_ID}', json=data)
+
+    def test_return_200(self):
+        self.assertEqual(self.response.status_code, 200)
+
+    def test_response_type(self):
+        self.assertIsInstance(self.response.json(), dict)
+
+    def test_response_content(self):
+        expected_keys = {'cart', 'message'}
+        self.assertEqual(self.response.json().keys(), expected_keys)
+        self.assertEqual(self.response.json().get('cart'), TEST_CART_ID)
+        self.assertEqual(self.response.json().get('message'), f'removed {self.data["name"]}.')
+
+
+class TestShopEditItemCartNonExisting(unittest.TestCase):
+    data = {'name': 'milk', 'price': 1.25}
+    response = client_app.post(url=f'/{__api_version__}/shopcart/edit_item/{TEST_CART_ID+NOISE}', json=data)
+
+    def test_return_404(self):
+        self.assertEqual(self.response.status_code, 404)
+
+    def test_response_type(self):
+        self.assertIsInstance(self.response.json(), dict)
+
+    def test_response_content(self):
+        expected_keys = {'status', 'message', 'exception'}
+        self.assertEqual(self.response.json().keys(), expected_keys)
+        self.assertEqual(self.response.json().get('status'), 404)
+        self.assertEqual(self.response.json().get('message'), f'Cart #{TEST_CART_ID+NOISE} does not exist.')
+        self.assertEqual(self.response.json().get('exception'), 'CartIdNotFoundException')
+
+
+class TestShopEditItemNonExisting(unittest.TestCase):
+    data = {'name': 'milk' + NOISE, 'price': 0}
+    response = client_app.post(url=f'/{__api_version__}/shopcart/edit_item/{TEST_CART_ID}', json=data)
+
+    def test_return_404(self):
+        self.assertEqual(self.response.status_code, 404)
+
+    def test_response_type(self):
+        self.assertIsInstance(self.response.json(), dict)
+
+    def test_response_content(self):
+        expected_keys = {'status', 'message', 'exception'}
+        self.assertEqual(self.response.json().keys(), expected_keys)
+        self.assertEqual(self.response.json().get('status'), 404)
+        self.assertEqual(self.response.json().get('message'), f'Item not found {self.data["name"]}.')
+        self.assertEqual(self.response.json().get('exception'), 'ItemNotFoundException')
+
+
 # TODO: remove_item
 # TODO: item_price
 # TODO: list_items
 # TODO: list_some_items
 # TODO: cost
-# TODO: checkout
-# TODO: show_carts
-# TODO: nuke 
+
+
+class TestCheckout(unittest.TestCase):
+    response = client_app.post(url=f'/{__api_version__}/shopcart/checkout/{TEST_CART_ID}')
+
+    def test_return_200(self):
+        self.assertEqual(self.response.status_code, 200)
+
+    def test_response_type(self):
+        self.assertIsInstance(self.response.json(), dict)
+
+    def test_response_content(self):
+        expected_keys = {'cost', TEST_CART_ID}
+        self.assertEqual(self.response.json().keys(), expected_keys)
+        self.assertIsInstance(self.response.json().get(TEST_CART_ID), dict)
+
+
+class TestCheckoutNonExisting(unittest.TestCase):
+    response = client_app.post(url=f'/{__api_version__}/shopcart/checkout/{TEST_CART_ID+NOISE}')
+
+    def test_return_404(self):
+        self.assertEqual(self.response.status_code, 404)
+
+    def test_response_type(self):
+        self.assertIsInstance(self.response.json(), dict)
+
+    def test_response_content(self):
+        expected_keys = {'status', 'message', 'exception'}
+        self.assertEqual(self.response.json().keys(), expected_keys)
+        self.assertEqual(self.response.json().get('status'), 404)
+        self.assertEqual(self.response.json().get('message'), f'Cart #{TEST_CART_ID+NOISE} does not exist.')
+        self.assertEqual(self.response.json().get('exception'), 'CartIdNotFoundException')
+
+
+class TestShopShowCarts(unittest.TestCase):
+    response = client_app.get(url=f'/{__api_version__}/shopcart/show_carts')
+
+    def test_return_200(self):
+        self.assertEqual(self.response.status_code, 200)
+
+    def test_response_type(self):
+        self.assertIsInstance(self.response.json(), dict)
+
+    def test_response_content(self):
+        expected_keys = {'dinner'}
+        self.assertEqual(self.response.json().keys(), expected_keys)
+
+
+class TestNuke(unittest.TestCase):
+    response = client_app.delete(url=f'/{__api_version__}/shopcart/nuke')
+
+    def test_return_200(self):
+        self.assertEqual(self.response.status_code, 200)
+
+    def test_response_type(self):
+        self.assertIsInstance(self.response.json(), dict)
+
+    def test_response_content(self):
+        expected_keys = {'message', 'carts'}
+        self.assertEqual(self.response.json().keys(), expected_keys)
+        self.assertEqual(self.response.json().get('cart'), None)
+        self.assertEqual(self.response.json().get('message'), 'all carts were obliterated')
