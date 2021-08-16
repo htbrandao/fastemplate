@@ -201,10 +201,8 @@
 <span class="kn">from</span> <span class="nn">starlette.responses</span> <span class="kn">import</span> <span class="n">JSONResponse</span>
 
 <span class="kn">from</span> <span class="nn">fastemplate.exceptions</span> <span class="kn">import</span> <span class="n">FastemplateBaseException</span>
-<span class="kn">from</span> <span class="nn">fastemplate.exceptions.user</span> <span class="kn">import</span> <span class="n">InvalidUsernameOrPassword</span><span class="p">,</span> <span class="n">NiceTryMeowNowGoBack</span><span class="p">,</span> <span class="n">InvalidAuthCredentials</span>
-<span class="kn">from</span> <span class="nn">fastemplate.exceptions.cart</span> <span class="kn">import</span> <span class="n">CartIdAlreadyExistsException</span><span class="p">,</span> <span class="n">MismatchedLenghtException</span><span class="p">,</span> \
-    <span class="n">CartIdNotFoundException</span><span class="p">,</span> <span class="n">ItemAlreadyAddedException</span><span class="p">,</span> <span class="n">ItemNotFoundException</span><span class="p">,</span> <span class="n">UnsupportedFileExtensionException</span><span class="p">,</span> \
-    <span class="n">InvalidTokenException</span>
+<span class="kn">from</span> <span class="nn">fastemplate.exceptions</span> <span class="kn">import</span> <span class="n">user</span>
+<span class="kn">from</span> <span class="nn">fastemplate.exceptions</span> <span class="kn">import</span> <span class="n">cart</span>
 
 
 <div class="viewcode-block" id="exceptions_handler"><a class="viewcode-back" href="../../../pages/Exceptions.html#fastemplate.exceptions.handler.exceptions_handler">[docs]</a><span class="k">def</span> <span class="nf">exceptions_handler</span><span class="p">(</span><span class="n">app</span><span class="p">):</span>
@@ -228,8 +226,8 @@
             <span class="p">}</span>
         <span class="p">)</span>
 
-    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">CartIdAlreadyExistsException</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">cart_id_in_use_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">CartIdAlreadyExistsException</span><span class="p">):</span>
+    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">cart</span><span class="o">.</span><span class="n">CartIdAlreadyExistsException</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">cart_id_in_use_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">cart</span><span class="o">.</span><span class="n">CartIdAlreadyExistsException</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Handler for CartIdAlreadyExistsException.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -242,8 +240,8 @@
             <span class="p">}</span>
         <span class="p">)</span>
 
-    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">ItemAlreadyAddedException</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">item_already_added_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">ItemAlreadyAddedException</span><span class="p">):</span>
+    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">cart</span><span class="o">.</span><span class="n">ItemAlreadyAddedException</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">item_already_added_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">cart</span><span class="o">.</span><span class="n">ItemAlreadyAddedException</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Handler for CartIdNotFoundException.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -256,8 +254,8 @@
             <span class="p">}</span>
         <span class="p">)</span>
 
-    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">CartIdNotFoundException</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">cart_id_not_found_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">CartIdNotFoundException</span><span class="p">):</span>
+    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">cart</span><span class="o">.</span><span class="n">CartIdNotFoundException</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">cart_id_not_found_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">cart</span><span class="o">.</span><span class="n">CartIdNotFoundException</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Handler for CartIdNotFoundException.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -271,8 +269,8 @@
 
         <span class="p">)</span>
 
-    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">MismatchedLenghtException</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">mismatched_lenght_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">MismatchedLenghtException</span><span class="p">):</span>
+    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">cart</span><span class="o">.</span><span class="n">MismatchedLenghtException</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">mismatched_lenght_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">cart</span><span class="o">.</span><span class="n">MismatchedLenghtException</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Handler for MismatchedLenghtException.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -285,8 +283,8 @@
             <span class="p">}</span>
         <span class="p">)</span>
 
-    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">ItemNotFoundException</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">item_not_found_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">ItemNotFoundException</span><span class="p">):</span>
+    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">cart</span><span class="o">.</span><span class="n">ItemNotFoundException</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">item_not_found_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">cart</span><span class="o">.</span><span class="n">ItemNotFoundException</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Handler for ItemNotFoundException.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -299,8 +297,8 @@
             <span class="p">}</span>
         <span class="p">)</span>
 
-    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">UnsupportedFileExtensionException</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">unsupported_file_extension_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">ItemNotFoundException</span><span class="p">):</span>
+    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">cart</span><span class="o">.</span><span class="n">UnsupportedFileExtensionException</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">unsupported_file_extension_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">cart</span><span class="o">.</span><span class="n">ItemNotFoundException</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Handler for UnsupportedFileExtensionException.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -313,8 +311,8 @@
             <span class="p">}</span>
         <span class="p">)</span>
 
-    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">InvalidTokenException</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">invalid_token_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">InvalidTokenException</span><span class="p">):</span>
+    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">cart</span><span class="o">.</span><span class="n">InvalidTokenException</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">invalid_token_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">cart</span><span class="o">.</span><span class="n">InvalidTokenException</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Handler for InvalidTokenException.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -327,8 +325,8 @@
             <span class="p">}</span>
         <span class="p">)</span>
 
-    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">InvalidUsernameOrPassword</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">invalide_username_or_password_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">InvalidUsernameOrPassword</span><span class="p">):</span>
+    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">InvalidUsernameOrPassword</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">invalide_username_or_password_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">InvalidUsernameOrPassword</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Handler for InvalidUsernameOrPassword.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -341,8 +339,8 @@
             <span class="p">}</span>
         <span class="p">)</span>
 
-    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">NiceTryMeowNowGoBack</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">nice_try_meow_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">NiceTryMeowNowGoBack</span><span class="p">):</span>
+    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">NiceTryMeowNowGoBack</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">nice_try_meow_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">NiceTryMeowNowGoBack</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Handler for NiceTryMeowNowGoBack.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -356,8 +354,8 @@
             <span class="p">}</span>
         <span class="p">)</span>
 
-    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">InvalidAuthCredentials</span><span class="p">)</span>
-    <span class="k">async</span> <span class="k">def</span> <span class="nf">invalid_auth_credentials_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">InvalidAuthCredentials</span><span class="p">):</span>
+    <span class="nd">@app</span><span class="o">.</span><span class="n">exception_handler</span><span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">InvalidAuthCredentials</span><span class="p">)</span>
+    <span class="k">async</span> <span class="k">def</span> <span class="nf">invalid_auth_credentials_exception_handler</span><span class="p">(</span><span class="n">request</span><span class="p">:</span> <span class="n">Request</span><span class="p">,</span> <span class="n">exception</span><span class="p">:</span> <span class="n">user</span><span class="o">.</span><span class="n">InvalidAuthCredentials</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Handler for InvalidAuthCredentials.</span>
 <span class="sd">        &quot;&quot;&quot;</span>

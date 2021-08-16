@@ -199,7 +199,6 @@
 
 <span class="kn">from</span> <span class="nn">fastapi</span> <span class="kn">import</span> <span class="n">File</span>
 
-<span class="kn">from</span> <span class="nn">fastemplate</span> <span class="kn">import</span> <span class="n">logger</span>
 <span class="kn">from</span> <span class="nn">fastemplate.module</span> <span class="kn">import</span> <span class="n">MOCK_BASE_CART</span>
 <span class="kn">from</span> <span class="nn">fastemplate.objects.cart</span> <span class="kn">import</span> <span class="n">CartItem</span><span class="p">,</span> <span class="n">CartItemsList</span>
 <span class="kn">from</span> <span class="nn">fastemplate.exceptions.cart</span> <span class="kn">import</span> <span class="n">CartIdAlreadyExistsException</span><span class="p">,</span> <span class="n">CartIdNotFoundException</span><span class="p">,</span>\
@@ -242,7 +241,7 @@
 <span class="sd">        :rtype: func</span>
 <span class="sd">        :raises: CartIdNotFoundException</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">cart_id</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">kwargs</span><span class="p">}[</span><span class="s1">&#39;id&#39;</span><span class="p">]</span>
+        <span class="n">cart_id</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">kwargs</span><span class="p">}[</span><span class="s1">&#39;cart_id&#39;</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">cart_id</span> <span class="ow">in</span> <span class="n">MOCK_BASE_CART</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
