@@ -52,7 +52,7 @@ def hasId(func):
     return wrapper_hasId
 
 
-def upload_shoplist(id: str, file: File):
+def upload_shoplist(cart_id: str, file: File):
     """
     Uploads a `.csv` file to create a cart.
 
@@ -65,18 +65,18 @@ def upload_shoplist(id: str, file: File):
     if '.csv' not in file.filename:
         raise UnsupportedFileExtensionException(message=f'File {file.filename} is not supported.')
     else:
-        create_cart(cart_id=id)
+        create_cart(cart_id=cart_id)
         content_bytes = file.file.read()
         content_str = content_bytes.decode('utf-8').split('\n')
         shoplist = dict([
             [i.split(',')[0], float(i.split(',')[1])]
             for i in content_str
         ])
-        MOCK_BASE_CART[id] = shoplist
+        MOCK_BASE_CART[cart_id] = shoplist
         return {
             'filename': file.filename,
             'type': file.content_type,
-            'cart': MOCK_BASE_CART[id]
+            'cart': MOCK_BASE_CART[cart_id]
         }
 
 
@@ -138,13 +138,13 @@ def add_list(cart_id: str, items: CartItemsList):
 
 
 @hasId
-def edit_item(id: str, item: CartItem):
+def edit_item(cart_id: str, item: CartItem):
     """
-    Removes an item from the cart.
+    Edit an item price from a given the cart.
 
     If price is set to zero (0), item is removed from cart.
 
-    :param str id: cart id
+    :param str cart_id: cart cart_id
     :param CartItem item: pair of name and price
     :return: dict with cart and message
     :rtype: dict
@@ -152,13 +152,13 @@ def edit_item(id: str, item: CartItem):
     """
     if item.price == 0:
         try:
-            del MOCK_BASE_CART[id][item.name]
-            return {'cart': id, 'message': f'removed {item.name}.'}
+            del MOCK_BASE_CART[cart_id][item.name]
+            return {'cart': cart_id, 'message': f'removed {item.name}.'}
         except KeyError:
             raise ItemNotFoundException(message=f'Item not found {item.name}.')
     else:
-        MOCK_BASE_CART[id][item.name] = item.price
-        return {'cart': id, 'message': f'adjusted {item.name} to {item.price}.'}
+        MOCK_BASE_CART[cart_id][item.name] = item.price
+        return {'cart': cart_id, 'message': f'adjusted {item.name} to {item.price}.'}
 
 
 @hasId

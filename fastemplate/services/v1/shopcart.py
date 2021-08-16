@@ -38,7 +38,7 @@ def upload_shoplist(cart_id:str, file: UploadFile = File(...)):
     :rtype: dict
     """
     logger.info(f'Request@/upload_shoplist/{cart_id}')
-    return cart.upload_shoplist(id=cart_id, file=file)
+    return cart.upload_shoplist(cart_id=cart_id, file=file)
 
 
 @router.delete('/erase/{cart_id}')
@@ -95,7 +95,7 @@ def edit_item(cart_id: str, item: CartItem):
     :rtype: dict
     """
     logger.info(f'Request@/edit_item/{cart_id}')
-    return cart.edit_item(id=cart_id, item=item)
+    return cart.edit_item(cart_id=cart_id, item=item)
 
 
 def common_parameters(cart_id: str, item_name: str):

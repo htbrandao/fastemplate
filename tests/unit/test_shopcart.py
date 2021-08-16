@@ -38,6 +38,7 @@ class TestShopCartCreateExisting(unittest.TestCase):
         self.assertEqual(sorted(self.response.json().keys()), sorted(expected_keys))
 
 
+# FIXME: TestShopCartUploadShoplist
 # class TestShopCartUploadShoplist(unittest.TestCase):
 #     FILE_PATH = 'tests/unit/shoplist.csv'
 #     FILE_BYTES = open(FILE_PATH, 'rb').read()
@@ -50,7 +51,6 @@ class TestShopCartCreateExisting(unittest.TestCase):
 
 #     def test_return_201(self):
 #         self.assertEqual(self.response.status_code, 201)
-
 
 #     def test_response_content(self):
 #         expected_keys = {'filename', 'type', 'cart'}
@@ -196,5 +196,20 @@ class TestShopCartAddItemAgain(unittest.TestCase):
         expected_keys = {'status', 'message', 'exception'}
         self.assertEqual(self.response.json().keys(), expected_keys)
         self.assertEqual(self.response.json().get('status'), 422)
-        self.assertIn(', '.join(self.data['names']), self.response.json().get('message'))
         self.assertEqual(self.response.json().get('exception'), 'ItemAlreadyAddedException')
+    
+    def test_repeated_items(self):
+        response_fruits = self.response.json().get('message').replace('Repeated items: ', '').replace('.', '').split(', ')
+        expected_fruits = ', '.join(self.data['names']).split(', ')
+        self.assertEqual(sorted(response_fruits), sorted(expected_fruits))
+
+
+# TODO: edit_item
+# TODO: remove_item
+# TODO: item_price
+# TODO: list_items
+# TODO: list_some_items
+# TODO: cost
+# TODO: checkout
+# TODO: show_carts
+# TODO: nuke 
