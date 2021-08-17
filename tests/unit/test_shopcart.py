@@ -278,7 +278,38 @@ class TestShopEditItemNonExisting(unittest.TestCase):
 # TODO: item_price
 # TODO: list_items
 # TODO: list_some_items
-# TODO: cost
+
+
+class TestCost(unittest.TestCase):
+    response = client_app.get(url=f'/{__api_version__}/shopcart/cost/{TEST_CART_ID}')
+
+    def test_return_200(self):
+        self.assertEqual(self.response.status_code, 200)
+
+    def test_response_type(self):
+        self.assertIsInstance(self.response.json(), dict)
+
+    def test_response_content(self):
+        expected_keys = {TEST_CART_ID}
+        self.assertEqual(self.response.json().keys(), expected_keys)
+        self.assertIsInstance(self.response.json().get(TEST_CART_ID), float)
+
+
+class TestCostNonExisting(unittest.TestCase):
+    response = client_app.get(url=f'/{__api_version__}/shopcart/cost/{TEST_CART_ID+NOISE}')
+
+    def test_return_404(self):
+        self.assertEqual(self.response.status_code, 404)
+
+    def test_response_type(self):
+        self.assertIsInstance(self.response.json(), dict)
+
+    def test_response_content(self):
+        expected_keys = {'status', 'message', 'exception'}
+        self.assertEqual(self.response.json().keys(), expected_keys)
+        self.assertEqual(self.response.json().get('status'), 404)
+        self.assertEqual(self.response.json().get('message'), f'Cart #{TEST_CART_ID+NOISE} does not exist.')
+        self.assertEqual(self.response.json().get('exception'), 'CartIdNotFoundException')
 
 
 class TestCheckout(unittest.TestCase):
